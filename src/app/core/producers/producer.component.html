@@ -3,7 +3,6 @@
 <button (click)="getAllProducers()">Send</button>
 <div *ngIf="producers!=[]">
   <ul *ngFor="let producer1 of producers">
-    {{producer1.about.short}}
     <h3>Title: {{producer1.title}} </h3>
     <li>Id: {{producer1._id}}</li>
     <li>Photo: {{producer1.photo}}</li>
