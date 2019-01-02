@@ -1,0 +1,63 @@
+<a routerLink='/products'>Products</a>
+<h3>Get All Categories</h3>
+<button (click) = "getAllCategories()">Get all categories</button>
+<hr>
+<div *ngFor = "let category of categories">
+  <span *ngIf = "categories!=[]">
+    <h3>Title: {{category.title}}</h3>
+    <h4>Id: {{category._id}}</h4>
+  </span>
+  <a routerLink="viewAll" (click)="viewAllProductsByCategory(category._id)">View all products</a>
+</div>
+<h3>Get category by id</h3>
+<input type="text" #categoryId>
+<br>
+<button (click)="getCategoryById(categoryId)">Get Category</button>
+<br>
+<div *ngIf="foundCategoryById">
+  <h2>Title: {{foundCategoryById.title}}</h2>
+  <p>Id: {{foundCategoryById._id}}</p>
+  <button (click)="viewAllProducts(foundCategoryById)">View all products</button>
+</div>
+<br>
+<h1>Create category</h1>
+<form #createForm="ngForm" (ngSubmit)="createCategory(createForm)">
+  <label>Title:</label>
+  <input type="text" name="title" ngModel>
+  <br>
+  <button>Create category</button>
+</form>
+<hr>
+<h2>Update category</h2>
+<form #updateForm = "ngForm" (ngSubmit)="updateCategory(updateForm)">
+  <label>Id: </label>
+  <input type="text" name="_id" ngModel>
+  <br>
+  <label>Title: </label>
+  <input type="text" name="title" ngModel>
+  <br>
+  <button>Update category</button>
+</form>
+<form *ngIf="updatedCategory">
+  <p>Title: {{updatedCategory.title}}</p>
+  <p>Id: {{updatedCategory._id}}</p>
+</form>
+<h2>Delete category </h2>
+<form (ngSubmit)="deleteCategory(deleteForm)">
+  <label>Id: </label>
+  <input type="text" name="_id" #deleteForm>
+  <button>Delete</button>
+</form>
+<br>
+<form *ngIf = "deletedCategory">
+  <p>Title: {{deletedCategory.title}}</p>
+  <p>Id: {{deletedCategory._id}}</p>
+</form>
+<br>
+<button (click)="deleteAllCategories()">Delete all categories</button>
+<div *ngFor="let ElDeletedCategories of deletedCategories">
+  <ul *ngIf="deletedCategories!=[]">
+    <li>Id: {{ElDeletedCategories._id}}</li>
+    <li>Title: {{ElDeletedCategories.title}}</li>
+  </ul>
+</div>

@@ -1,0 +1,107 @@
+<h3>Get all users</h3>
+<button (click)="getAllUsers()">Get all Users</button>
+<br>
+<hr>
+<div  *ngFor="let user of users" >
+  <span *ngIf="users!=[]" >
+    <h1>Name: {{user.firstName}}</h1>
+    <h4>Id: {{user._id}}</h4>
+    <h4>Surname: {{user.surname}}</h4>
+    <h4>Phone number: {{user.phone}}</h4>
+    <h4>Email: {{user.email}}</h4>
+    <h4>Adress: {{user.adress}}</h4>
+  </span>
+</div>
+<p>Get User by Id</p>
+<input type="text" #getUserId >
+<br>
+<br>
+<button (click)="getUserById(getUserId)">Get user</button>
+<div *ngIf="foundUserById">
+  <h1>Name: {{foundUserById.firstName}}</h1>
+  <h4>Id: {{foundUserById._id}}</h4>
+  <h4>Surname: {{foundUserById.surname}}</h4>
+  <h4>Phone number: {{foundUserById.phone}}</h4>
+  <h4>Email: {{foundUserById.email}}</h4>
+  <h4>Adress: {{foundUserById.adress}}</h4>
+</div>
+<h1>Create user</h1>
+<br>
+<form #form1="ngForm" (ngSubmit)="createUser(form1)">
+  <label>Name: </label>
+  <input type="text" name="firstName" ngModel>
+  <br>
+  <label>Surname: </label>
+  <input type="text" name="surname" ngModel>
+  <br>
+  <label>Phone Number: </label>
+  <input type="text" name="phone" ngModel>
+  <br>
+  <label>Email: </label>
+  <input type="text" name="email" ngModel>
+  <br>
+  <label>Adress: </label>
+  <input type="text" name="adress" ngModel>
+  <br>
+  <br>
+  <button>Send </button>
+</form>
+<hr>
+<h1>
+  Now input new values of User
+</h1>
+<br>
+<form #form2 = "ngForm" (ngSubmit)="updateUser(form2)">
+  <label>Id: </label>
+  <input type = "text" name="_id" ngModel>
+  <br>
+  <label>Name: </label>
+  <input type="text" name="firstName" ngModel>
+  <br>
+  <label>Surname: </label>
+  <input type="text" name="surname" ngModel>
+  <br>
+  <label>Phone Number: </label>
+  <input type="text" name="phone" ngModel>
+  <br>
+  <label>Email: </label>
+  <input type="text" name="email" ngModel>
+  <br>
+  <label>Adress: </label>
+  <input type="text" name="adress" ngModel>
+  <br>
+  <button type="submit">Send</button>
+</form>
+<form *ngIf="updatedUser">
+  <h1>Name: {{updatedUser.firstName}}</h1>
+  <h4>Id: {{updatedUser._id}}</h4>
+  <h4>Surname: {{updatedUser.surname}}</h4>
+  <h4>Phone number: {{updatedUser.phone}}</h4>
+  <h4>Email: {{updatedUser.email}}</h4>
+  <h4>Adress: {{updatedUser.adress}}</h4>
+</form>
+
+<hr>
+<h1>Delete user</h1>
+   <input #a1 type = "text" name="id" ngModel>
+  <button (click)="deleteUser(a1)">Send</button>
+<br>
+<form *ngIf="deletedUser">
+  <h1>Name: {{deletedUser.firstName}}</h1>
+  <h4>Id: {{deletedUser._id}}</h4>
+  <h4>Surname: {{deletedUser.surname}}</h4>
+  <h4>Phone number: {{deletedUser.phone}}</h4>
+  <h4>Email: {{deletedUser.email}}</h4>
+  <h4>Adress: {{deletedUser.adress}}</h4>
+</form>
+<br>
+<button (click) = "deleteAllUsers()">Delete all users</button>
+<div *ngFor="let ElDeletedUsers of deletedUsers">
+  <ul *ngIf="deletedUsers!=[]">
+    <li>Id: {{ElDeletedUsers._id}}</li>
+    <li>Name: {{ElDeletedUsers.firstName}}</li>
+    <li>Surname: {{ElDeletedUsers.surname}}</li>
+    <li>Phone number: {{ElDeletedUsers.phone}}</li>
+    <li>Adress: {{ElDeletedUsers.adress}}</li>
+  </ul>
+</div>

@@ -1,0 +1,17 @@
+<a routerLink="/categories">Back</a>
+<h1>All products</h1>
+<ul *ngFor="let product of data">
+  <h3>{{product.title}}</h3>
+  <li>Id: {{product._id}}</li>
+  <li>Price: {{product.price}}</li>
+  <li>About short: {{product.about.short}}</li>
+  <li>Colors: {{product.colors}}</li>
+  <li>Quantity: {{product.quantity}}</li>
+  <li>Category: {{product.category}}</li>
+  <li>Gender: {{product.gender}}</li>
+  <hr>
+</ul>
+
+
+
+

@@ -1,0 +1,22 @@
+<h1>Producers</h1>
+<h2>Get all producers</h2>
+<button (click)="getAllProducers()">Send</button>
+<div *ngIf="producers!=[]">
+  <ul *ngFor="let producer1 of producers">
+    {{producer1.about.short}}
+    <h3>Title: {{producer1.title}} </h3>
+    <li>Id: {{producer1._id}}</li>
+    <li>Photo: {{producer1.photo}}</li>
+    <li>Country:{{producer1.country}}</li>
+    <hr>
+  </ul>
+</div>
+<br>
+<form #producerForm="ngForm" (ngSubmit)="createProducer(producerForm)">
+  Title: <input type="text" name="title" ngModel><br>
+  Short about: <input type="text" name="about.short" ngModel><br>
+  All about: <input type="text" name="aboutAll" ngModel><br>
+  Photo <input type="text" name="photo" ngModel><br>
+  Country: <input type="text" name="country" ngModel><br>
+  <button type="submit">Create</button>
+</form>
