@@ -12,6 +12,7 @@ export class ProducerComponent implements OnInit {
   producers: Producer[] = [];
   foundProducerById: {};
   producer: Producer;
+  createdproducers: Producer[] = [];
   updatedProducer: {};
   deletedProducer: {};
   constructor( private producerService: ProducerService) { }
@@ -20,10 +21,11 @@ export class ProducerComponent implements OnInit {
 
   }
   getAllProducers() {
-    this.producerService.getAllProducers().subscribe((res) =>{
-      console.log(res);
+    this.producerService.getAllProducers().subscribe((res) => {
       this.producers = res;
-      console.log(this.producers);
+      for (const p of this.createdproducers) {
+        this.producers.push(p);
+      }
     });
   }
 
@@ -32,7 +34,7 @@ export class ProducerComponent implements OnInit {
   }
 
   createProducer(producerForm: NgForm) {
-    this.producerService.createProducer(producerForm.value).subscribe((res) => this.producers.push(res));
+    this.producerService.createProducer(producerForm.value).subscribe((res) => this.createdproducers.push(res));
   }
 
   updateProducer(producerForm: NgForm) {

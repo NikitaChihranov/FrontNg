@@ -15,6 +15,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   foundProductById: {};
   deletedProduct: {};
+  createdproducts: Product[] = [];
   product: Product;
   updatedProduct: {};
   deletedProducts: Product[] = [];
@@ -23,11 +24,18 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.categoriesService.getAllCategories().subscribe((res) => this.categories = res ? res : []);
+    this.categoriesService.getAllCategories().subscribe((res) =>{
+      this.categories = res ? res : [];
+    } );
   }
 
   getAllProducts() {
-    this.productService.getAllProducts().subscribe((res) => this.products = res);
+    this.productService.getAllProducts().subscribe((res) => {
+      this.products = res;
+      for (const p of this.createdproducts) {
+        this.products.push(p);
+      }
+    });
   }
 
   getProductById(id) {
@@ -35,7 +43,7 @@ export class ProductsComponent implements OnInit {
   }
 
   createProduct(productForm: NgForm) {
-    this.productService.createProduct(productForm.value).subscribe((res) => this.products.push(res));
+    this.productService.createProduct(productForm.value).subscribe((res) => this.createdproducts.push(res));
   }
 
   updateProduct(productForm: NgForm) {

@@ -12,6 +12,7 @@ export class UserPageAdminComponent implements OnInit {
   users: User[] = [];
   foundUserById: {};
   deletedUser: {};
+  createdusers: User[] = [];
   user: User;
   updatedUser: {};
   deletedUsers: User[] = [];
@@ -25,7 +26,12 @@ export class UserPageAdminComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.userService.getAllUsers().subscribe((res) => this.users = res ? res : []);
+    this.userService.getAllUsers().subscribe((res) =>{
+      this.users = res ? res : [];
+      for (const c of this.createdusers) {
+        this.users.push(c);
+      }
+    } );
   }
 
   getUserById(userId) {
@@ -34,7 +40,7 @@ export class UserPageAdminComponent implements OnInit {
 
 
   createUser(userForm) {
-    this.userService.createUser(userForm.value).subscribe((res) => this.users.push(res));
+    this.userService.createUser(userForm.value).subscribe((res) => this.createdusers.push(res));
   }
 
   updateUser(userForm: NgForm) {

@@ -5,7 +5,6 @@ import {FormsModule} from '@angular/forms';
 import {ProductsRoutingModule} from './products-routing.module';
 import {CategoriesComponent} from '../categories.component';
 import {RouterModule} from '@angular/router';
-import {AboutAllComponent} from './about-all/about-all.component';
 import {CategoriesModule} from '../categories.module';
 
 @NgModule({

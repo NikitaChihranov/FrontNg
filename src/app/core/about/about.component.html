@@ -3,7 +3,7 @@ ABOUT PAGE
 </p>
 <form #aboutForm = "ngForm" (ngSubmit)="create(aboutForm)">
   <label>Create about content</label>
-  <input type="text" name="text">
+  <input type="text" name="text" ngModel>
   <button type="submit">Send</button>
 </form>
 {{aboutContent.text}}

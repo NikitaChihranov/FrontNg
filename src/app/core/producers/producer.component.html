@@ -5,6 +5,8 @@
   <ul *ngFor="let producer1 of producers">
     <h3>Title: {{producer1.title}} </h3>
     <li>Id: {{producer1._id}}</li>
+    <li>Short about: {{producer1.about.short}}</li>
+    <li>All about: {{producer1.about.all}}</li>
     <li>Photo: {{producer1.photo}}</li>
     <li>Country:{{producer1.country}}</li>
     <hr>
@@ -14,8 +16,11 @@
 <form #producerForm="ngForm" (ngSubmit)="createProducer(producerForm)">
   Title: <input type="text" name="title" ngModel><br>
   Short about: <input type="text" name="about.short" ngModel><br>
-  All about: <input type="text" name="aboutAll" ngModel><br>
+  All about: <input type="text" name="about.all" ngModel><br>
   Photo <input type="text" name="photo" ngModel><br>
   Country: <input type="text" name="country" ngModel><br>
   <button type="submit">Create</button>
 </form>
+<input type="text" #aaa name="id">
+<button (click)="deleteProducer(aaa)">Delete</button>
+

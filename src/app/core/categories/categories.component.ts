@@ -14,6 +14,7 @@ export class CategoriesComponent implements OnInit {
   categories: Category[] = [];
   foundCategoryById: {};
   category: Category;
+  createdcategories: Category[] = [];
   updatedCategory: {};
   deletedCategory: {};
   deletedCategories: Category[] = [];
@@ -29,7 +30,12 @@ export class CategoriesComponent implements OnInit {
   }
 
   getAllCategories() {
-    this.categoriesService.getAllCategories().subscribe((res) => this.categories = res);
+    this.categoriesService.getAllCategories().subscribe((res) =>{
+      this.categories = res;
+      for (const c of this.createdcategories) {
+        this.categories.push(c);
+      }
+    });
   }
 
   getCategoryById(id) {
@@ -37,7 +43,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   createCategory(categoryForm: NgForm) {
-    this.categoriesService.createCategory(categoryForm.value).subscribe((res) => this.categories.push(res));
+    this.categoriesService.createCategory(categoryForm.value).subscribe((res) => this.createdcategories.push(res));
   }
 
   updateCategory(categoryForm: NgForm) {

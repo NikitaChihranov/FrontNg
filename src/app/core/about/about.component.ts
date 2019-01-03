@@ -9,7 +9,7 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  aboutContent: About;
+  aboutContent: About = Object;
   constructor( private aboutService: AboutService) { }
 
   ngOnInit() {
