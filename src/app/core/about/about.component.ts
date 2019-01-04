@@ -9,16 +9,15 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  aboutContent: About = Object;
+  aboutContent: About;
+
   constructor( private aboutService: AboutService) { }
 
   ngOnInit() {
-  }
-  getAbout() {
     this.aboutService.getAbout().subscribe((res) => this.aboutContent = res);
   }
   create(aboutForm: NgForm) {
-    console.log(this.aboutContent.text);
+    console.log(1);
     this.aboutService.create(aboutForm.value).subscribe((res) => this.aboutContent = res);
   }
   update(aboutForm: NgForm) {
