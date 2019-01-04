@@ -10,20 +10,24 @@ import {NgForm} from '@angular/forms';
 })
 export class AboutComponent implements OnInit {
   aboutContent: About;
-
   constructor( private aboutService: AboutService) { }
 
   ngOnInit() {
-    this.aboutService.getAbout().subscribe((res) => this.aboutContent = res);
+    this.aboutService.getAbout().subscribe((res) => {
+      this.aboutContent = res;
+    });
   }
   create(aboutForm: NgForm) {
-    console.log(1);
-    this.aboutService.create(aboutForm.value).subscribe((res) => this.aboutContent = res);
+    this.aboutService.create(aboutForm.value).subscribe((res) => {
+      this.aboutContent = res;
+    });
   }
   update(aboutForm: NgForm) {
     this.aboutService.update(aboutForm.value).subscribe((res) => this.aboutContent = res);
   }
   delete() {
-    this.aboutService.delete().subscribe((res) => this.aboutContent = res);
+    this.aboutService.delete().subscribe((res) => {
+      this.aboutContent.text = '';
+    });
   }
 }

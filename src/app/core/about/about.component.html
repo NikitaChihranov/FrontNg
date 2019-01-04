@@ -1,10 +1,18 @@
-<p>
-ABOUT PAGE
-</p>
+<h1>ABOUT PAGE</h1>
 <form #aboutForm = "ngForm" (ngSubmit)="create(aboutForm)">
-  <label>Create about content</label>
-  <input type="text" name="text" ngModel>
+  <h2>Create about content</h2>
+  <textarea rows="13" cols="80" name="text" ngModel></textarea>
+  <br>
   <button type="submit">Send</button>
 </form>
-{{aboutContent.text}}
+<div>
+  <h3> {{aboutContent.text}}</h3>
+</div>
+<form #updateForm = "ngForm" (ngSubmit)="update(updateForm)">
+  <h2>If About already exists, you can update it.</h2>
+  <textarea rows="13" cols="80" name="text" ngModel></textarea>
+  <br>
+  <button type="submit">Send</button>
+</form>
+<br>
 <button (click)="delete()">Delete</button>
