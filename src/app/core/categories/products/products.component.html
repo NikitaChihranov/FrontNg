@@ -69,7 +69,10 @@
   </select>
   <br>
   <label>Producer: </label>
-  <input type="text" name="producer" ngModel><br>
+  <select name="producer" ngModel>
+    <option *ngFor = "let producer of producers">{{producer.title}}</option>
+  </select>
+  <br>
   <label>Show: </label>
   <input type="text" name="show" ngModel><br>
   <label>Sale: </label>

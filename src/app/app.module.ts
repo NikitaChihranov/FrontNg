@@ -9,6 +9,7 @@ import {IndexComponent} from './index/index.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import {MainMenuRoutingModule} from './main-menu/main-menu-routing.module';
 import {ProducerRoutingModule} from './core/producers/producer-routing.module';
+import { ViPComponent } from './vi-p/vi-p.component';
 
 @NgModule({
   declarations: [

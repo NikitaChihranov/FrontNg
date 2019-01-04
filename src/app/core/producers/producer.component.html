@@ -9,6 +9,7 @@
     <li>All about: {{producer1.about.all}}</li>
     <li>Photo: {{producer1.photo}}</li>
     <li>Country:{{producer1.country}}</li>
+    <button routerLink="viewAll" (click)="viewAllProductsByProducer(producer1._id)" >View all products</button>
     <hr>
   </ul>
 </div>
@@ -62,6 +63,16 @@
   <br>
   <button (click)="deleteProducer(id)">Delete</button>
 </form>
+<div *ngIf="deletedProducer">
+  <button (click)="hide()">Hide</button>
+  <ul>
+    <li>Title: {{deletedProducer.title}}</li>
+    <li>Short about: {{deletedProducer.about.short}}</li>
+    <li>About: {{deletedProducer.about.all}}</li>
+    <li>Photo: {{deletedProducer.photo}}</li>
+    <li>Country: {{deletedProducer.country}}</li>
+  </ul>
+</div>
 <form>
   <h3>Delete all producers</h3>
   <button (click)="deleteAllProducers()">Delete all</button>

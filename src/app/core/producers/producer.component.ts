@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProducerService} from '../../services/producer.service';
 import {Producer} from '../models/producer';
 import {NgForm} from '@angular/forms';
+import {Product} from '../models/product';
 
 @Component({
   selector: 'app-producer',
@@ -14,11 +15,11 @@ export class ProducerComponent implements OnInit {
   producer: Producer;
   updatedProducer: {};
   deletedProducer: {};
-  deletedProducers: Producer[] = [];
+  foundProductsByProducer: Product[] = [];
+  producerCopy: {};
   constructor( private producerService: ProducerService) { }
 
   ngOnInit() {
-  console.log(this.deletedProducers);
   }
   getAllProducers() {
     this.producerService.getAllProducers().subscribe((res) => {
@@ -27,7 +28,6 @@ export class ProducerComponent implements OnInit {
   }
 
   getProducerById(id) {
-    console.log(id.value);
     this.producerService.getProducerById(id.value).subscribe((res) => {
       this.foundProducerById = res;
     });
@@ -47,10 +47,23 @@ export class ProducerComponent implements OnInit {
   deleteProducer(id) {
     this.producerService.deleteProducer(id.value).subscribe((res) => {
       this.deletedProducer = res;
+      this.producerCopy = this.deletedProducer;
     });
   }
   
   deleteAllProducers() {
     this.producerService.deleteAllProducers().subscribe((res) => {} );
   }
+
+  viewAllProductsByProducer(id) {
+    this.producerService.viewAllProductsByProducer(id).subscribe((res) => {
+      this.foundProductsByProducer = res ? res : [];
+      this.producerService.dataSource.next(res);
+    });
+  }
+
+  hide() {
+    this.deletedProducer = undefined;
+  }
+
 }

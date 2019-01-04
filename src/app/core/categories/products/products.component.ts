@@ -4,6 +4,8 @@ import {NgForm} from '@angular/forms';
 import {ProductService} from '../../../services/product.service';
 import {CategoriesService} from '../../../services/categories.service';
 import {Category} from '../../models/category';
+import {ProducerService} from '../../../services/producer.service';
+import {Producer} from '../../models/producer';
 
 @Component({
   selector: 'app-products',
@@ -18,14 +20,18 @@ export class ProductsComponent implements OnInit {
   product: Product;
   updatedProduct: {};
   deletedProducts: Product[] = [];
+  producers: Producer[] = [];
 
-  constructor( private productService: ProductService, private categoriesService: CategoriesService ) {
+  constructor( private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService ) {
   }
 
   ngOnInit() {
     this.categoriesService.getAllCategories().subscribe((res) =>{
       this.categories = res ? res : [];
-    } );
+    });
+    this.producerService.getAllProducers().subscribe((res) => {
+      this.producers = res ? res : [];
+    });
   }
 
   getAllProducts() {
