@@ -1,6 +1,6 @@
 <h1>Producers</h1>
 <h2>Get all producers</h2>
-<button (click)="getAllProducers()">Send</button>
+<button (click)="getAllProducers()">Push</button>
 <div *ngIf="producers!=[]">
   <ul *ngFor="let producer1 of producers">
     <h3>Title: {{producer1.title}} </h3>
@@ -12,8 +12,23 @@
     <hr>
   </ul>
 </div>
-<br>
+<form (ngSubmit)="getProducerById(id1)">
+  <h2>Get producer by id</h2>
+  <h3>Id: </h3><input type="text" name="_id" #id1>
+  <button type="submit">Get</button>
+</form>
+<div *ngIf="foundProducerById">
+  <ul>
+    <li><h3>Id:</h3>{{foundProducerById._id}}</li>
+    <li><h3>Title:</h3>{{foundProducerById.title}}</li>
+    <li><h3>Short about:</h3>{{foundProducerById.about.short}}</li>
+    <li><h3>About:</h3>{{foundProducerById.about.all}}</li>
+    <li><h3>Photo:</h3>{{foundProducerById.photo}}</li>
+    <li><h3>Country:</h3>{{foundProducerById.country}}</li>
+  </ul>
+</div>
 <form #producerForm="ngForm" (ngSubmit)="createProducer(producerForm)">
+  <h3>Create new producer</h3>
   Title: <input type="text" name="title" ngModel><br>
   Short about: <input type="text" name="about.short" ngModel><br>
   All about: <input type="text" name="about.all" ngModel><br>
@@ -21,6 +36,33 @@
   Country: <input type="text" name="country" ngModel><br>
   <button type="submit">Create</button>
 </form>
-<input type="text" #aaa name="id">
-<button (click)="deleteProducer(aaa)">Delete</button>
-
+<form #updateForm="ngForm" (ngSubmit)="updateProducer(updateForm)">
+  <h3>Update someone</h3>
+  Id: <input type="text" name="_id" ngModel><br>
+  Title: <input type="text" name="title" ngModel><br>
+  Short about: <input type="text" name="about.short" ngModel><br>
+  All about: <input type="text" name="about.all" ngModel><br>
+  Photo <input type="text" name="photo" ngModel><br>
+  Country: <input type="text" name="country" ngModel><br>
+  <button type="submit">Update</button>
+</form>
+<div *ngIf="updatedProducer">
+  <h2>Updated producer</h2>
+  <ul>
+    <li>Title: {{updatedProducer.title}}</li>
+    <li>Short about: {{updatedProducer.about.short}}</li>
+    <li>About: {{updatedProducer.about.all}}</li>
+    <li>Photo: {{updatedProducer.photo}}</li>
+    <li>Country: {{updatedProducer.country}}</li>
+  </ul>
+</div>
+<form>
+  <h3>Delete someone</h3>
+  Id: <input type="text" #id name="id">
+  <br>
+  <button (click)="deleteProducer(id)">Delete</button>
+</form>
+<form>
+  <h3>Delete all producers</h3>
+  <button (click)="deleteAllProducers()">Delete all</button>
+</form>

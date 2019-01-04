@@ -15,7 +15,6 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   foundProductById: {};
   deletedProduct: {};
-  createdproducts: Product[] = [];
   product: Product;
   updatedProduct: {};
   deletedProducts: Product[] = [];
@@ -32,9 +31,6 @@ export class ProductsComponent implements OnInit {
   getAllProducts() {
     this.productService.getAllProducts().subscribe((res) => {
       this.products = res;
-      for (const p of this.createdproducts) {
-        this.products.push(p);
-      }
     });
   }
 
@@ -43,7 +39,7 @@ export class ProductsComponent implements OnInit {
   }
 
   createProduct(productForm: NgForm) {
-    this.productService.createProduct(productForm.value).subscribe((res) => this.createdproducts.push(res));
+    this.productService.createProduct(productForm.value).subscribe((res) => {});
   }
 
   updateProduct(productForm: NgForm) {

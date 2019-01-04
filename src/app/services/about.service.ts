@@ -21,7 +21,7 @@ export class AboutService {
   update(about: About): Observable<About> {
     return this.http.put<About>(`${this.host}about`, about);
   }
-  delete(): Observable<About>{
+  delete(): Observable<About> {
     return this.http.delete<About>(`${this.host}about`);
   }
 }

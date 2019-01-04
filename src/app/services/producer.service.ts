@@ -26,5 +26,7 @@ export class ProducerService {
   deleteProducer(id: string): Observable<Producer> {
     return this.http.delete<Producer>(`${this.host}producers/${id}`);
   }
-
+  deleteAllProducers(): Observable<Producer[]> {
+    return this.http.delete<Producer[]>(`${this.host}producers`);
+  }
 }
