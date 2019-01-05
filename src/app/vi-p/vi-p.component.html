@@ -4,8 +4,16 @@
 </div>
 <div>
   <ul *ngFor="let product of data">
+    <h3>{{product.title}}</h3>
     <li>Id: {{product._id}}</li>
-    <li>Title: {{product.title}}</li>
+    <li>Price: {{product.price}}</li>
+    <li>About short: {{product.about.short}}</li>
+    <li>About: {{product.about.all}}</li>
     <li>Colors: {{product.colors}}</li>
+    <li>Quantity: {{product.quantity}}</li>
+    <li>Category: {{product.category}}</li>
+    <li>Producer: {{product.producer}}</li>
+    <li>Gender: {{product.gender}}</li>
+    <hr>
   </ul>
 </div>

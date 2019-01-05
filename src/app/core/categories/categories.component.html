@@ -17,7 +17,7 @@
 <div *ngIf="foundCategoryById">
   <h2>Title: {{foundCategoryById.title}}</h2>
   <p>Id: {{foundCategoryById._id}}</p>
-  <button (click)="viewAllProducts(foundCategoryById)">View all products</button>
+  <button routerLink="viewAll" (click)="viewAllProductsByCategory(foundCategoryById._id)">View all products</button>
 </div>
 <br>
 <h1>Create category</h1>
