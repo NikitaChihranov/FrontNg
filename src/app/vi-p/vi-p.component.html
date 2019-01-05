@@ -1,0 +1,11 @@
+<a routerLink="/producers">Back</a>
+<div *ngIf="data.length===0">
+  <h1>There are no products made by this producer</h1>
+</div>
+<div>
+  <ul *ngFor="let product of data">
+    <li>Id: {{product._id}}</li>
+    <li>Title: {{product.title}}</li>
+    <li>Colors: {{product.colors}}</li>
+  </ul>
+</div>
