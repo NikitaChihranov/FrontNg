@@ -1,5 +1,7 @@
 <p>
   comment works!
 </p>
-<input type="file" id="photo">
-<button type="button" (click)="uploadPhoto()">Upload</button>
+<form #upload="ngForm">
+<input type="file" id="photo" ngModel>
+<button type="button" (click)="uploadPhoto(upload)">Upload</button>
+</form>
