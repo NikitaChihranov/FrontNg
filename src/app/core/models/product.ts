@@ -1,3 +1,4 @@
+
 export class Product{
   constructor(
     public _id?: string,
@@ -7,8 +8,8 @@ export class Product{
       all?: string,
       short?: string
     },
-    public colors?: string[],
-    public photos?: any[],
+    public colors?: string,
+    public photos?: File[],
     public quantity?: number,
     public date?: {
       type: string,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from '../../models/product';
-import {NgForm} from '@angular/forms';
+import {Form, NgForm} from '@angular/forms';
 import {ProductService} from '../../../services/product.service';
 import {CategoriesService} from '../../../services/categories.service';
 import {Category} from '../../models/category';
@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
   updatedProduct: {};
   deletedProducts: Product[] = [];
   producers: Producer[] = [];
+  filesToUpload: File[];
 
   constructor( private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService ) {
   }
@@ -43,9 +44,12 @@ export class ProductsComponent implements OnInit {
   getProductById(id) {
     this.productService.getProductById(id.value).subscribe((res) => this.foundProductById = res);
   }
-
-  createProduct(productForm: NgForm) {
-    this.productService.createProduct(productForm.value).subscribe((res) => {});
+  createProduct(productForm: any) {
+    console.log(this.filesToUpload);
+    this.productService.createProduct(productForm.value).subscribe((res) => {
+      this.products.push(res);
+        this.productService.addPhotos(this.filesToUpload, res).subscribe((res1) => console.log(res1));
+    });
   }
 
   updateProduct(productForm: NgForm) {
@@ -66,6 +70,11 @@ export class ProductsComponent implements OnInit {
         }
       }
     );
+  }
+
+  fileChangeEvent(event: any) {
+    this.filesToUpload = (<any>event.target).files;
+    console.log(this.filesToUpload);
   }
 }
 

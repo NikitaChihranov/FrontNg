@@ -44,7 +44,7 @@
 </div>
 <br>
 <h1>Create product</h1>
-<form #form3 = "ngForm" (ngSubmit)="createProduct(form3)">
+<form #aaa="ngForm" (ngSubmit)="createProduct(aaa)" enctype="multipart/form-data">
   <label>Title: </label>
   <input type="text" name="title" ngModel>
   <br>
@@ -58,7 +58,13 @@
   <label>Colors: </label>
   <input type="text" name="colors" ngModel><br>
   <label>Photos: </label>
-  <input type="text" name="photos" ngModel><br>
+  <input
+    type="file"
+    name="photos"
+    (change)="fileChangeEvent($event)"
+    multiple="true"
+    ngModel
+  ><br>
   <label>Quantity: </label>
   <input type="text" name="quantity" ngModel><br>
   <label>Gender: </label>
