@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
   deletedProducts: Product[] = [];
   producers: Producer[] = [];
   filesToUpload: File[];
-  photosOfProduct: string[];
+  filesToUpdate: File[];
 
   constructor( private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService ) {
   }
@@ -49,15 +49,13 @@ export class ProductsComponent implements OnInit {
   createProduct(productForm: NgForm) {
     this.productService.createProduct(productForm.value).subscribe((res) => {
         this.productService.addPhotos(this.filesToUpload, res).subscribe((response) => {
-          this.photosOfProduct = response;
-          console.log(this.photosOfProduct);
         });
   });
   }
 
   updateProduct(productForm: NgForm) {
     this.product = {...this.product, ...productForm.value};
-    this.productService.updateProduct(this.product._id, this.product).subscribe((res) =>
+    this.productService.updateProduct(this.filesToUpdate, this.product._id, this.product).subscribe((res) =>
       this.updatedProduct = res);
   }
 
@@ -78,6 +76,10 @@ export class ProductsComponent implements OnInit {
   fileChangeEvent(event: any) {
     this.filesToUpload = (<any>event.target).files;
     console.log(this.filesToUpload);
+  }
+  fileUpdateEvent(event: any) {
+    this.filesToUpdate = (<any>event.target).files;
+    console.log(this.filesToUpdate);
   }
 }
 

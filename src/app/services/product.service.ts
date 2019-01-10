@@ -32,7 +32,7 @@ export class ProductService {
      let id = product._id;
     return this.http.post<string[]>(`${this.host}products/upload/${id}`, formData);
   }
-  updateProduct(id: string, product: Product): Observable<Product> {
+  updateProduct(photos: File[], id: string, product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.host}products/${id}`, product);
   }
 
