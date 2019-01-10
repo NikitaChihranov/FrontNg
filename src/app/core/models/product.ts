@@ -9,7 +9,7 @@ export class Product{
       short?: string
     },
     public colors?: string,
-    public photos?: File[],
+    public photos?: string[],
     public quantity?: number,
     public date?: {
       type: string,

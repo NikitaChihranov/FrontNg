@@ -7,6 +7,7 @@ import {Category} from '../../models/category';
 import {ProducerService} from '../../../services/producer.service';
 import {Producer} from '../../models/producer';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -22,6 +23,7 @@ export class ProductsComponent implements OnInit {
   deletedProducts: Product[] = [];
   producers: Producer[] = [];
   filesToUpload: File[];
+  photosOfProduct: string[];
 
   constructor( private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService ) {
   }
@@ -44,12 +46,13 @@ export class ProductsComponent implements OnInit {
   getProductById(id) {
     this.productService.getProductById(id.value).subscribe((res) => this.foundProductById = res);
   }
-  createProduct(productForm: any) {
-    console.log(this.filesToUpload);
+  createProduct(productForm: NgForm) {
     this.productService.createProduct(productForm.value).subscribe((res) => {
-      this.products.push(res);
-        this.productService.addPhotos(this.filesToUpload, res).subscribe((res1) => console.log(res1));
-    });
+        this.productService.addPhotos(this.filesToUpload, res).subscribe((response) => {
+          this.photosOfProduct = response;
+          console.log(this.photosOfProduct);
+        });
+  });
   }
 
   updateProduct(productForm: NgForm) {

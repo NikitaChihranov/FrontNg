@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../core/models/product';
-import {Producer} from '../core/models/producer';
 
 @Injectable({
   providedIn: 'root'
@@ -25,25 +24,24 @@ export class ProductService {
     return this.http.post<Product>(`${this.host}products`, product);
   }
 
-  addPhotos(photos: File[], product: Product): Observable<Product> {
+  addPhotos(photos: File[], product: Product): Observable<string[]> {
     const formData: FormData = new FormData();
-     for (const photo of photos) {
+       for (const photo of photos) {
        formData.append('photos', photo, photo.name);
     }
      let id = product._id;
-     let q = formData.getAll('photos');
-    return this.http.post<Product>(`${this.host}products/upload/${id}`, q);
+    return this.http.post<string[]>(`${this.host}products/upload/${id}`, formData);
   }
   updateProduct(id: string, product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.host}products/${id}`, product);
   }
 
-  deleteProduct(id: string): Observable<Product> {
-    return this.http.delete<Product>(`${this.host}products/${id}`);
-  }
+deleteProduct(id: string): Observable<Product> {
+  return this.http.delete<Product>(`${this.host}products/${id}`);
+}
 
-  deleteAllProducts(): Observable<Product[]> {
-    // @ts-ignore
-    return this.http.post<Product[]>(`${this.host}products/deleteAll`);
-  }
+deleteAllProducts(): Observable<Product[]> {
+  // @ts-ignore
+  return this.http.post<Product[]>(`${this.host}products/deleteAll`);
+}
 }
