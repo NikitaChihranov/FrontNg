@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {About} from '../core/models/about';
 import {ignore} from 'selenium-webdriver/testing';
+import {For} from 'babel-types';
+import {consoleTestResultHandler} from 'tslint/lib/test';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,12 @@ export class AboutService {
   }
   update(about: About): Observable<About> {
     return this.http.put<About>(`${this.host}about`, about);
+  }
+  uploadLogo(logo: File[], about: About): Observable<About> {
+    const formData: FormData = new FormData;
+    formData.append('photo', logo[0], logo[0].name);
+    let id = about._id;
+    return this.http.post<About>(`${this.host}about/uploadPhoto/${id}`, formData);
   }
   delete(): Observable<About> {
     return this.http.delete<About>(`${this.host}about`);

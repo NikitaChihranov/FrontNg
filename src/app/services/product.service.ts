@@ -24,13 +24,13 @@ export class ProductService {
     return this.http.post<Product>(`${this.host}products`, product);
   }
 
-  addPhotos(photos: File[], product: Product): Observable<string[]> {
+  addPhotos(photos: File[], product: Product): Observable<Product> {
     const formData: FormData = new FormData();
        for (const photo of photos) {
        formData.append('photos', photo, photo.name);
     }
      let id = product._id;
-    return this.http.post<string[]>(`${this.host}products/upload/${id}`, formData);
+    return this.http.post<Product>(`${this.host}products/upload/${id}`, formData);
   }
   updateProduct(id: string, product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.host}products/${id}`, product);

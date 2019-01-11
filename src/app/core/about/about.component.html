@@ -1,5 +1,5 @@
 <h1>ABOUT PAGE</h1>
-<form #aboutForm = "ngForm" (ngSubmit)="create(aboutForm)">
+<form #aboutForm = "ngForm" (ngSubmit)="create(aboutForm)"  enctype="multipart/form-data">
   <h2>Create about content</h2>
   <textarea rows="13" cols="80" name="text" ngModel></textarea>
   <br>
@@ -9,7 +9,9 @@
 </form>
 <div>
   <h3> {{aboutContent.text}}</h3>
-  <div> {{aboutContent.logo}}</div>
+  <div *ngIf="aboutContent.logo!=''">
+    <img [src]="'http://localhost:3000/' + aboutContent.logo">
+</div>
 </div>
 <form #updateForm = "ngForm" (ngSubmit)="update(updateForm)">
   <h2>If About already exists, you can update it.</h2>

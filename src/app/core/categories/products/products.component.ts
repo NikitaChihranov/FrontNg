@@ -19,8 +19,6 @@ export class ProductsComponent implements OnInit {
   foundProductById: Product;
   deletedProduct: {};
   product: Product;
-  updatedProduct: {};
-  deletedProducts: Product[] = [];
   producers: Producer[] = [];
   filesToUpload: File[];
   filesToUpdate: File[];
@@ -55,8 +53,7 @@ export class ProductsComponent implements OnInit {
   updateProduct(productForm: NgForm) {
     this.product = {...this.product, ...productForm.value};
     this.productService.updateProduct(this.product._id, this.product).subscribe((res) => {
-      this.productService.updatePhotos(this.filesToUpdate, res).subscribe((response) => {
-      });
+      this.productService.updatePhotos(this.filesToUpdate, res).subscribe((response) => {});
     });
 
     }
@@ -67,10 +64,7 @@ export class ProductsComponent implements OnInit {
 
   deleteAllProducts() {
     this.productService.deleteAllProducts().subscribe((res) => {
-        const productsToDelete = this.products;
-        for (const product of productsToDelete) {
-          this.deletedProducts.push(product);
-        }
+        this.products = null;
       }
     );
   }

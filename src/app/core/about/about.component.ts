@@ -21,8 +21,9 @@ export class AboutComponent implements OnInit {
   }
   create(aboutForm: NgForm) {
     this.aboutService.create(aboutForm.value).subscribe((res) => {
-      console.log(this.filesToUpload);
-      this.aboutContent = res;
+      this.aboutService.uploadLogo(this.filesToUpload, res).subscribe((response) => {
+        this.aboutContent = response;
+      });
     });
   }
   update(aboutForm: NgForm) {
@@ -30,7 +31,7 @@ export class AboutComponent implements OnInit {
   }
   delete() {
     this.aboutService.delete().subscribe((res) => {
-      this.aboutContent.text = '';
+      this.aboutContent = res;
     });
   }
   fileChangeEvent(event: any) {
