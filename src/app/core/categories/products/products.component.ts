@@ -16,7 +16,7 @@ import {Producer} from '../../models/producer';
 export class ProductsComponent implements OnInit {
   categories: Category[];
   products: Product[] = [];
-  foundProductById: {};
+  foundProductById: Product;
   deletedProduct: {};
   product: Product;
   updatedProduct: {};
@@ -52,12 +52,14 @@ export class ProductsComponent implements OnInit {
         });
   });
   }
-
   updateProduct(productForm: NgForm) {
     this.product = {...this.product, ...productForm.value};
-    this.productService.updateProduct(this.filesToUpdate, this.product._id, this.product).subscribe((res) =>
-      this.updatedProduct = res);
-  }
+    this.productService.updateProduct(this.product._id, this.product).subscribe((res) => {
+      this.productService.updatePhotos(this.filesToUpdate, res).subscribe((response) => {
+      });
+    });
+
+    }
 
   deleteProduct(id) {
     this.productService.deleteProduct(id.value).subscribe((res) => this.deletedProduct = res);
