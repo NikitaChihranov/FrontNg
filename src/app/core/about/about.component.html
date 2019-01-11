@@ -3,10 +3,13 @@
   <h2>Create about content</h2>
   <textarea rows="13" cols="80" name="text" ngModel></textarea>
   <br>
+  <label>Logo</label>
+  <input type="file"  name="photos" (change)="fileChangeEvent($event)" ngModel>
   <button type="submit">Send</button>
 </form>
 <div>
   <h3> {{aboutContent.text}}</h3>
+  <div> {{aboutContent.logo}}</div>
 </div>
 <form #updateForm = "ngForm" (ngSubmit)="update(updateForm)">
   <h2>If About already exists, you can update it.</h2>
