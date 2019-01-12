@@ -10,6 +10,11 @@
     <li>About short: {{product.about.short}}</li>
     <li>About: {{product.about.all}}</li>
     <li>Colors: {{product.colors}}</li>
+    <li><h2>Photos</h2>
+    <div *ngFor="let link of product.photos">
+      <img [src]="'http://localhost:3000/' + link">
+    </div>
+  </li>
     <li>Quantity: {{product.quantity}}</li>
     <li>Category: {{product.category}}</li>
     <li>Producer: {{product.producer}}</li>

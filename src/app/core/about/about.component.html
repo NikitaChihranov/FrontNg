@@ -9,14 +9,15 @@
 </form>
 <div>
   <h3> {{aboutContent.text}}</h3>
-  <div *ngIf="aboutContent.logo!=''">
+  <div *ngIf="aboutContent.logo">
     <img [src]="'http://localhost:3000/' + aboutContent.logo">
 </div>
 </div>
-<form #updateForm = "ngForm" (ngSubmit)="update(updateForm)">
+<form #updateForm = "ngForm" (ngSubmit)="update(updateForm)" enctype="multipart/form-data">
   <h2>If About already exists, you can update it.</h2>
   <textarea rows="13" cols="80" name="text" ngModel></textarea>
   <br>
+  <input type="file"  name="photos" (change)="fileUpdateEvent($event)" ngModel>
   <button type="submit">Send</button>
 </form>
 <br>

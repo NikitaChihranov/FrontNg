@@ -12,34 +12,52 @@ export class AboutComponent implements OnInit {
   aboutContent: About;
   filesToUpload: File[];
   filesToUpdate: File[];
-  constructor( private aboutService: AboutService) { }
+
+  constructor(private aboutService: AboutService) {
+  }
 
   ngOnInit() {
     this.aboutService.getAbout().subscribe((res) => {
       this.aboutContent = res;
     });
   }
+
   create(aboutForm: NgForm) {
     this.aboutService.create(aboutForm.value).subscribe((res) => {
+      if (this.filesToUpload!== undefined) {
       this.aboutService.uploadLogo(this.filesToUpload, res).subscribe((response) => {
         this.aboutContent = response;
       });
+        } else {
+        this.aboutContent = res;
+        console.log(res);
+      }
     });
   }
+
   update(aboutForm: NgForm) {
-    this.aboutService.update(aboutForm.value).subscribe((res) => this.aboutContent = res);
+    this.aboutService.update(aboutForm.value).subscribe((res) => {
+      if (this.filesToUpdate!== undefined){
+        this.aboutService.updateLogo(this.filesToUpdate).subscribe((response) => {
+        this.aboutContent = response;
+      });
+        } else{
+        this.aboutContent = res;
+      }
+    });
   }
+
   delete() {
     this.aboutService.delete().subscribe((res) => {
       this.aboutContent = res;
     });
   }
+
   fileChangeEvent(event: any) {
     this.filesToUpload = (<any>event.target).files;
-    console.log(this.filesToUpload);
-  }
+  };
+
   fileUpdateEvent(event: any) {
     this.filesToUpdate = (<any>event.target).files;
-    console.log(this.filesToUpdate);
   }
 }

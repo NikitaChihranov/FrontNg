@@ -7,7 +7,9 @@
     <li>Id: {{producer1._id}}</li>
     <li>Short about: {{producer1.about.short}}</li>
     <li>All about: {{producer1.about.all}}</li>
-    <li>Photo: {{producer1.photo}}</li>
+    <li>Photo:
+      <img [src]="'http://localhost:3000/' + producer1.photo">
+    </li>
     <li>Country:{{producer1.country}}</li>
     <button routerLink="viewAll" (click)="viewAllProductsByProducer(producer1._id)" >View all products</button>
     <hr>
@@ -24,26 +26,28 @@
     <li><h3>Title:</h3>{{foundProducerById.title}}</li>
     <li><h3>Short about:</h3>{{foundProducerById.about.short}}</li>
     <li><h3>About:</h3>{{foundProducerById.about.all}}</li>
-    <li><h3>Photo:</h3>{{foundProducerById.photo}}</li>
+    <li>Photo:
+      <img [src]="'http://localhost:3000/' + foundProducerById.photo">
+    </li>
     <li><h3>Country:</h3>{{foundProducerById.country}}</li>
   </ul>
 </div>
-<form #producerForm="ngForm" (ngSubmit)="createProducer(producerForm)">
+<form #producerForm="ngForm" (ngSubmit)="createProducer(producerForm)" enctype="multipart/form-data">
   <h3>Create new producer</h3>
   Title: <input type="text" name="title" ngModel><br>
   Short about: <input type="text" name="about.short" ngModel><br>
   All about: <input type="text" name="about.all" ngModel><br>
-  Photo <input type="text" name="photo" ngModel><br>
+  Photo:<input type="file"  name="photos" (change)="fileChangeEvent($event)" ngModel><br>
   Country: <input type="text" name="country" ngModel><br>
   <button type="submit">Create</button>
 </form>
-<form #updateForm="ngForm" (ngSubmit)="updateProducer(updateForm)">
+<form #updateForm="ngForm" (ngSubmit)="updateProducer(updateForm)" enctype="multipart/form-data">
   <h3>Update someone</h3>
   Id: <input type="text" name="_id" ngModel><br>
   Title: <input type="text" name="title" ngModel><br>
   Short about: <input type="text" name="about.short" ngModel><br>
   All about: <input type="text" name="about.all" ngModel><br>
-  Photo <input type="text" name="photo" ngModel><br>
+  Photo <input type="file"  name="photos" (change)="fileUpdateEvent($event)" ngModel><br>
   Country: <input type="text" name="country" ngModel><br>
   <button type="submit">Update</button>
 </form>
@@ -53,7 +57,9 @@
     <li>Title: {{updatedProducer.title}}</li>
     <li>Short about: {{updatedProducer.about.short}}</li>
     <li>About: {{updatedProducer.about.all}}</li>
-    <li>Photo: {{updatedProducer.photo}}</li>
+    <li>Photo:
+      <img [src]="'http://localhost:3000/' + updatedProducer.photo">
+    </li>
     <li>Country: {{updatedProducer.country}}</li>
   </ul>
 </div>
@@ -69,7 +75,9 @@
     <li>Title: {{deletedProducer.title}}</li>
     <li>Short about: {{deletedProducer.about.short}}</li>
     <li>About: {{deletedProducer.about.all}}</li>
-    <li>Photo: {{deletedProducer.photo}}</li>
+    <li>Photo:
+      <img [src]="'http://localhost:3000/' + deletedProducer.photo">
+    </li>
     <li>Country: {{deletedProducer.country}}</li>
   </ul>
 </div>

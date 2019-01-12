@@ -16,7 +16,9 @@ export class ProducerComponent implements OnInit {
   updatedProducer: {};
   deletedProducer: {};
   foundProductsByProducer: Product[] = [];
-  producerCopy: {};
+  filesToUpload: File[];
+  filesToUpdate: File[];
+
   constructor( private producerService: ProducerService) { }
 
   ngOnInit() {
@@ -34,25 +36,31 @@ export class ProducerComponent implements OnInit {
   }
 
   createProducer(producerForm: NgForm) {
-    this.producerService.createProducer(producerForm.value).subscribe((res) => {});
+    this.producerService.createProducer(producerForm.value).subscribe((res) => {
+      this.producerService.uploadPhoto(this.filesToUpload, res).subscribe((response) => {
+      });
+    });
   }
 
   updateProducer(producerForm: NgForm) {
     this.producer = {...this.producer, ...producerForm.value};
     this.producerService.updateProducer(this.producer._id, this.producer).subscribe((res) => {
-      this.updatedProducer = res;
+      this.producerService.updatePhoto(this.filesToUpdate, res).subscribe((response) => {
+        this.updatedProducer = response;
+      });
     });
   }
 
   deleteProducer(id) {
     this.producerService.deleteProducer(id.value).subscribe((res) => {
       this.deletedProducer = res;
-      this.producerCopy = this.deletedProducer;
     });
   }
   
   deleteAllProducers() {
-    this.producerService.deleteAllProducers().subscribe((res) => {} );
+    this.producerService.deleteAllProducers().subscribe((res) => {
+      this.producers = null;
+    } );
   }
 
   viewAllProductsByProducer(id) {
@@ -64,6 +72,13 @@ export class ProducerComponent implements OnInit {
 
   hide() {
     this.deletedProducer = undefined;
+  }
+  fileChangeEvent(event: any) {
+    this.filesToUpload = (<any>event.target).files;
+  }
+
+  fileUpdateEvent(event: any) {
+    this.filesToUpdate = (<any>event.target).files;
   }
 
 }

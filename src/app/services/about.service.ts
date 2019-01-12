@@ -25,9 +25,14 @@ export class AboutService {
   }
   uploadLogo(logo: File[], about: About): Observable<About> {
     const formData: FormData = new FormData;
-    formData.append('photo', logo[0], logo[0].name);
-    let id = about._id;
-    return this.http.post<About>(`${this.host}about/uploadPhoto/${id}`, formData);
+      formData.append('photo', logo[0], logo[0].name);
+      let id = about._id;
+      return this.http.post<About>(`${this.host}about/uploadPhoto/${id}`, formData);
+  }
+  updateLogo(logo: File[]): Observable<About> {
+    const formData: FormData = new FormData;
+      formData.append('photo', logo[0], logo[0].name);
+      return this.http.put<About>(`${this.host}about/updatePhoto`, formData);
   }
   delete(): Observable<About> {
     return this.http.delete<About>(`${this.host}about`);

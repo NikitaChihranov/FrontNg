@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Producer} from '../core/models/producer';
 import {Product} from '../core/models/product';
+import {About} from '../core/models/about';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,17 @@ export class ProducerService {
   }
   viewAllProductsByProducer(id: string): Observable<Product[]> {
       return this.http.get<Producer[]>(`${this.host}producers/viewAll/${id}`);
+  }
+  uploadPhoto(photos: File[], producer: Producer): Observable<Producer> {
+    const formData: FormData = new FormData;
+    formData.append('photo', photos[0], photos[0].name);
+    let id = producer._id;
+    return this.http.post<Producer>(`${this.host}producers/uploadPhoto/${id}`, formData);
+  }
+  updatePhoto(photos: File[], producer: Producer): Observable<Producer> {
+    const formData: FormData = new FormData;
+    formData.append('photo', photos[0], photos[0].name);
+    let id = producer._id;
+    return this.http.put<Producer>(`${this.host}producers/updatePhoto/${id}`, formData);
   }
 }
