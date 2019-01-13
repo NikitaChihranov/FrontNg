@@ -15,6 +15,8 @@ export class UserPageAdminComponent implements OnInit {
   user: User;
   updatedUser: {};
   deletedUsers: User[] = [];
+  photosToUpload: File[];
+  photosToUpdate: File[];
 
   constructor(
     private userService: UserService
@@ -36,13 +38,18 @@ export class UserPageAdminComponent implements OnInit {
 
 
   createUser(userForm) {
-    this.userService.createUser(userForm.value).subscribe((res) => {});
+    this.userService.createUser(userForm.value).subscribe((res) => {
+      this.userService.uploadPhoto(this.photosToUpload, res).subscribe((response) => {});
+    });
   }
 
   updateUser(userForm: NgForm) {
     this.user = {...this.user, ...userForm.value};
-    this.userService.updateUser(this.user._id, this.user).subscribe((res) =>
-      this.updatedUser = res);
+    this.userService.updateUser(this.user._id, this.user).subscribe((res) => {
+      this.userService.updatePhoto(this.photosToUpdate, res).subscribe((response) => {
+        this.updatedUser = response;
+      });
+    });
   }
 
   deleteUser(userId) {
@@ -55,7 +62,14 @@ export class UserPageAdminComponent implements OnInit {
       for ( const user of usersToDelete) {
         this.deletedUsers.push(user);
       }
+      this.users = null;
     });
+  }
+  fileUploadEvent(event: any) {
+    this.photosToUpload = (<any>event.target).files;
+  }
+  fileUpdateEvent(event: any) {
+    this.photosToUpdate = (<any>event.target).files;
   }
 }
 

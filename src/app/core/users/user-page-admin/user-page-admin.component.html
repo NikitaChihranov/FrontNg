@@ -8,6 +8,8 @@
     <h4>Id: {{user._id}}</h4>
     <h4>Surname: {{user.surname}}</h4>
     <h4>Phone number: {{user.phone}}</h4>
+    <h4>Photo:
+    <img [src]="'http://localhost:3000/' + user.photo"></h4>
     <h4>Email: {{user.email}}</h4>
     <h4>Adress: {{user.adress}}</h4>
   </span>
@@ -22,12 +24,14 @@
   <h4>Id: {{foundUserById._id}}</h4>
   <h4>Surname: {{foundUserById.surname}}</h4>
   <h4>Phone number: {{foundUserById.phone}}</h4>
+  <h4>Photo:</h4>
+    <img [src]="'http://localhost:3000/' + foundUserById.photo">
   <h4>Email: {{foundUserById.email}}</h4>
   <h4>Adress: {{foundUserById.adress}}</h4>
 </div>
 <h1>Create user</h1>
 <br>
-<form #form1="ngForm" (ngSubmit)="createUser(form1)">
+<form #form1="ngForm" (ngSubmit)="createUser(form1)" enctype="multipart/form-data">
   <label>Name: </label>
   <input type="text" name="firstName" ngModel>
   <br>
@@ -36,6 +40,9 @@
   <br>
   <label>Phone Number: </label>
   <input type="text" name="phone" ngModel>
+  <br>
+  <label>Photo:</label>
+  <input type="file" name="photos" (change)="fileUploadEvent($event)" ngModel>
   <br>
   <label>Email: </label>
   <input type="text" name="email" ngModel>
@@ -51,7 +58,7 @@
   Now input new values of User
 </h1>
 <br>
-<form #form2 = "ngForm" (ngSubmit)="updateUser(form2)">
+<form #form2 = "ngForm" (ngSubmit)="updateUser(form2)" enctype="multipart/form-data">
   <label>Id: </label>
   <input type = "text" name="_id" ngModel>
   <br>
@@ -63,6 +70,9 @@
   <br>
   <label>Phone Number: </label>
   <input type="text" name="phone" ngModel>
+  <br>
+  <label>Photo:</label>
+  <input type="file" name="photos" (change)="fileUpdateEvent($event)" ngModel>
   <br>
   <label>Email: </label>
   <input type="text" name="email" ngModel>
@@ -77,6 +87,8 @@
   <h4>Id: {{updatedUser._id}}</h4>
   <h4>Surname: {{updatedUser.surname}}</h4>
   <h4>Phone number: {{updatedUser.phone}}</h4>
+  <h4>Photo:</h4>
+    <img [src]="'http://localhost:3000/' + updatedUser.photo">
   <h4>Email: {{updatedUser.email}}</h4>
   <h4>Adress: {{updatedUser.adress}}</h4>
 </form>
@@ -91,6 +103,8 @@
   <h4>Id: {{deletedUser._id}}</h4>
   <h4>Surname: {{deletedUser.surname}}</h4>
   <h4>Phone number: {{deletedUser.phone}}</h4>
+  <h4>Photo:</h4>
+  <img [src]="'http://localhost:3000/' + deletedUser.photo">
   <h4>Email: {{deletedUser.email}}</h4>
   <h4>Adress: {{deletedUser.adress}}</h4>
 </form>
@@ -101,6 +115,8 @@
     <li>Id: {{ElDeletedUsers._id}}</li>
     <li>Name: {{ElDeletedUsers.firstName}}</li>
     <li>Surname: {{ElDeletedUsers.surname}}</li>
+    <h4>Photo:</h4>
+    <img [src]="'http://localhost:3000/' + ElDeletedUsers.photo">
     <li>Phone number: {{ElDeletedUsers.phone}}</li>
     <li>Adress: {{ElDeletedUsers.adress}}</li>
   </ul>

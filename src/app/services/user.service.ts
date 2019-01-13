@@ -24,10 +24,22 @@ export class UserService {
   createUser(user: User): Observable<User> {
     return this.http.post <User>(`${this.host}users`, user);
   }
-
+  uploadPhoto(photos: File[], user: User): Observable<User> {
+    const formData: FormData = new FormData();
+    formData.append('photo', photos[0], photos[0].name);
+    let id = user._id;
+    return this.http.post<User>(`${this.host}users/uploadPhoto/${id}`, formData);
+  }
   updateUser(id: string, user: User): Observable<User> {
     return this.http.put<User>(`${this.host}users/${id}`, user);
   }
+  updatePhoto(photos: File[], user: User): Observable<User> {
+    const formData: FormData = new FormData();
+    formData.append('photo', photos[0], photos[0].name);
+    let id = user._id;
+    return this.http.put<User>(`${this.host}users/updatePhoto/${id}`, formData);
+  }
+
 
   deleteUser(id: string): Observable<User> {
     return this.http.delete <User>(`${this.host}users/${id}`);
