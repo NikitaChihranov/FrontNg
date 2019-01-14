@@ -10,7 +10,7 @@
 <div>
   <h3> {{aboutContent.text}}</h3>
   <div *ngIf="aboutContent.logo">
-    <img [src]="'http://localhost:3000/' + aboutContent.logo">
+    <img [src]="'http://localhost:3000/photosAbout/' + aboutContent.logo">
 </div>
 </div>
 <form #updateForm = "ngForm" (ngSubmit)="update(updateForm)" enctype="multipart/form-data">

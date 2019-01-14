@@ -9,7 +9,7 @@
     <h4>Surname: {{user.surname}}</h4>
     <h4>Phone number: {{user.phone}}</h4>
     <h4>Photo:
-    <img [src]="'http://localhost:3000/' + user.photo"></h4>
+    <img [src]="'http://localhost:3000/userPhotos/' + user.photo"></h4>
     <h4>Email: {{user.email}}</h4>
     <h4>Adress: {{user.adress}}</h4>
   </span>
@@ -25,7 +25,7 @@
   <h4>Surname: {{foundUserById.surname}}</h4>
   <h4>Phone number: {{foundUserById.phone}}</h4>
   <h4>Photo:</h4>
-    <img [src]="'http://localhost:3000/' + foundUserById.photo">
+    <img [src]="'http://localhost:3000/userPhotos/' + foundUserById.photo">
   <h4>Email: {{foundUserById.email}}</h4>
   <h4>Adress: {{foundUserById.adress}}</h4>
 </div>
@@ -88,7 +88,7 @@
   <h4>Surname: {{updatedUser.surname}}</h4>
   <h4>Phone number: {{updatedUser.phone}}</h4>
   <h4>Photo:</h4>
-    <img [src]="'http://localhost:3000/' + updatedUser.photo">
+    <img [src]="'http://localhost:3000/userPhotos/' + updatedUser.photo">
   <h4>Email: {{updatedUser.email}}</h4>
   <h4>Adress: {{updatedUser.adress}}</h4>
 </form>
@@ -104,7 +104,7 @@
   <h4>Surname: {{deletedUser.surname}}</h4>
   <h4>Phone number: {{deletedUser.phone}}</h4>
   <h4>Photo:</h4>
-  <img [src]="'http://localhost:3000/' + deletedUser.photo">
+  <img [src]="'http://localhost:3000/userPhotos/' + deletedUser.photo">
   <h4>Email: {{deletedUser.email}}</h4>
   <h4>Adress: {{deletedUser.adress}}</h4>
 </form>
@@ -116,7 +116,7 @@
     <li>Name: {{ElDeletedUsers.firstName}}</li>
     <li>Surname: {{ElDeletedUsers.surname}}</li>
     <h4>Photo:</h4>
-    <img [src]="'http://localhost:3000/' + ElDeletedUsers.photo">
+    <img [src]="'http://localhost:3000/userPhotos/' + ElDeletedUsers.photo">
     <li>Phone number: {{ElDeletedUsers.phone}}</li>
     <li>Adress: {{ElDeletedUsers.adress}}</li>
   </ul>

@@ -13,7 +13,7 @@
     <li>Colors: {{product.colors}}</li>
     <li> <h2>Photos:</h2>
       <span *ngFor="let link of product.photos">
-        <img [src]="'http://localhost:3000/'+link">
+        <img [src]="'http://localhost:3000/photos/'+link">
       </span>
     </li>
     <li>Quantity: {{product.quantity}}</li>
@@ -38,7 +38,7 @@
   <p>Colors: {{foundProductById.colors}}</p>
   <li> <h2>Photos:</h2>
     <span *ngFor="let link of foundProductById.photos">
-        <img [src]="'http://localhost:3000/'+link">
+        <img [src]="'http://localhost:3000/photos/'+link">
       </span>
   </li>
   <p>Quantity: {{foundProductById.quantity}}</p>
@@ -152,7 +152,7 @@
   <p>Colors: {{deletedProduct.colors}}</p>
   <li> <h2>Photos:</h2>
     <span *ngFor="let link of deletedProduct.photos">
-        <img [src]="'http://localhost:3000/'+link">
+        <img [src]="'http://localhost:3000/photos/'+link">
       </span>
   </li>
   <p>Quantity: {{deletedProduct.quantity}}</p>

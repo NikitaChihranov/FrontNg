@@ -8,7 +8,7 @@
     <li>Short about: {{producer1.about.short}}</li>
     <li>All about: {{producer1.about.all}}</li>
     <li>Photo:
-      <img [src]="'http://localhost:3000/' + producer1.photo">
+      <img [src]="'http://localhost:3000/ProducerPhotos/' + producer1.photo">
     </li>
     <li>Country:{{producer1.country}}</li>
     <button routerLink="viewAll" (click)="viewAllProductsByProducer(producer1._id)" >View all products</button>
@@ -27,7 +27,7 @@
     <li><h3>Short about:</h3>{{foundProducerById.about.short}}</li>
     <li><h3>About:</h3>{{foundProducerById.about.all}}</li>
     <li>Photo:
-      <img [src]="'http://localhost:3000/' + foundProducerById.photo">
+      <img [src]="'http://localhost:3000/ProducerPhotos/' + foundProducerById.photo">
     </li>
     <li><h3>Country:</h3>{{foundProducerById.country}}</li>
   </ul>
@@ -58,7 +58,7 @@
     <li>Short about: {{updatedProducer.about.short}}</li>
     <li>About: {{updatedProducer.about.all}}</li>
     <li>Photo:
-      <img [src]="'http://localhost:3000/' + updatedProducer.photo">
+      <img [src]="'http://localhost:3000/ProducerPhotos/' + updatedProducer.photo">
     </li>
     <li>Country: {{updatedProducer.country}}</li>
   </ul>
@@ -76,7 +76,7 @@
     <li>Short about: {{deletedProducer.about.short}}</li>
     <li>About: {{deletedProducer.about.all}}</li>
     <li>Photo:
-      <img [src]="'http://localhost:3000/' + deletedProducer.photo">
+      <img [src]="'http://localhost:3000/ProducerPhotos/' + deletedProducer.photo">
     </li>
     <li>Country: {{deletedProducer.country}}</li>
   </ul>
