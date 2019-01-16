@@ -17,6 +17,7 @@ export class UserPageAdminComponent implements OnInit {
   deletedUsers: User[] = [];
   photosToUpload: File[];
   photosToUpdate: File[];
+  authorizedUser: User;
 
   constructor(
     private userService: UserService
@@ -25,7 +26,12 @@ export class UserPageAdminComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  signIn(signForm) {
+    console.log(signForm.value);
+    this.userService.signIn(signForm.value.login, signForm.value.password).subscribe((res) => {
+      this.authorizedUser = res;
+    });
+}
   getAllUsers() {
     this.userService.getAllUsers().subscribe((res) =>{
       this.users = res ? res : [];

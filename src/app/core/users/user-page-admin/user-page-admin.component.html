@@ -2,8 +2,22 @@
 <button (click)="getAllUsers()">Get all Users</button>
 <br>
 <hr>
+<div>
+  <h1>Sign In</h1>
+  <form #signin="ngForm" (ngSubmit)="signIn(signin)" >
+    <label>Login:</label>
+    <input type="text" name="login" ngModel>
+    <br>
+    <label>Password:</label>
+    <input type="password" name="password" ngModel>
+    <br>
+    <input type="submit" value="send">
+  </form>
+</div>
 <div  *ngFor="let user of users" >
   <span *ngIf="users!=[]" >
+    <h2>Login: {{user.login}}</h2>
+    <h2>Password: {{user.password}}</h2>
     <h1>Name: {{user.firstName}}</h1>
     <h4>Id: {{user._id}}</h4>
     <h4>Surname: {{user.surname}}</h4>
@@ -20,6 +34,8 @@
 <br>
 <button (click)="getUserById(getUserId)">Get user</button>
 <div *ngIf="foundUserById">
+  <h2>Login: {{foundUserById.login}}</h2>
+  <h2>Password: {{foundUserById.password}}</h2>
   <h1>Name: {{foundUserById.firstName}}</h1>
   <h4>Id: {{foundUserById._id}}</h4>
   <h4>Surname: {{foundUserById.surname}}</h4>
@@ -32,6 +48,12 @@
 <h1>Create user</h1>
 <br>
 <form #form1="ngForm" (ngSubmit)="createUser(form1)" enctype="multipart/form-data">
+  <label> Login:</label>
+  <input type="text" name="login" ngModel>
+  <br>
+  <label>Password: </label>
+  <input type="password" name="password" ngModel>
+  <br>
   <label>Name: </label>
   <input type="text" name="firstName" ngModel>
   <br>
@@ -62,6 +84,13 @@
   <label>Id: </label>
   <input type = "text" name="_id" ngModel>
   <br>
+  <label> Login:</label>
+  <input type="text" name="login" ngModel>
+  <br>
+  <label>Password: </label>
+  <input type="password" name="password" ngModel>
+  <br>
+
   <label>Name: </label>
   <input type="text" name="firstName" ngModel>
   <br>
@@ -83,6 +112,8 @@
   <button type="submit">Send</button>
 </form>
 <form *ngIf="updatedUser">
+  <h1>Login: {{updatedUser.login}}</h1>
+  <h2>Password: {{updatedUser.password}}</h2>
   <h1>Name: {{updatedUser.firstName}}</h1>
   <h4>Id: {{updatedUser._id}}</h4>
   <h4>Surname: {{updatedUser.surname}}</h4>
@@ -99,6 +130,8 @@
   <button (click)="deleteUser(a1)">Send</button>
 <br>
 <form *ngIf="deletedUser">
+  <h1>Login: {{deletedUser.login}}</h1>
+  <h2>Password: {{deletedUser.password}}</h2>
   <h1>Name: {{deletedUser.firstName}}</h1>
   <h4>Id: {{deletedUser._id}}</h4>
   <h4>Surname: {{deletedUser.surname}}</h4>
@@ -112,6 +145,8 @@
 <button (click) = "deleteAllUsers()">Delete all users</button>
 <div *ngFor="let ElDeletedUsers of deletedUsers">
   <ul *ngIf="deletedUsers!=[]">
+    <h1>Login: {{ElDeletedUsers.login}}</h1>
+    <h2>Password: {{ElDeletedUsers.password}}</h2>
     <li>Id: {{ElDeletedUsers._id}}</li>
     <li>Name: {{ElDeletedUsers.firstName}}</li>
     <li>Surname: {{ElDeletedUsers.surname}}</li>

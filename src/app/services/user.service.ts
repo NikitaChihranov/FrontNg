@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../core/models/user';
 import {Category} from '../core/models/category';
+import {Form} from '@angular/forms';
+import {ignore} from 'selenium-webdriver/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,13 @@ export class UserService {
 
   constructor(private http: HttpClient) {
   }
-
+  signIn(login: string,  password: string): Observable<User> {
+    let user = new Object({
+      login: login,
+      password: password
+    });
+    return this.http.post<User>(`${this.host}users/signin`, user);
+  }
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.host}users/`);
   }

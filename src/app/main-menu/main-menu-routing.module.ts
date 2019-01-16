@@ -10,7 +10,6 @@ const routes: Routes = [
       {path: 'about', component: AboutComponent},
       {path: 'products', loadChildren: '../core/categories/products/products.module#ProductsModule'},
       {path: 'producers', loadChildren: '../core/producers/producer.module#ProducerModule'},
-      {path: 'payments', loadChildren: '../core/payment/payment.module#PaymentModule'},
       {path: 'comments', loadChildren: '../core/comment/comment.module#CommentModule'},
       {path: 'orders', loadChildren: '../core/order/order.module#OrderModule'}
     ]}

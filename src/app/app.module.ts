@@ -8,11 +8,6 @@ import {FormsModule} from '@angular/forms';
 import {IndexComponent} from './index/index.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import {MainMenuRoutingModule} from './main-menu/main-menu-routing.module';
-import {ProducerRoutingModule} from './core/producers/producer-routing.module';
-import { ViPComponent } from './vi-p/vi-p.component';
-import { PaymentComponent } from './core/payment/payment.component';
-import {MainMenuModule} from './main-menu/main-menu.module';
-import { OrderComponent } from './core/order/order.component';
 
 @NgModule({
   declarations: [
