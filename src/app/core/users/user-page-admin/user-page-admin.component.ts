@@ -30,6 +30,7 @@ export class UserPageAdminComponent implements OnInit {
     console.log(signForm.value);
     this.userService.signIn(signForm.value.login, signForm.value.password).subscribe((res) => {
       this.authorizedUser = res;
+      console.log('Authorized user: ' + res.login);
     });
 }
   getAllUsers() {

@@ -1,10 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../core/models/user';
-import {Category} from '../core/models/category';
-import {Form} from '@angular/forms';
-import {ignore} from 'selenium-webdriver/testing';
+import {AuthInterceptorService} from './auth-interceptor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +12,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {
   }
-  signIn(login: string,  password: string): Observable<User> {
+  signIn(login: string, password: string): Observable<User> {
     let user = new Object({
       login: login,
       password: password
