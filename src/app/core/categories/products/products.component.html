@@ -11,7 +11,7 @@
     <li>Short about: {{product.about.short}}</li>
     <li>All about: {{product.about.all}}</li>
     <li>Colors: {{product.colors}}</li>
-    <li> <h2>Photos:</h2>
+    <li><h2>Photos:</h2>
       <span *ngFor="let link of product.photos">
         <img [src]="'http://localhost:3000/photos/'+link">
       </span>
@@ -27,8 +27,8 @@
   <hr>
 </div>
 <h1>Get product by id</h1>
-  <input type="text" name="_id" placeholder="id" #id1>
-  <button (click)="getProductById(id1)">Send</button>
+<input type="text" name="_id" placeholder="id" #id1>
+<button (click)="getProductById(id1)">Send</button>
 <div *ngIf="foundProductById">
   <p>Title: {{foundProductById.title}}</p>
   <p>Id: {{foundProductById._id}}</p>
@@ -36,7 +36,7 @@
   <p>All about: {{foundProductById.about.all}}</p>
   <p>Short about: {{foundProductById.about.short}}</p>
   <p>Colors: {{foundProductById.colors}}</p>
-  <li> <h2>Photos:</h2>
+  <li><h2>Photos:</h2>
     <span *ngFor="let link of foundProductById.photos">
         <img [src]="'http://localhost:3000/photos/'+link">
       </span>
@@ -84,7 +84,7 @@
   <br>
   <label>Producer: </label>
   <select name="producer" ngModel>
-    <option *ngFor = "let producer of producers">{{producer.title}}</option>
+    <option *ngFor="let producer of producers">{{producer.title}}</option>
   </select>
   <br>
   <label>Show: </label>
@@ -95,7 +95,7 @@
 </form>
 <br>
 <h1>Update product</h1>
-<form #updateForm = "ngForm" (ngSubmit)="updateProduct(updateForm)">
+<form #updateForm="ngForm" (ngSubmit)="updateProduct(updateForm)">
   <label>Id: </label>
   <input type="text" name="_id" ngModel><br>
   <label>Title: </label>
@@ -129,7 +129,7 @@
   <br>
   <label>Producer: </label>
   <select name="producer" ngModel>
-    <option *ngFor = "let producer of producers">{{producer.title}}</option>
+    <option *ngFor="let producer of producers">{{producer.title}}</option>
   </select>
   <br>
   <label>Show: </label>
@@ -150,7 +150,7 @@
   <p>All about: {{deletedProduct.about.all}}</p>
   <p>Short about: {{deletedProduct.about.short}}</p>
   <p>Colors: {{deletedProduct.colors}}</p>
-  <li> <h2>Photos:</h2>
+  <li><h2>Photos:</h2>
     <span *ngFor="let link of deletedProduct.photos">
         <img [src]="'http://localhost:3000/photos/'+link">
       </span>

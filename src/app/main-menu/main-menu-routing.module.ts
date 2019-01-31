@@ -1,10 +1,11 @@
 import {MainMenuComponent} from './main-menu.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {AboutComponent} from '../core/about/about.component';
 
 const routes: Routes = [
-  {path: '', component: MainMenuComponent, children: [
+  {
+    path: '', component: MainMenuComponent, children: [
       {path: 'categories', loadChildren: '../core/categories/categories.module#CategoriesModule'},
       {path: 'users', loadChildren: '../core/users/users.module#UserModule'},
       {path: 'about', component: AboutComponent},
@@ -12,11 +13,14 @@ const routes: Routes = [
       {path: 'producers', loadChildren: '../core/producers/producer.module#ProducerModule'},
       {path: 'comments', loadChildren: '../core/comment/comment.module#CommentModule'},
       {path: 'orders', loadChildren: '../core/order/order.module#OrderModule'}
-    ]}
+    ]
+  }
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MainMenuRoutingModule { }
+export class MainMenuRoutingModule {
+}
 

@@ -12,7 +12,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {
   }
-  signIn(login: string, password: string): Observable<User> {
+  signIn(login: string, password: string): Observable<any> {
     let user = new Object({
       login: login,
       password: password
@@ -42,7 +42,7 @@ export class UserService {
   updatePhoto(photos: File[], user: User): Observable<User> {
     const formData: FormData = new FormData();
     formData.append('photo', photos[0], photos[0].name);
-    let id = user._id;
+    const id = user._id;
     return this.http.put<User>(`${this.host}users/updatePhoto/${id}`, formData);
   }
 
@@ -53,6 +53,6 @@ export class UserService {
 
   deleteAllUsers(): Observable<User[]> {
     // @ts-ignore
-    return this.http.post<User[]>(`${this.host}users/deleteAll/`);
+    return this.http.post<User[]>(`${this.host}users/delet  eAll/`);
   }
 }

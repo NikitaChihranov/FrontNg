@@ -27,10 +27,9 @@ export class UserPageAdminComponent implements OnInit {
   ngOnInit() {
   }
   signIn(signForm) {
-    console.log(signForm.value);
     this.userService.signIn(signForm.value.login, signForm.value.password).subscribe((res) => {
-      this.authorizedUser = res;
-      console.log('Authorized user: ' + res.login);
+      this.authorizedUser = res ? res : {};
+      console.log(this.authorizedUser);
     });
 }
   getAllUsers() {
@@ -46,7 +45,7 @@ export class UserPageAdminComponent implements OnInit {
 
   createUser(userForm) {
     this.userService.createUser(userForm.value).subscribe((res) => {
-      this.userService.uploadPhoto(this.photosToUpload, res).subscribe((response) => {});
+      this.userService.uploadPhoto(this.photosToUpload, res).subscribe(() => {});
     });
   }
 
