@@ -17,7 +17,8 @@ export class UserPageAdminComponent implements OnInit {
   deletedUsers: User[] = [];
   photosToUpload: File[];
   photosToUpdate: File[];
-  authorizedUser: User;
+  authorizedUser: {};
+  nouser = 0;
 
   constructor(
     private userService: UserService
@@ -28,8 +29,14 @@ export class UserPageAdminComponent implements OnInit {
   }
   signIn(signForm) {
     this.userService.signIn(signForm.value.login, signForm.value.password).subscribe((res) => {
-      this.authorizedUser = res ? res : {};
-      console.log(this.authorizedUser);
+      console.log(res);
+      if(res.firstName === 'not found'){
+        this.nouser = 1;
+      }
+      else {
+        this.authorizedUser = res;
+        this.nouser = 0;
+      }
     });
 }
   getAllUsers() {
