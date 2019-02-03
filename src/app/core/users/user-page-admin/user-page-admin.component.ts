@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../../../services/user.service';
 import {User} from '../../models/user';
 import {NgForm} from '@angular/forms';
+import {CategoriesService} from '../../../services/categories.service';
 
 @Component({
   selector: 'app-user-page-admin',
@@ -19,12 +20,13 @@ export class UserPageAdminComponent implements OnInit {
   photosToUpdate: File[];
   authorizedUser: {};
   nouser = 0;
-
   constructor(
-    private userService: UserService
-  ) {
-  }
-
+    private userService: UserService) {
+      this.userService.dataSource.subscribe(value => {
+        this.authorizedUser = value ? value : null;
+        console.log(this.authorizedUser);
+      })
+    }
   ngOnInit() {
   }
   signIn(signForm) {
@@ -35,6 +37,7 @@ export class UserPageAdminComponent implements OnInit {
       }
       else {
         this.authorizedUser = res;
+        this.userService.dataSource.next(res);
         this.nouser = 0;
       }
     });

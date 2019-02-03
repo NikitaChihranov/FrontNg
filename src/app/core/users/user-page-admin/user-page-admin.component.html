@@ -13,6 +13,14 @@
 <div *ngIf="nouser === 1">
   <h1>Incorrect login or password</h1>
 </div>
+<div *ngIf="authorizedUser">
+  <div *ngIf="authorizedUser.admin === true" class="float-right">
+    <h3>Admin: {{authorizedUser.login}}</h3>
+  </div>
+  <div *ngIf="authorizedUser.admin === false" class="float-right">
+    <h3>User: {{authorizedUser.login}}</h3>
+  </div>
+</div>
 <div *ngIf="authorizedUser&&nouser===0">
   <h3>Get all users</h3>
   <button (click)="getAllUsers()">Get all Users</button>

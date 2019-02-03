@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from '../core/models/user';
 import {AuthInterceptorService} from './auth-interceptor.service';
+import {Product} from '../core/models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private host = 'http://localhost:3000/';
+  dataSource = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient) {
   }
