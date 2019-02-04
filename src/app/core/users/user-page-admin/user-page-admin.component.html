@@ -9,13 +9,14 @@
     <br>
     <input type="submit" value="send">
     <br>
-    <input type="button" (click)="Register()" value="Register">
+      <input type="button" (click)="Register()" value="Register">
   </form>
+  {{this.msg1}}
 </div>
 <div *ngIf="registerClicked === 1">
   <h1>Create user</h1>
   <br>
-  <form #form1="ngForm" (ngSubmit)="createUser2(form1)" enctype="multipart/form-data">
+  <form #form1="ngForm" (ngSubmit)="createUser(form1)" enctype="multipart/form-data">
     <label> Login:</label>
     <input type="text" name="login" ngModel>
     <br>
@@ -44,15 +45,7 @@
     <button>Send</button>
   </form>
 </div>
-<div *ngIf="alreadyExists === 1">
-  <h3>User with such login already exists!</h3>
-</div>
-<div *ngIf="noName === 1">
-  <h3>You cannot create user without login or password</h3>
-</div>
-<div *ngIf="nouser === 1">
-  <h1>Incorrect login or password</h1>
-</div>
+{{this.msg}}
 <div *ngIf="authorizedUser">
   <div *ngIf="authorizedUser.admin === true" class="float-right">
     <h3>Admin: {{authorizedUser.login}}</h3>
@@ -104,36 +97,39 @@
 </div>
 <div *ngIf="authorizedUser&&nouser===0">
   <div *ngIf="authorizedUser.admin === true">
-    <h1>Create user</h1>
-    <br>
-    <form #form1="ngForm" (ngSubmit)="createUser(form1)" enctype="multipart/form-data">
-      <label> Login:</label>
-      <input type="text" name="login" ngModel>
+    <div>
+      <h1>Create user</h1>
       <br>
-      <label>Password: </label>
-      <input type="password" name="password" ngModel>
-      <br>
-      <label>Name: </label>
-      <input type="text" name="firstName" ngModel>
-      <br>
-      <label>Surname: </label>
-      <input type="text" name="surname" ngModel>
-      <br>
-      <label>Phone Number: </label>
-      <input type="text" name="phone" ngModel>
-      <br>
-      <label>Photo:</label>
-      <input type="file" name="photos" (change)="fileUploadEvent($event)" ngModel>
-      <br>
-      <label>Email: </label>
-      <input type="text" name="email" ngModel>
-      <br>
-      <label>Adress: </label>
-      <input type="text" name="adress" ngModel>
-      <br>
-      <br>
-      <button>Send</button>
-    </form>
+      <form #form1="ngForm" (ngSubmit)="createUser(form1)" enctype="multipart/form-data">
+        <label> Login:</label>
+        <input type="text" name="login" ngModel>
+        <br>
+        <label>Password: </label>
+        <input type="password" name="password" ngModel>
+        <br>
+        <label>Name: </label>
+        <input type="text" name="firstName" ngModel>
+        <br>
+        <label>Surname: </label>
+        <input type="text" name="surname" ngModel>
+        <br>
+        <label>Phone Number: </label>
+        <input type="text" name="phone" ngModel>
+        <br>
+        <label>Photo:</label>
+        <input type="file" name="photos" (change)="fileUploadEvent($event)" ngModel>
+        <br>
+        <label>Email: </label>
+        <input type="text" name="email" ngModel>
+        <br>
+        <label>Adress: </label>
+        <input type="text" name="adress" ngModel>
+        <br>
+        <br>
+        <button>Send</button>
+      </form>
+    </div>
+    <h3>{{this.msg}}</h3>
   </div>
 </div>
 <div *ngIf="authorizedUser&&nouser===0">
@@ -207,8 +203,18 @@
     </form>
   </div>
 </div>
-<div *ngIf="authorizedUser&&nouser===0">
-  <div *ngIf="authorizedUser.admin === true">
-    <button (click)="deleteAllUsers()">Delete all users</button>
-  </div>
+<div *ngIf="authorizedUser&&nouser===0&&authorizedUser.admin === true">
+  <button (click)="deleteAllUsers()">Delete all users</button>
+</div>
+<div *ngIf="authorizedUser&&nouser===0 &&authorizedUser.admin === false">
+  <h3>Login: {{authorizedUser.login}}</h3>
+  <h3>Password: {{authorizedUser.password}}</h3>
+
+  <h3>Name: {{authorizedUser.firstName ? authorizedUser.firstName != '' : 'Doesn`t exist'}}</h3>
+
+  <h3>Surname: {{authorizedUser.surname ? authorizedUser.surname != '' : 'Doesn`t exist'}}</h3>
+
+  <h3>Login: {{authorizedUser.login}}</h3>
+  <h3>Login: {{authorizedUser.login}}</h3>
+  <h3>Login: {{authorizedUser.login}}</h3>
 </div>

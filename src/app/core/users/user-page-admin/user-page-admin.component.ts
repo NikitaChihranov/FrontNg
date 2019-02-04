@@ -20,10 +20,11 @@ export class UserPageAdminComponent implements OnInit {
   photosToUpload: File[];
   photosToUpdate: File[];
   authorizedUser: {};
+  msg = '';
+  msg1 = '';
   nouser = 0;
   registerClicked = 0;
-  alreadyExists = 0;
-  noName = 0;
+
 
   constructor(
     private userService: UserService,
@@ -40,15 +41,15 @@ export class UserPageAdminComponent implements OnInit {
   signIn(signForm) {
     this.userService.signIn(signForm.value.login, signForm.value.password).subscribe((res) => {
       this.registerClicked = 0;
-      this.alreadyExists = 0;
-      this.noName = 0;
       console.log(res);
       if (res.firstName === 'not found') {
-        this.nouser = 1;
+        this.msg1 = 'Incorrect login or password';
       } else {
         this.authorizedUser = res;
         this.userService.dataSource.next(res);
         this.nouser = 0;
+        this.msg = '';
+        this.msg1 = '';
       }
     });
   }
@@ -67,19 +68,11 @@ export class UserPageAdminComponent implements OnInit {
   Register() {
     this.registerClicked = 1;
   }
-
   createUser(userForm) {
     this.userService.createUser(userForm.value).subscribe((res) => {
-      this.userService.uploadPhoto(this.photosToUpload, res).subscribe(() => {
-      });
-    });
-  }
-
-  createUser2(userForm) {
-    this.userService.createUser(userForm.value).subscribe((res) => {
-      if (res.firstName === 'Already exists!') this.alreadyExists = 1;
+      if (res.firstName === 'Already exists!') this.msg = 'User with such login already exists';
       else if (res.firstName === 'err') {
-        this.noName = 1;
+        this.msg = 'You cannot create user without user or password';
       } else {
         if (this.photosToUpload) {
           this.userService.uploadPhoto(this.photosToUpload, res).subscribe((response) => {
