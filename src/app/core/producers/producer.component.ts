@@ -3,6 +3,7 @@ import {ProducerService} from '../../services/producer.service';
 import {Producer} from '../models/producer';
 import {NgForm} from '@angular/forms';
 import {Product} from '../models/product';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-producer',
@@ -18,8 +19,14 @@ export class ProducerComponent implements OnInit {
   foundProductsByProducer: Product[] = [];
   filesToUpload: File[];
   filesToUpdate: File[];
+  authorizedUser: {};
 
-  constructor( private producerService: ProducerService) { }
+  constructor( private producerService: ProducerService, private userService: UserService) {
+      this.userService.dataSource.subscribe(value => {
+        this.authorizedUser = value ? value : null;
+        console.log(this.authorizedUser);
+      })
+    }
 
   ngOnInit() {
   }

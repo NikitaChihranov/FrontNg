@@ -3,6 +3,7 @@ import {Category} from '../models/category';
 import {CategoriesService} from '../../services/categories.service';
 import {NgForm} from '@angular/forms';
 import {Product} from '../models/product';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-categories',
@@ -10,7 +11,7 @@ import {Product} from '../models/product';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-
+  authorizedUser: {};
   categories: Category[] = [];
   foundCategoryById: {};
   category: Category;
@@ -20,16 +21,19 @@ export class CategoriesComponent implements OnInit {
   foundProductsByCategory: Product[] = [];
 
   constructor(
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService, private userService: UserService
   ) {
+    this.userService.dataSource.subscribe(value => {
+      this.authorizedUser = value ? value : null;
+      console.log(this.authorizedUser);
+    });
   }
 
   ngOnInit() {
-
   }
 
   getAllCategories() {
-    this.categoriesService.getAllCategories().subscribe((res) =>{
+    this.categoriesService.getAllCategories().subscribe((res) => {
       this.categories = res;
     });
   }
@@ -39,7 +43,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   createCategory(categoryForm: NgForm) {
-    this.categoriesService.createCategory(categoryForm.value).subscribe((res) => {});
+    this.categoriesService.createCategory(categoryForm.value).subscribe((res) => {
+    });
   }
 
   updateCategory(categoryForm: NgForm) {

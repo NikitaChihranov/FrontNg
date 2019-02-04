@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-comment',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
+  authorizedUser: {};
 
-  constructor() { }
+  constructor(
+    private userService: UserService) {
+    this.userService.dataSource.subscribe(value => {
+      this.authorizedUser = value ? value : null;
+      console.log(this.authorizedUser);
+    });
+  }
 
   ngOnInit() {
   }

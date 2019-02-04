@@ -6,6 +6,7 @@ import {CategoriesService} from '../../../services/categories.service';
 import {Category} from '../../models/category';
 import {ProducerService} from '../../../services/producer.service';
 import {Producer} from '../../models/producer';
+import {UserService} from '../../../services/user.service';
 
 
 @Component({
@@ -22,8 +23,14 @@ export class ProductsComponent implements OnInit {
   producers: Producer[] = [];
   filesToUpload: File[];
   filesToUpdate: File[];
+  authorizedUser: {};
 
-  constructor( private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService ) {
+  constructor( private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService,
+  private userService: UserService){
+    this.userService.dataSource.subscribe(value => {
+      this.authorizedUser = value ? value : null;
+      console.log(this.authorizedUser);
+    });
   }
 
   ngOnInit() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AboutService} from '../../services/about.service';
 import {About} from '../models/about';
 import {NgForm} from '@angular/forms';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-about',
@@ -9,11 +10,16 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+  authorizedUser: {};
   aboutContent: About;
   filesToUpload: File[];
   filesToUpdate: File[];
 
-  constructor(private aboutService: AboutService) {
+  constructor(private aboutService: AboutService, private userService: UserService) {
+    this.userService.dataSource.subscribe(value => {
+      this.authorizedUser = value ? value : null;
+      console.log(this.authorizedUser);
+    });
   }
 
   ngOnInit() {

@@ -9,6 +9,7 @@ import {IndexComponent} from './index/index.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import {MainMenuRoutingModule} from './main-menu/main-menu-routing.module';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
+import { CreatedUserComponent } from './core/users/created-user/created-user.component';
 
 @NgModule({
   declarations: [
