@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProducerService} from '../../services/producer.service';
 import {Producer} from '../models/producer';
 import {NgForm} from '@angular/forms';
@@ -12,7 +12,7 @@ import {UserService} from '../../services/user.service';
 })
 export class ProducerComponent implements OnInit {
   producers: Producer[] = [];
-  foundProducerById: {};
+  foundProducerByName: {};
   producer: Producer;
   updatedProducer: {};
   deletedProducer: {};
@@ -21,24 +21,22 @@ export class ProducerComponent implements OnInit {
   filesToUpdate: File[];
   authorizedUser: {};
 
-  constructor( private producerService: ProducerService, private userService: UserService) {
-      this.userService.dataSource.subscribe(value => {
-        this.authorizedUser = value ? value : null;
-        console.log(this.authorizedUser);
-      })
-    }
-
-  ngOnInit() {
-  }
-  getAllProducers() {
+  constructor(private producerService: ProducerService, private userService: UserService) {
+    this.userService.dataSource.subscribe(value => {
+      this.authorizedUser = value ? value : null;
+    });
     this.producerService.getAllProducers().subscribe((res) => {
       this.producers = res;
     });
   }
 
-  getProducerById(id) {
-    this.producerService.getProducerById(id.value).subscribe((res) => {
-      this.foundProducerById = res;
+  ngOnInit() {
+  }
+
+
+  getProducerByName(form) {
+    this.producerService.getProducerByName(form.value).subscribe((res) => {
+      this.foundProducerByName = res;
     });
   }
 
@@ -63,11 +61,11 @@ export class ProducerComponent implements OnInit {
       this.deletedProducer = res;
     });
   }
-  
+
   deleteAllProducers() {
     this.producerService.deleteAllProducers().subscribe((res) => {
       this.producers = null;
-    } );
+    });
   }
 
   viewAllProductsByProducer(id) {
@@ -80,6 +78,7 @@ export class ProducerComponent implements OnInit {
   hide() {
     this.deletedProducer = undefined;
   }
+
   fileChangeEvent(event: any) {
     this.filesToUpload = (<any>event.target).files;
   }

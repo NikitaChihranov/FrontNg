@@ -61,8 +61,8 @@ export class ProductsComponent implements OnInit {
 
     }
 
-  deleteProduct(id) {
-    this.productService.deleteProduct(id.value).subscribe((res) => this.deletedProduct = res);
+  deleteProduct(form) {
+    this.productService.deleteProduct(form.value).subscribe((res) => this.deletedProduct = res);
   }
 
   deleteAllProducts() {

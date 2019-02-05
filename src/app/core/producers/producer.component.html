@@ -1,6 +1,4 @@
 <h1>Producers</h1>
-<h2>Get all producers</h2>
-<button (click)="getAllProducers()">Push</button>
 <div *ngIf="producers!=[]">
   <ul *ngFor="let producer1 of producers">
     <h3>Title: {{producer1.title}} </h3>
@@ -15,23 +13,24 @@
     <hr>
   </ul>
 </div>
-<form (ngSubmit)="getProducerById(id1)">
-  <h2>Get producer by id</h2>
-  <h3>Id: </h3><input type="text" name="_id" #id1>
+<form (ngSubmit)="getProducerByName(name)">
+  <h2>Search</h2>
+  <input type="text" #name>
   <button type="submit">Get</button>
 </form>
-<div *ngIf="foundProducerById">
+<div *ngIf="foundProducerByName">
   <ul>
-    <li><h3>Id:</h3>{{foundProducerById._id}}</li>
-    <li><h3>Title:</h3>{{foundProducerById.title}}</li>
-    <li><h3>Short about:</h3>{{foundProducerById.about.short}}</li>
-    <li><h3>About:</h3>{{foundProducerById.about.all}}</li>
+    <li><h3>Id:</h3>{{foundProducerByName._id}}</li>
+    <li><h3>Title:</h3>{{foundProducerByName.title}}</li>
+    <li><h3>Short about:</h3>{{foundProducerByName.about.short}}</li>
+    <li><h3>About:</h3>{{foundProducerByName.about.all}}</li>
     <li>Photo:
-      <img [src]="'http://localhost:3000/ProducerPhotos/' + foundProducerById.photo">
+      <img [src]="'http://localhost:3000/ProducerPhotos/' + foundProducerByName.photo">
     </li>
-    <li><h3>Country:</h3>{{foundProducerById.country}}</li>
+    <li><h3>Country:</h3>{{foundProducerByName.country}}</li>
   </ul>
 </div>
+<div *ngIf="authorizedUser">
 <form #producerForm="ngForm" (ngSubmit)="createProducer(producerForm)" enctype="multipart/form-data">
   <h3>Create new producer</h3>
   Title: <input type="text" name="title" ngModel><br>
@@ -85,3 +84,4 @@
   <h3>Delete all producers</h3>
   <button (click)="deleteAllProducers()">Delete all</button>
 </form>
+</div>

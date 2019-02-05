@@ -22,7 +22,7 @@
   </li>
   <hr>
 </div>
-<br>
+<div *ngIf="authorizedUser">
 <h1>Create product</h1>
 <form #aaa="ngForm" (ngSubmit)="createProduct(aaa)" enctype="multipart/form-data">
   <label>Title: </label>
@@ -113,3 +113,4 @@
 </div>
 <h2>Delete all products</h2>
 <button (click)="deleteAllProducts()">Delete</button>
+</div>

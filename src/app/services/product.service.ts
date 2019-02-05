@@ -45,8 +45,8 @@ export class ProductService {
     return this.http.put<Product>(`${this.host}products/updatePhotos/${id}`, formData);
   }
 
-deleteProduct(id: string): Observable<Product> {
-  return this.http.delete<Product>(`${this.host}products/${id}`);
+deleteProduct(name: string): Observable<Product> {
+  return this.http.delete<Product>(`${this.host}products/${name}`);
 }
 
 deleteAllProducts(): Observable<Product[]> {

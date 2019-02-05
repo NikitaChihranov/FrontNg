@@ -17,8 +17,8 @@ export class ProducerService {
   getAllProducers(): Observable<Producer[]> {
     return this.http.get<Producer[]> (`${this.host}producers`);
   }
-  getProducerById(id: string): Observable<Producer> {
-    return this.http.get<Producer>(`${this.host}producers/${id}`);
+  getProducerByName(name: string): Observable<Producer> {
+    return this.http.get<Producer>(`${this.host}producers/${name}`);
   }
   createProducer(producer: Producer): Observable<Producer> {
     return this.http.post<Producer>(`${this.host}producers`, producer);
