@@ -18,10 +18,12 @@ export class UserPageAdminComponent implements OnInit {
   updatedUser: {};
   deletedUsers: User[] = [];
   photosToUpload: File[];
+  photosToUploadAdmin: File[];
   photosToUpdate: File[];
   authorizedUser: {};
   msg = '';
   msg1 = '';
+  msg2 = '';
   nouser = 0;
   registerClicked = 0;
 
@@ -31,7 +33,6 @@ export class UserPageAdminComponent implements OnInit {
     private router: Router) {
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
-      console.log(this.authorizedUser);
     });
   }
 
@@ -41,7 +42,6 @@ export class UserPageAdminComponent implements OnInit {
   signIn(signForm) {
     this.userService.signIn(signForm.value.login, signForm.value.password).subscribe((res) => {
       this.registerClicked = 0;
-      console.log(res);
       if (res.firstName === 'not found') {
         this.msg1 = 'Incorrect login or password';
       } else {
@@ -68,6 +68,7 @@ export class UserPageAdminComponent implements OnInit {
   Register() {
     this.registerClicked = 1;
   }
+
   createUser(userForm) {
     this.userService.createUser(userForm.value).subscribe((res) => {
       if (res.firstName === 'Already exists!') this.msg = 'User with such login already exists';
@@ -76,14 +77,28 @@ export class UserPageAdminComponent implements OnInit {
       } else {
         if (this.photosToUpload) {
           this.userService.uploadPhoto(this.photosToUpload, res).subscribe((response) => {
-            console.log(response);
           });
         }
         this.router.navigate(['/users/createdUser']);
       }
     });
-
   }
+
+  createAdmin(adminForm) {
+    this.userService.createAdmin(adminForm.value).subscribe((res) => {
+      if (res.firstName === 'Already exists!') this.msg2 = 'Admin with such login already exists';
+      else if (res.firstName === 'err') {
+        this.msg2 = 'You cannot create admin without user or password';
+      } else {
+        if (this.photosToUploadAdmin) {
+          this.userService.uploadPhoto(this.photosToUploadAdmin, res).subscribe((response) => {
+          });
+        }
+        this.router.navigate(['/users/createdAdmin']);
+      }
+    });
+  }
+
 
   updateUser(userForm: NgForm) {
     this.user = {...this.user, ...userForm.value};
@@ -110,6 +125,9 @@ export class UserPageAdminComponent implements OnInit {
 
   fileUploadEvent(event: any) {
     this.photosToUpload = (<any>event.target).files;
+  }
+  fileUploadEventAdmin(event: any) {
+    this.photosToUploadAdmin = (<any>event.target).files;
   }
 
   fileUpdateEvent(event: any) {

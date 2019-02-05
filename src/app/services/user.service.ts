@@ -32,6 +32,9 @@ export class UserService {
   createUser(user: User): Observable<User> {
     return this.http.post <User>(`${this.host}users`, user);
   }
+  createAdmin(user: User): Observable<User>{
+    return this.http.post<User>(`${this.host}users/createAdmin`, user);
+  }
   uploadPhoto(photos: File[], user: User): Observable<User> {
     const formData: FormData = new FormData();
     formData.append('photo', photos[0], photos[0].name);
@@ -55,6 +58,6 @@ export class UserService {
 
   deleteAllUsers(): Observable<User[]> {
     // @ts-ignore
-    return this.http.post<User[]>(`${this.host}users/delet  eAll/`);
+    return this.http.post<User[]>(`${this.host}users/deleteAll/`);
   }
 }
