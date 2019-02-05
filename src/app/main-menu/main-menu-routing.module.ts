@@ -9,7 +9,7 @@ const routes: Routes = [
       {path: 'categories', loadChildren: '../core/categories/categories.module#CategoriesModule'},
       {path: 'users', loadChildren: '../core/users/users.module#UserModule'},
       {path: 'about', component: AboutComponent},
-      {path: 'products', loadChildren: '../core/categories/products/products.module#ProductsModule'},
+      {path: 'products', loadChildren: '../core/products/products.module#ProductsModule'},
       {path: 'producers', loadChildren: '../core/producers/producer.module#ProducerModule'},
       {path: 'comments', loadChildren: '../core/comment/comment.module#CommentModule'},
       {path: 'orders', loadChildren: '../core/order/order.module#OrderModule'}

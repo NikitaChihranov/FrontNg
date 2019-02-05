@@ -27,16 +27,15 @@ export class CategoriesComponent implements OnInit {
       this.authorizedUser = value ? value : null;
       console.log(this.authorizedUser);
     });
+    this.categoriesService.getAllCategories().subscribe((res) => {
+      this.categories = res;
+    });
+
   }
 
   ngOnInit() {
   }
 
-  getAllCategories() {
-    this.categoriesService.getAllCategories().subscribe((res) => {
-      this.categories = res;
-    });
-  }
 
   getCategoryById(id) {
     this.categoriesService.getCategoryById(id.value).subscribe((res) => this.foundCategoryById = res);

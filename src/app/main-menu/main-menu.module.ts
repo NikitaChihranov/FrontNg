@@ -13,6 +13,8 @@ import {AppRoutingModule} from '../app-routing.module';
 import {ProducerRoutingModule} from '../core/producers/producer-routing.module';
 import {RouterModule} from '@angular/router';
 import {AppModule} from '../app.module';
+import {ProductsRoutingModule} from '../core/products/products-routing.module';
+import {ProductsComponent} from '../core/products/products.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import {AppModule} from '../app.module';
     CategoriesComponent,
     ProducerComponent,
     UserPageAdminComponent,
-    ProducerComponent
+    ProductsComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import {AppModule} from '../app.module';
     AppModule,
     ProducerRoutingModule,
     RouterModule,
+    ProductsRoutingModule
   ],
   exports: [
     MainMenuRoutingModule

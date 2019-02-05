@@ -56,6 +56,10 @@ export class UserPageAdminComponent implements OnInit {
     });
   }
 
+  logout() {
+    this.userService.dataSource.next(null);
+  }
+
   getAllUsers() {
     this.userService.getAllUsers().subscribe((res) => {
       this.users = res ? res : [];

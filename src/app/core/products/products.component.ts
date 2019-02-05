@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from '../../models/product';
+import {Product} from '../models/product';
 import {Form, NgForm} from '@angular/forms';
-import {ProductService} from '../../../services/product.service';
-import {CategoriesService} from '../../../services/categories.service';
-import {Category} from '../../models/category';
-import {ProducerService} from '../../../services/producer.service';
-import {Producer} from '../../models/producer';
-import {UserService} from '../../../services/user.service';
+import {ProductService} from '../../services/product.service';
+import {CategoriesService} from '../../services/categories.service';
+import {Category} from '../models/category';
+import {ProducerService} from '../../services/producer.service';
+import {Producer} from '../models/producer';
+import {UserService} from '../../services/user.service';
 
 
 @Component({
