@@ -25,8 +25,8 @@ export class UserService {
     return this.http.get<User[]>(`${this.host}users/`);
   }
 
-  getUserById(id: string): Observable<User> {
-    return this.http.get<User>(`${this.host}users/${id}`);
+  getUserByLogin(login: string): Observable<User> {
+    return this.http.get<User>(`${this.host}users/${login}`);
   }
 
   createUser(user: User): Observable<User> {
@@ -50,12 +50,12 @@ export class UserService {
     const id = user._id;
     return this.http.put<User>(`${this.host}users/updatePhoto/${id}`, formData);
   }
-
-
-  deleteUser(id: string): Observable<User> {
-    return this.http.delete <User>(`${this.host}users/${id}`);
+  deleteUser(login: string): Observable<User> {
+    return this.http.delete<User>(`${this.host}users/delete/${login}`);
   }
-
+  deleteProfile(): Observable<User> {
+    return this.http.delete<User>(`${this.host}users/deleteProfile`);
+  }
   deleteAllUsers(): Observable<User[]> {
     // @ts-ignore
     return this.http.post<User[]>(`${this.host}users/deleteAll/`);

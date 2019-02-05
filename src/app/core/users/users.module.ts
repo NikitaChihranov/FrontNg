@@ -6,9 +6,15 @@ import {UserPageAdminComponent} from './user-page-admin/user-page-admin.componen
 import {FormsModule} from '@angular/forms';
 import {CreatedUserComponent} from './created-user/created-user.component';
 import {CreatedAdminComponent} from './created-admin/created-admin.component';
+import {DeletedUserComponent} from './deleted-user/deleted-user.component';
 
 @NgModule({
-  declarations: [UserPageAdminComponent, CreatedUserComponent, CreatedAdminComponent],
+  declarations: [
+    UserPageAdminComponent,
+    CreatedUserComponent,
+    CreatedAdminComponent,
+    DeletedUserComponent
+  ],
   imports: [
     CommonModule,
     UsersRoutingModule,

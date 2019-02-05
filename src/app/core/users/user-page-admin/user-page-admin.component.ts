@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class UserPageAdminComponent implements OnInit {
   users: User[] = [];
-  foundUserById: {};
+  foundUserByLogin: {};
   deletedUser: {};
   user: User;
   updatedUser: {};
@@ -24,14 +24,15 @@ export class UserPageAdminComponent implements OnInit {
   msg = '';
   msg1 = '';
   msg2 = '';
-  nouser = 0;
+  msg3 = '';
   registerClicked = 0;
-
+  valueInput = '';
 
   constructor(
     private userService: UserService,
     private router: Router) {
     this.userService.dataSource.subscribe(value => {
+      console.log(value);
       this.authorizedUser = value ? value : null;
     });
   }
@@ -47,9 +48,10 @@ export class UserPageAdminComponent implements OnInit {
       } else {
         this.authorizedUser = res;
         this.userService.dataSource.next(res);
-        this.nouser = 0;
         this.msg = '';
         this.msg1 = '';
+        this.msg2 = '';
+        this.msg3 = '';
       }
     });
   }
@@ -61,8 +63,8 @@ export class UserPageAdminComponent implements OnInit {
     });
   }
 
-  getUserById(userId) {
-    this.userService.getUserById(userId.value).subscribe((res) => this.foundUserById = res);
+  getUserByLogin(userLogin) {
+    this.userService.getUserByLogin(userLogin.value).subscribe((res) => this.foundUserByLogin = res);
   }
 
   Register() {
@@ -109,8 +111,15 @@ export class UserPageAdminComponent implements OnInit {
     });
   }
 
-  deleteUser(userId) {
-    this.userService.deleteUser(userId.value).subscribe((res) => this.deletedUser = res ? res : {});
+  deleteUser(userLogin) {
+    this.userService.deleteUser(userLogin.value).subscribe((res) => {
+      if (res.firstName === 'can`t delete') this.msg3 = 'You can`t delete yourself here';
+      else if (res.firstName === 'nothing to delete') this.msg3 = 'There`s not user with such login';
+      else {
+        this.deletedUser = res;
+        this.msg3 = '';
+      }
+    });
   }
 
   deleteAllUsers() {
@@ -123,15 +132,27 @@ export class UserPageAdminComponent implements OnInit {
     });
   }
 
+  deleteProfile() {
+    this.userService.deleteProfile().subscribe((res) => {
+    });
+    this.userService.dataSource.next(null);
+    this.router.navigate(['/users/deletedUser']);
+  }
+
   fileUploadEvent(event: any) {
     this.photosToUpload = (<any>event.target).files;
   }
+
   fileUploadEventAdmin(event: any) {
     this.photosToUploadAdmin = (<any>event.target).files;
   }
 
   fileUpdateEvent(event: any) {
     this.photosToUpdate = (<any>event.target).files;
+  }
+
+  getValue(input) {
+    this.valueInput = input.value;
   }
 }
 
