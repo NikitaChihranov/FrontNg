@@ -17,7 +17,7 @@ import {UserService} from '../../services/user.service';
 export class ProductsComponent implements OnInit {
   categories: Category[];
   products: Product[] = [];
-  foundProductById: Product;
+  foundProductByName: Product;
   deletedProduct: {};
   product: Product;
   producers: Producer[] = [];
@@ -29,11 +29,13 @@ export class ProductsComponent implements OnInit {
   private userService: UserService){
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
-      console.log(this.authorizedUser);
     });
   }
 
   ngOnInit() {
+    this.productService.getAllProducts().subscribe((res) => {
+      this.products = res;
+    });
     this.categoriesService.getAllCategories().subscribe((res) =>{
       this.categories = res ? res : [];
     });
@@ -42,14 +44,8 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  getAllProducts() {
-    this.productService.getAllProducts().subscribe((res) => {
-      this.products = res;
-    });
-  }
-
-  getProductById(id) {
-    this.productService.getProductById(id.value).subscribe((res) => this.foundProductById = res);
+  getProductByName(name) {
+    this.productService.getProductByName(name.value).subscribe((res) => this.foundProductByName = res);
   }
   createProduct(productForm: NgForm) {
     this.productService.createProduct(productForm.value).subscribe((res) => {
@@ -59,7 +55,7 @@ export class ProductsComponent implements OnInit {
   }
   updateProduct(productForm: NgForm) {
     this.product = {...this.product, ...productForm.value};
-    this.productService.updateProduct(this.product._id, this.product).subscribe((res) => {
+    this.productService.updateProduct(this.product.title, this.product).subscribe((res) => {
       this.productService.updatePhotos(this.filesToUpdate, res).subscribe((response) => {});
     });
 
@@ -78,11 +74,9 @@ export class ProductsComponent implements OnInit {
 
   fileChangeEvent(event: any) {
     this.filesToUpload = (<any>event.target).files;
-    console.log(this.filesToUpload);
   }
   fileUpdateEvent(event: any) {
     this.filesToUpdate = (<any>event.target).files;
-    console.log(this.filesToUpdate);
   }
 }
 

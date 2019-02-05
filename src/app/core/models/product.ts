@@ -17,8 +17,6 @@ export class Product {
     public gender?: string,
     public category?: string,
     public producer?: string,
-    public show?: boolean,
-    public sale?: boolean
   )
   {}
 }

@@ -1,53 +1,25 @@
-<a routerLink="/categories">Back</a>
 <h1>Products</h1>
-<p>Get all products</p>
-<button (click)="getAllProducts()">Get all products</button>
-<br>
 <div *ngFor="let product of products">
   <ul *ngIf="products!=[]">
-    <li>id: {{product._id}}</li>
     <li>Title: {{product.title}}</li>
     <li>Price: {{product.price}}</li>
     <li>Short about: {{product.about.short}}</li>
-    <li>All about: {{product.about.all}}</li>
-    <li>Colors: {{product.colors}}</li>
     <li><h2>Photos:</h2>
-      <span *ngFor="let link of product.photos">
-        <img [src]="'http://localhost:3000/photos/'+link">
-      </span>
+        <img [src]="'http://localhost:3000/photos/'+product.photos[0]">
     </li>
-    <li>Quantity: {{product.quantity}}</li>
-    <li>Date: {{product.date}}</li>
-    <li>Gender: {{product.gender}}</li>
-    <li>Category: {{product.category}}</li>
-    <li>Producer: {{product.producer}}</li>
-    <li>Show: {{product.show}}</li>
-    <li>Sale: {{product.sale}}</li>
   </ul>
   <hr>
 </div>
-<h1>Get product by id</h1>
-<input type="text" name="_id" placeholder="id" #id1>
-<button (click)="getProductById(id1)">Send</button>
-<div *ngIf="foundProductById">
-  <p>Title: {{foundProductById.title}}</p>
-  <p>Id: {{foundProductById._id}}</p>
-  <p>Price: {{foundProductById.price}}</p>
-  <p>All about: {{foundProductById.about.all}}</p>
-  <p>Short about: {{foundProductById.about.short}}</p>
-  <p>Colors: {{foundProductById.colors}}</p>
+<h1>Search product</h1>
+<input type="text" #name>
+<button (click)="getProductByName(name)">Send</button>
+<div *ngIf="foundProductByName">
+  <p>Title: {{foundProductByName.title}}</p>
+  <p>Price: {{foundProductByName.price}}</p>
+  <p>Short about: {{foundProductByName.about.short}}</p>
   <li><h2>Photos:</h2>
-    <span *ngFor="let link of foundProductById.photos">
-        <img [src]="'http://localhost:3000/photos/'+link">
-      </span>
+        <img [src]="'http://localhost:3000/photos/'+foundProductByName.photos[0]">
   </li>
-  <p>Quantity: {{foundProductById.quantity}}</p>
-  <p>Date: {{foundProductById.date}}</p>
-  <p>Gender: {{foundProductById.gender}}</p>
-  <p>Category: {{foundProductById.category}}</p>
-  <p>Producer: {{foundProductById.producer}}</p>
-  <p>Show: {{foundProductById.show}}</p>
-  <p>Sale: {{foundProductById.sale}}</p>
   <hr>
 </div>
 <br>
@@ -86,18 +58,11 @@
   <select name="producer" ngModel>
     <option *ngFor="let producer of producers">{{producer.title}}</option>
   </select>
-  <br>
-  <label>Show: </label>
-  <input type="text" name="show" ngModel><br>
-  <label>Sale: </label>
-  <input type="text" name="sale" ngModel>
   <button type="submit">Send</button>
 </form>
 <br>
 <h1>Update product</h1>
 <form #updateForm="ngForm" (ngSubmit)="updateProduct(updateForm)">
-  <label>Id: </label>
-  <input type="text" name="_id" ngModel><br>
   <label>Title: </label>
   <input type="text" name="title" ngModel>
   <br>
@@ -131,11 +96,6 @@
   <select name="producer" ngModel>
     <option *ngFor="let producer of producers">{{producer.title}}</option>
   </select>
-  <br>
-  <label>Show: </label>
-  <input type="text" name="show" ngModel><br>
-  <label>Sale: </label>
-  <input type="text" name="sale" ngModel>
   <button type="submit">Send</button>
 </form>
 <br>
@@ -144,24 +104,12 @@
 <button (click)="deleteProduct(id)">Delete</button>
 <br>
 <div *ngIf="deletedProduct">
-  <p>Id: <span>{{deletedProduct._id}}</span></p>
   <p>Title: {{deletedProduct.title}}</p>
   <p>Price: {{deletedProduct.price}}</p>
-  <p>All about: {{deletedProduct.about.all}}</p>
   <p>Short about: {{deletedProduct.about.short}}</p>
-  <p>Colors: {{deletedProduct.colors}}</p>
   <li><h2>Photos:</h2>
-    <span *ngFor="let link of deletedProduct.photos">
-        <img [src]="'http://localhost:3000/photos/'+link">
-      </span>
+        <img [src]="'http://localhost:3000/photos/'+deletedProduct.photos[0]">
   </li>
-  <p>Quantity: {{deletedProduct.quantity}}</p>
-  <p>Date: {{deletedProduct.date}}</p>
-  <p>Gender: {{deletedProduct.gender}}</p>
-  <p>Category: {{deletedProduct.category}}</p>
-  <p>Producer: {{deletedProduct.producer}}</p>
-  <p>Show: {{deletedProduct.show}}</p>
-  <p>Sale: {{deletedProduct.sale}}</p>
 </div>
 <h2>Delete all products</h2>
 <button (click)="deleteAllProducts()">Delete</button>
