@@ -1,22 +1,9 @@
-  <div *ngFor="let category of categories">
+<div *ngFor="let category of categories">
   <span *ngIf="categories!=[]">
-    <h3>Title: {{category.title}}</h3>
-    <h4>Id: {{category._id}}</h4>
+     <a routerLink="viewAll" (click)="viewAllProductsByCategory(category._id)">{{category.title}}</a>
   </span>
-    <a routerLink="viewAll" (click)="viewAllProductsByCategory(category._id)">View all products</a>
-  </div>
-  <div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <h3>Get category by id</h3>
-  <input type="text" #categoryId>
-  <br>
-  <button (click)="getCategoryById(categoryId)">Get Category</button>
-  <br>
-  <div *ngIf="foundCategoryById">
-    <h2>Title: {{foundCategoryById.title}}</h2>
-    <p>Id: {{foundCategoryById._id}}</p>
-    <button routerLink="viewAll" (click)="viewAllProductsByCategory(foundCategoryById._id)">View all products</button>
-  </div>
-  <br>
+</div>
+<div *ngIf="authorizedUser&&authorizedUser.admin === true">
   <h1>Create category</h1>
   <form #createForm="ngForm" (ngSubmit)="createCategory(createForm)">
     <label>Title:</label>
@@ -39,23 +26,14 @@
     <p>Title: {{updatedCategory.title}}</p>
     <p>Id: {{updatedCategory._id}}</p>
   </form>
-  <h2>Delete category </h2>
-  <form (ngSubmit)="deleteCategory(deleteForm)">
-    <label>Id: </label>
-    <input type="text" name="_id" #deleteForm>
-    <button>Delete</button>
-  </form>
-  <br>
-  <form *ngIf="deletedCategory">
-    <p>Title: {{deletedCategory.title}}</p>
-    <p>Id: {{deletedCategory._id}}</p>
-  </form>
+  <div>
+    <h2>Delete category </h2>
+    <form (ngSubmit)="deleteCategory(deleteForm)">
+      <input type="text" #deleteForm>
+      <button>Delete</button>
+    </form>
+    <h2>{{msgDelete}}</h2>
+  </div>
   <br>
   <button (click)="deleteAllCategories()">Delete all categories</button>
-  <div *ngFor="let ElDeletedCategories of deletedCategories">
-    <ul *ngIf="deletedCategories!=[]">
-      <li>Id: {{ElDeletedCategories._id}}</li>
-      <li>Title: {{ElDeletedCategories.title}}</li>
-    </ul>
-  </div>
 </div>

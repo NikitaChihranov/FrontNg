@@ -70,7 +70,6 @@ export class UserPageAdminComponent implements OnInit {
 
   getUserByLogin(userLogin) {
     this.userService.getUserByLogin(userLogin.value).subscribe((res) => {
-      console.log(res);
       if (res.login === 'err') {
         this.foundUserByLogin = null;
         this.msgFindByName = 'Nothing found';

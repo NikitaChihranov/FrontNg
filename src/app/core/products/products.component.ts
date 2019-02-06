@@ -33,9 +33,11 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getAllProducts().subscribe((res) => {
-      this.products = res;
-    });
+    setInterval(()=>{
+      this.productService.getAllProducts().subscribe((res) => {
+        this.products = res;
+      });
+    }, 100);
     this.categoriesService.getAllCategories().subscribe((res) =>{
       this.categories = res ? res : [];
     });

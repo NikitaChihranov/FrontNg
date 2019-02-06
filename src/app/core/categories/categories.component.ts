@@ -13,33 +13,30 @@ import {UserService} from '../../services/user.service';
 export class CategoriesComponent implements OnInit {
   authorizedUser: {};
   categories: Category[] = [];
-  foundCategoryById: {};
   category: Category;
   updatedCategory: {};
-  deletedCategory: {};
-  deletedCategories: Category[] = [];
   foundProductsByCategory: Product[] = [];
+  msgDelete = '';
 
   constructor(
     private categoriesService: CategoriesService, private userService: UserService
   ) {
+    setInterval(()=>{
+      this.categoriesService.getAllCategories().subscribe((res) => {
+        this.categories = res;
+      });
+    }, 10);
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
       console.log(this.authorizedUser);
     });
-    this.categoriesService.getAllCategories().subscribe((res) => {
-      this.categories = res;
-    });
+
 
   }
 
   ngOnInit() {
   }
 
-
-  getCategoryById(id) {
-    this.categoriesService.getCategoryById(id.value).subscribe((res) => this.foundCategoryById = res);
-  }
 
   createCategory(categoryForm: NgForm) {
     this.categoriesService.createCategory(categoryForm.value).subscribe((res) => {
@@ -52,17 +49,18 @@ export class CategoriesComponent implements OnInit {
       this.updatedCategory = res);
   }
 
-  deleteCategory(id) {
-    this.categoriesService.deleteCategory(id.value).subscribe((res) => this.deletedCategory = res);
+  deleteCategory(form) {
+    this.categoriesService.deleteCategory(form.value).subscribe((res) => {
+      if(res.title === 'err'){
+        this.msgDelete = 'Nothing found';
+      } else{
+        this.msgDelete = '';
+      }
+    });
   }
 
   deleteAllCategories() {
-    this.categoriesService.deleteAllCategories().subscribe((res) => {
-      const categoriesToDelete = this.categories;
-      for (const category of categoriesToDelete) {
-        this.deletedCategories.push(category);
-      }
-    });
+    this.categoriesService.deleteAllCategories().subscribe((res) => {});
   }
 
   viewAllProductsByCategory(id) {

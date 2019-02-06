@@ -19,10 +19,6 @@ export class CategoriesService {
     return this.http.get<Category[]>(`${this.host}categories`);
   }
 
-  getCategoryById(id: string): Observable<Category> {
-    return this.http.get<Category>(`${this.host}categories/${id}`);
-  }
-
   createCategory(category: Category): Observable<Category> {
     return this.http.post<Category>(`${this.host}categories`, category);
   }
@@ -31,8 +27,8 @@ export class CategoriesService {
     return this.http.put<Category>(`${this.host}categories/${id}`, category);
   }
 
-  deleteCategory(id: string): Observable<Category> {
-    return this.http.delete<Category>(`${this.host}categories/${id}`);
+  deleteCategory(name: string): Observable<Category> {
+    return this.http.delete<Category>(`${this.host}categories/${name}`);
   }
 
   deleteAllCategories(): Observable<Category[]> {

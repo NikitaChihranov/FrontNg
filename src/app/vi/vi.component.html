@@ -8,7 +8,7 @@
   <li>About: {{product.about.all}}</li>
   <li><h2>Photos</h2>
     <div *ngFor="let link of product.photos">
-      <img [src]="'http://localhost:3000/' + link">
+      <img [src]="'http://localhost:3000/photos/' + link">
     </div>
   </li>
   <li>Colors: {{product.colors}}</li>
