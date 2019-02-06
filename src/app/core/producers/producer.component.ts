@@ -49,15 +49,15 @@ export class ProducerComponent implements OnInit {
 
   updateProducer(producerForm: NgForm) {
     this.producer = {...this.producer, ...producerForm.value};
-    this.producerService.updateProducer(this.producer._id, this.producer).subscribe((res) => {
+    this.producerService.updateProducer(this.producer.title, this.producer).subscribe((res) => {
       this.producerService.updatePhoto(this.filesToUpdate, res).subscribe((response) => {
         this.updatedProducer = response;
       });
     });
   }
 
-  deleteProducer(id) {
-    this.producerService.deleteProducer(id.value).subscribe((res) => {
+  deleteProducer(form) {
+    this.producerService.deleteProducer(form.value).subscribe((res) => {
       this.deletedProducer = res;
     });
   }
@@ -76,7 +76,7 @@ export class ProducerComponent implements OnInit {
   }
 
   hide() {
-    this.deletedProducer = undefined;
+    this.deletedProducer = null;
   }
 
   fileChangeEvent(event: any) {

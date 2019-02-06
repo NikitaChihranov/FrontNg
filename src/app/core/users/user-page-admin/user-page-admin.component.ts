@@ -21,6 +21,7 @@ export class UserPageAdminComponent implements OnInit {
   photosToUploadAdmin: File[];
   photosToUpdate: File[];
   authorizedUser: {};
+  msgFindByName = '';
   msg = '';
   msg1 = '';
   msg2 = '';
@@ -32,7 +33,6 @@ export class UserPageAdminComponent implements OnInit {
     private userService: UserService,
     private router: Router) {
     this.userService.dataSource.subscribe(value => {
-      console.log(value);
       this.authorizedUser = value ? value : null;
     });
   }
@@ -49,6 +49,7 @@ export class UserPageAdminComponent implements OnInit {
         this.authorizedUser = res;
         this.userService.dataSource.next(res);
         this.msg = '';
+        this.msgFindByName = '';
         this.msg1 = '';
         this.msg2 = '';
         this.msg3 = '';
@@ -68,7 +69,16 @@ export class UserPageAdminComponent implements OnInit {
   }
 
   getUserByLogin(userLogin) {
-    this.userService.getUserByLogin(userLogin.value).subscribe((res) => this.foundUserByLogin = res);
+    this.userService.getUserByLogin(userLogin.value).subscribe((res) => {
+      console.log(res);
+      if (res.login === 'err') {
+        this.foundUserByLogin = null;
+        this.msgFindByName = 'Nothing found';
+      } else {
+        this.foundUserByLogin = res;
+        this.msgFindByName = '';
+      }
+    });
   }
 
   Register() {

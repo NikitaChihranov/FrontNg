@@ -42,7 +42,6 @@
 </form>
 <form #updateForm="ngForm" (ngSubmit)="updateProducer(updateForm)" enctype="multipart/form-data">
   <h3>Update someone</h3>
-  Id: <input type="text" name="_id" ngModel><br>
   Title: <input type="text" name="title" ngModel><br>
   Short about: <input type="text" name="about.short" ngModel><br>
   All about: <input type="text" name="about.all" ngModel><br>
@@ -64,9 +63,9 @@
 </div>
 <form>
   <h3>Delete someone</h3>
-  Id: <input type="text" #id name="id">
+  <input type="text" #name>
   <br>
-  <button (click)="deleteProducer(id)">Delete</button>
+  <button (click)="deleteProducer(name)">Delete</button>
 </form>
 <div *ngIf="deletedProducer">
   <button (click)="hide()">Hide</button>
