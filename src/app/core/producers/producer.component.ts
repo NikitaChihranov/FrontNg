@@ -29,7 +29,7 @@ export class ProducerComponent implements OnInit {
       this.producerService.getAllProducers().subscribe((res) => {
         this.producers = res;
       });
-    }, 100);
+    }, 1000);
   }
 
   ngOnInit() {

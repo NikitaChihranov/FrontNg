@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
       this.categoriesService.getAllCategories().subscribe((res) => {
         this.categories = res;
       });
-    }, 10);
+    }, 1000);
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
       console.log(this.authorizedUser);

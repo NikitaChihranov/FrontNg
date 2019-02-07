@@ -1,4 +1,11 @@
 <h1>ABOUT PAGE</h1>
+<div *ngIf="aboutContent">
+  <h3> {{aboutContent.text}}</h3>
+  <div *ngIf="aboutContent.logo">
+    <img [src]="'http://localhost:3000/photosAbout/' + aboutContent.logo">
+  </div>
+</div>
+<div *ngIf="authorizedUser">
 <form #aboutForm = "ngForm" (ngSubmit)="create(aboutForm)"  enctype="multipart/form-data">
   <h2>Create about content</h2>
   <textarea rows="13" cols="80" name="text" ngModel></textarea>
@@ -7,12 +14,7 @@
   <input type="file"  name="photos" (change)="fileChangeEvent($event)" ngModel>
   <button type="submit">Send</button>
 </form>
-<div>
-  <h3> {{aboutContent.text}}</h3>
-  <div *ngIf="aboutContent.logo">
-    <img [src]="'http://localhost:3000/photosAbout/' + aboutContent.logo">
-</div>
-</div>
+
 <form #updateForm = "ngForm" (ngSubmit)="update(updateForm)" enctype="multipart/form-data">
   <h2>If About already exists, you can update it.</h2>
   <textarea rows="13" cols="80" name="text" ngModel></textarea>
@@ -22,3 +24,4 @@
 </form>
 <br>
 <button (click)="delete()">Delete</button>
+</div>
