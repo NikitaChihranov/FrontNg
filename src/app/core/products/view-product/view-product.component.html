@@ -1,0 +1,16 @@
+<a routerLink="/products">Back</a>
+<h2>{{product.title}}</h2>
+<ul>
+  <h3>Information:</h3>
+  <li>Price: {{product.price}}</li>
+  <li>About: {{product.about.all}}</li>
+  <li>Colors: {{product.colors}}</li>
+  <li *ngFor="let photo of product.photos">
+    <img [src]="'http://localhost:3000/photos/' + photo">
+  </li>
+  <li>Quantity: {{product.quantity}}</li>
+  <li>Date: {{product.date}}</li>
+  <li>Gender: {{product.gender}}</li>
+  <li>Category: {{product.category}}</li>
+  <li>Producer: {{product.producer}}</li>
+</ul>

@@ -4,6 +4,7 @@ import {CategoriesService} from '../../services/categories.service';
 import {NgForm} from '@angular/forms';
 import {Product} from '../models/product';
 import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -19,13 +20,13 @@ export class CategoriesComponent implements OnInit {
   msgDelete = '';
 
   constructor(
-    private categoriesService: CategoriesService, private userService: UserService
+    private categoriesService: CategoriesService,
+    private userService: UserService,
+    private router: Router
   ) {
-    setInterval(()=>{
       this.categoriesService.getAllCategories().subscribe((res) => {
         this.categories = res;
       });
-    }, 1000);
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
       console.log(this.authorizedUser);
@@ -66,6 +67,7 @@ export class CategoriesComponent implements OnInit {
   viewAllProductsByCategory(id) {
     this.categoriesService.viewAllProductsByCategory(id).subscribe((res) => {
       this.foundProductsByCategory = res;
+      console.log(res);
       this.categoriesService.dataSource.next(res);
     });
 
