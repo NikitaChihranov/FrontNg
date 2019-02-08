@@ -1,15 +1,18 @@
 export class Order {
   constructor(
     public _id: string,
-    public products?: Array<string>,
+    public product: string,
     public date?: string,
-    public user?: string,
+    public name?: string,
+    public surname?: string,
     public delivery?: {
       address?: string,
-      phone?: string
+      phone?: string,
+      price?: number
     },
     public details?: string,
-    public payment?: string
+    public paymentType?: string,
+    public totalPrice?: number
   )
   {
 

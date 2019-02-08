@@ -1,0 +1,18 @@
+Product to order: {{productToOrder.title}}
+Your name
+<h2>Create order</h2>
+
+<form #orderForm="ngForm" (submit)="createOrder(orderForm)">
+
+  <input type="text"
+</form>
+public _id: string,
+public products?: string,
+  public date?: string,
+  public user?: string,
+  public delivery?: {
+  address?: string,
+  phone?: string
+  },
+  public details?: string,
+  public payment?: string

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../../models/product';
 import {UserService} from '../../../services/user.service';
 import {CommentService} from '../../../services/comment.service';
@@ -18,7 +18,8 @@ export class ViewProductComponent implements OnInit {
   noCommentsMsg = '';
   constructor( private activatedRoute: ActivatedRoute,
                private userService: UserService,
-               private commentService: CommentService) {
+               private commentService: CommentService,
+               private router: Router) {
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
@@ -58,5 +59,7 @@ export class ViewProductComponent implements OnInit {
     })
   })
   }
-
+  createOrder(id){
+    this.router.navigate(['/orders/create'], {queryParams: {productId: id}});
+  }
 }
