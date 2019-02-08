@@ -3,6 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {Product} from '../../models/product';
 import {UserService} from '../../../services/user.service';
 import {CommentService} from '../../../services/comment.service';
+import {User} from '../../models/user';
+import {Comment} from '../../models/comment';
 
 @Component({
   selector: 'app-view-product',
@@ -11,18 +13,16 @@ import {CommentService} from '../../../services/comment.service';
 })
 export class ViewProductComponent implements OnInit {
   product: Product;
-  path = '';
-  authorizedUser: {};
+  authorizedUser: User;
   comments: Comment[] = [];
+  noCommentsMsg = '';
   constructor( private activatedRoute: ActivatedRoute,
                private userService: UserService,
                private commentService: CommentService) {
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
-    this.commentService.getAllComments().subscribe((res) => {
-      this.comments = res;
-    })
+
   }
 
   ngOnInit() {
@@ -30,10 +30,33 @@ export class ViewProductComponent implements OnInit {
         this.product = JSON.parse(res.product);
       }
     )
+    this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
+      if (res.text === 'no found') {
+        this.noCommentsMsg = 'No comments found. Sign in to add a comment';
+      } else{
+        this.noCommentsMsg = '';
+        this.comments = res;
+    }
+    })
   }
   createComment(form) {
-    this.commentService.createComment(form.value).subscribe((res) => {
+    this.commentService.createComment(form.value, this.authorizedUser.login, this.product._id).subscribe(() => {
+      this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
+        this.comments = res;
+        this.noCommentsMsg = '';
+      })
     })
+  }
+  deleteComment(id){
+    this.commentService.deleteCommentById(id).subscribe(() => {
+      this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
+        if(res.length === 0) {
+          this.noCommentsMsg = 'No comments found.';
+        }else{
+          this.comments = res;
+        }
+    })
+  })
   }
 
 }

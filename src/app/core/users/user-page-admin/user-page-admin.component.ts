@@ -28,6 +28,8 @@ export class UserPageAdminComponent implements OnInit {
   msg3 = '';
   registerClicked = 0;
   valueInput = '';
+  loginValue = '';
+  passwordValue = '';
 
   constructor(
     private userService: UserService,
@@ -166,6 +168,12 @@ export class UserPageAdminComponent implements OnInit {
 
   getValue(input) {
     this.valueInput = input.value;
+  }
+  getValueSignInLogin(login){
+    this.loginValue = login.value;
+  }
+  getValueSignInPassword(password){
+    this.passwordValue = password.value;
   }
 }
 

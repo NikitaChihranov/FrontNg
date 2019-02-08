@@ -25,12 +25,11 @@ export class ProducerComponent implements OnInit {
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
-    setInterval(()=>{
       this.producerService.getAllProducers().subscribe((res) => {
         this.producers = res;
       });
-    }, 1000);
   }
+
 
   ngOnInit() {
   }

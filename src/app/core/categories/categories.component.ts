@@ -21,9 +21,7 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private categoriesService: CategoriesService,
-    private userService: UserService,
-    private router: Router
-  ) {
+    private userService: UserService) {
       this.categoriesService.getAllCategories().subscribe((res) => {
         this.categories = res;
       });
@@ -44,12 +42,6 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  updateCategory(categoryForm: NgForm) {
-    this.category = {...this.category, ...categoryForm.value};
-    this.categoriesService.updateCategory(this.category._id, this.category).subscribe((res) =>
-      this.updatedCategory = res);
-  }
-
   deleteCategory(form) {
     this.categoriesService.deleteCategory(form.value).subscribe((res) => {
       if(res.title === 'err'){
@@ -67,7 +59,6 @@ export class CategoriesComponent implements OnInit {
   viewAllProductsByCategory(id) {
     this.categoriesService.viewAllProductsByCategory(id).subscribe((res) => {
       this.foundProductsByCategory = res;
-      console.log(res);
       this.categoriesService.dataSource.next(res);
     });
 

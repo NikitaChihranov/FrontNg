@@ -23,10 +23,6 @@ export class CategoriesService {
     return this.http.post<Category>(`${this.host}categories`, category);
   }
 
-  updateCategory(id: string, category: Category): Observable<Category> {
-    return this.http.put<Category>(`${this.host}categories/${id}`, category);
-  }
-
   deleteCategory(name: string): Observable<Category> {
     return this.http.delete<Category>(`${this.host}categories/${name}`);
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {NgForm} from '@angular/forms';
+import {Comment} from '../core/models/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,14 @@ export class CommentService {
   getCommentById(id: string): Observable<Comment> {
     return this.http.get<Comment>(`${this.host}comments/${id}`);
   }
-  createComment(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(`${this.host}comments`, comment);
+  getCommentsByProduct(id: string): Observable<any  > {
+    return this.http.get<Comment[]>(`${this.host}comments/commentProduct/${id}`);
   }
-  updateComment(id: string, comment: Comment): Observable<Comment> {
-    return this.http.put<Comment>(`${this.host}comments/${id}`, comment);
+  createComment(comment: Comment, user: string, productId: string): Observable<Comment> {
+    comment.user = user;
+    comment.product = productId;
+    console.log(comment);
+    return this.http.post<Comment>(`${this.host}comments`, comment);
   }
   deleteCommentById(id: string): Observable<Comment> {
     return this.http.delete<Comment>(`${this.host}comments/${id}`);
