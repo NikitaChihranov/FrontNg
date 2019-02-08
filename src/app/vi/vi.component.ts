@@ -30,7 +30,8 @@ export class ViComponent implements OnInit {
 
   viewProduct(title) {
     this.productService.getProductByName(title).subscribe((res) => {
-      this.router.navigate(['/products/productPage'], {queryParams: {product: JSON.stringify(res)}}).then();
+      this.router.navigate(['/products/productPage'],
+        {queryParams: {product: JSON.stringify(res)}}).then();
     });
   }
 }

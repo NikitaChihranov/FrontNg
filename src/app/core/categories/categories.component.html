@@ -11,29 +11,12 @@
     <br>
     <button>Create category</button>
   </form>
-  <hr>
-  <h2>Update category</h2>
-  <form #updateForm="ngForm" (ngSubmit)="updateCategory(updateForm)">
-    <label>Id: </label>
-    <input type="text" name="_id" ngModel>
-    <br>
-    <label>Title: </label>
-    <input type="text" name="title" ngModel>
-    <br>
-    <button>Update category</button>
-  </form>
-  <form *ngIf="updatedCategory">
-    <p>Title: {{updatedCategory.title}}</p>
-    <p>Id: {{updatedCategory._id}}</p>
-  </form>
-  <div>
     <h2>Delete category </h2>
     <form (ngSubmit)="deleteCategory(deleteForm)">
       <input type="text" #deleteForm>
       <button>Delete</button>
     </form>
     <h2>{{msgDelete}}</h2>
-  </div>
   <br>
   <button (click)="deleteAllCategories()">Delete all categories</button>
 </div>
