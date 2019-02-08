@@ -7,6 +7,7 @@ import {Category} from '../models/category';
 import {ProducerService} from '../../services/producer.service';
 import {Producer} from '../models/producer';
 import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -26,18 +27,16 @@ export class ProductsComponent implements OnInit {
   authorizedUser: {};
 
   constructor( private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService,
-  private userService: UserService){
+  private userService: UserService, private router: Router){
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
   }
 
   ngOnInit() {
-    setInterval(()=>{
       this.productService.getAllProducts().subscribe((res) => {
         this.products = res;
       });
-    }, 100);
     this.categoriesService.getAllCategories().subscribe((res) =>{
       this.categories = res ? res : [];
     });
@@ -45,7 +44,11 @@ export class ProductsComponent implements OnInit {
       this.producers = res ? res : [];
     });
   }
-
+  viewProduct(title){
+    this.productService.getProductByName(title).subscribe((res) => {
+      this.router.navigate(['/products/productPage'], {queryParams: {product: JSON.stringify(res)}}).then();
+    });
+  }
   getProductByName(name) {
     this.productService.getProductByName(name.value).subscribe((res) => this.foundProductByName = res);
   }

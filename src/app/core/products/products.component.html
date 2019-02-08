@@ -1,7 +1,7 @@
 <h1>Products</h1>
 <div *ngFor="let product of products">
+  <h2 class="productTitle" (click)="viewProduct(product.title)">{{product.title}}</h2>
   <ul *ngIf="products!=[]">
-    <li>Title: {{product.title}}</li>
     <li>Price: {{product.price}}</li>
     <li>Short about: {{product.about.short}}</li>
     <li><h2>Photos:</h2>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Product} from '../core/models/product';
 
 @Injectable({
@@ -8,7 +8,6 @@ import {Product} from '../core/models/product';
 })
 export class ProductService {
   private host = 'http://localhost:3000/';
-
   constructor(private http: HttpClient) {
   }
 

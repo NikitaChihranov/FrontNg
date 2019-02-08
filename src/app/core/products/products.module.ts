@@ -4,13 +4,16 @@ import { ProductsComponent } from './products.component';
 import {FormsModule} from '@angular/forms';
 import {ProductsRoutingModule} from './products-routing.module';
 import {RouterModule} from '@angular/router';
-
+import {ViewProductComponent} from './view-product/view-product.component';
 @NgModule({
-  declarations: [ProductsComponent],
+  declarations: [
+    ProductsComponent,
+    ViewProductComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
-    ProductsRoutingModule ,
+    ProductsRoutingModule,
     RouterModule
   ]
 })
