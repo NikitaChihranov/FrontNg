@@ -12,7 +12,7 @@ import {AuthInterceptorService} from './services/auth-interceptor.service';
 import { CreateOrderComponent } from './core/order/create-order/create-order.component';
 import { AllOrdersComponent } from './core/order/all-orders/all-orders.component';
 import { UpdateOrderComponent } from './core/order/update-order/update-order.component';
-import { UpdatedPageComponent } from './updated-page/updated-page.component';
+import { UpdatedPageComponent } from './core/order/updated-page/updated-page.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,7 @@ import { UpdatedPageComponent } from './updated-page/updated-page.component';
     MainMenuComponent,
     IndexComponent,
     AboutComponent,
-    AllOrdersComponent,
-    UpdatedPageComponent
+    AllOrdersComponent
   ],
   imports: [
     BrowserModule,

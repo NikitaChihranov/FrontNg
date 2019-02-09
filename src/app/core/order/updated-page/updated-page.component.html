@@ -1,0 +1,13 @@
+<a routerLink="/products">Back</a>
+<h1>You updated order</h1>
+<div>
+  <h3>Name: {{order.name}}</h3>
+  <h3>Surname: {{order.surname}}</h3>
+  <h3>Product: {{order.product}}</h3>
+  <h3>Date of creation: {{order.date | date: 'medium'}}</h3>
+  <h3>Phone number: {{order.phoneNumber}}</h3>
+  <h3>Address of delivery: {{order.addressDelivery}}</h3>
+  <h3>Details: {{order.details}}</h3>
+  <h3>Price: {{order.totalPrice}}</h3>
+  <h3>Payment type: {{order.paymentType}}</h3>
+</div>
