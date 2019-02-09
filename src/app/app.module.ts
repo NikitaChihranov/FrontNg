@@ -10,13 +10,18 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import {MainMenuRoutingModule} from './main-menu/main-menu-routing.module';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
 import { CreateOrderComponent } from './core/order/create-order/create-order.component';
+import { AllOrdersComponent } from './core/order/all-orders/all-orders.component';
+import { UpdateOrderComponent } from './core/order/update-order/update-order.component';
+import { UpdatedPageComponent } from './updated-page/updated-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainMenuComponent,
     IndexComponent,
-    AboutComponent
+    AboutComponent,
+    AllOrdersComponent,
+    UpdatedPageComponent
   ],
   imports: [
     BrowserModule,

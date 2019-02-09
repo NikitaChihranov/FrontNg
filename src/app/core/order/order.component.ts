@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
+import {ActivatedRoute} from '@angular/router';
+import {Order} from '../models/order';
 
 @Component({
   selector: 'app-order',
@@ -8,16 +10,20 @@ import {UserService} from '../../services/user.service';
 })
 export class OrderComponent implements OnInit {
   authorizedUser: {};
+  order: Order;
 
   constructor(
-    private userService: UserService) {
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute) {
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
-      console.log(this.authorizedUser);
     });
   }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((res) => {
+      this.order = JSON.parse(res.order);
+    })
   }
 
 }

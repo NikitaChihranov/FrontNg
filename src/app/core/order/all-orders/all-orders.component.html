@@ -1,0 +1,60 @@
+<div *ngIf="!authorizedUser">
+  Sign in to make order!
+  <button routerLink="/users">Sign in</button>
+</div>
+<div *ngIf="authorizedUser&&authorizedUser.admin === true">
+  <h2>Your orders:</h2>
+  <div *ngFor="let order of ordersByUser">
+    <h3>Name: {{order.name}}</h3>
+    <h3>Surname: {{order.surname}}</h3>
+    <h3>Product: {{order.product}}</h3>
+    <h3>Date of creation: {{order.date | date: 'medium'}}</h3>
+    <h3>Phone number: {{order.phoneNumber}}</h3>
+    <h3>Address of delivery: {{order.addressDelivery}}</h3>
+    <h3>Details: {{order.details}}</h3>
+    <h3>Price: {{order.totalPrice}}</h3>
+    <h3>Payment type: {{order.paymentType}}</h3>
+    <h4>Update order: </h4>
+    <button (click)="updateOrder(order)">Push</button>
+    <button (click)="deleteOrder(order._id)">Delete</button>
+    <hr>
+  </div>
+  <div *ngIf="ordersByUser.length === 0">
+    <h2>There are no orders</h2>
+  </div>
+  <h1>All orders:</h1>
+  <div *ngFor="let order of orders">
+      <h3>Name: {{order.name}}</h3>
+      <h3>Surname: {{order.surname}}</h3>
+      <h3>Product: {{order.product}}</h3>
+      <h3>Date of creation: {{order.date | date: 'medium'}}</h3>
+      <h3>Phone number: {{order.phoneNumber}}</h3>
+      <h3>Address of delivery: {{order.addressDelivery}}</h3>
+      <h3>Details: {{order.details}}</h3>
+      <h3>Price: {{order.totalPrice}}</h3>
+      <h3>Payment type: {{order.paymentType}}</h3>
+    <button (click)="deleteOrder(order._id)">Delete</button>
+    <hr>
+  </div>
+  <div *ngIf="orders.length === 0">
+    There are no orders
+  </div>
+</div>
+<div *ngIf="authorizedUser && authorizedUser.admin === false&&ordersByUser">
+  <h2>Orders:</h2>
+  <div *ngFor="let order of ordersByUser">
+    <h3>Name: {{order.name}}</h3>
+    <h3>Surname: {{order.surname}}</h3>
+    <h3>Product: {{order.product}}</h3>
+    <h3>Date of creation: {{order.date | date: 'medium'}}</h3>
+    <h3>Phone number: {{order.phoneNumber}}</h3>
+    <h3>Address of delivery: {{order.addressDelivery}}</h3>
+    <h3>Details: {{order.details}}</h3>
+    <h3>Price: {{order.totalPrice}}</h3>
+    <h3>Payment type: {{order.paymentType}}</h3>
+    <h4>Update order: </h4>
+    <button (click)="updateOrder(order)">Push</button>
+    <button (click)="deleteOrder(order._id)">Delete</button>
+    <hr>
+  </div>
+</div>

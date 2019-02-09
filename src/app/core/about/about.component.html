@@ -5,7 +5,7 @@
     <img [src]="'http://localhost:3000/photosAbout/' + aboutContent.logo">
   </div>
 </div>
-<div *ngIf="authorizedUser">
+<div *ngIf="authorizedUser&&authorizedUser.admin === true">
 <form #aboutForm = "ngForm" (ngSubmit)="create(aboutForm)"  enctype="multipart/form-data">
   <h2>Create about content</h2>
   <textarea rows="13" cols="80" name="text" ngModel></textarea>

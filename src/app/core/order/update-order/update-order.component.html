@@ -1,0 +1,16 @@
+<h1>Update your order!</h1>
+<form #updateForm="ngForm"(ngSubmit)="updateOrder(updateForm)">
+  <h3>Delivery:</h3>
+  <label>Address</label>
+  <input type="text" #address name="addressDelivery"(input)="inputAdress(address)" ngModel>
+  <label>Phone number:</label>
+  <input type="text" #phone name="phoneNumber"(input)="inputPhone(phone)" ngModel>
+  <label>Some details</label>
+  <input type="text" #details name="details"(input)="inputDetails(details)" ngModel>
+  <label>Payment type</label>
+  <select name="paymentType" #payment (input)="inputPayment(payment)"ngModel>
+    <option>Cash</option>
+    <option>Credit card</option>
+  </select>
+  <button [disabled]="addressValue===''||phoneValue===''||detailsValue===''||paymentValue===''">Update</button>
+</form>

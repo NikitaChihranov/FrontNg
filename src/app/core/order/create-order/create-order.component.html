@@ -1,18 +1,18 @@
-Product to order: {{productToOrder.title}}
-Your name
+<h1 *ngIf="productToOrder">Product to order: {{productToOrder.title}}</h1>
+<h1 *ngIf="authorizedUser">Your name: {{authorizedUser.firstName}}</h1>
 <h2>Create order</h2>
-
-<form #orderForm="ngForm" (submit)="createOrder(orderForm)">
-
-  <input type="text"
+<form #orderForm="ngForm" (ngSubmit)="createOrder(orderForm)">
+  <h3>Delivery:</h3>
+  <label>Address</label>
+  <input type="text" name="delivery.address" ngModel>
+  <label>Phone number:</label>
+  <input type="text" name="delivery.phone" ngModel>
+  <label>Some details</label>
+  <input type="text" name="details" ngModel>
+  <label>Payment type</label>
+  <select name="paymentType" ngModel>
+    <option>Cash</option>
+    <option>Credit card</option>
+  </select>
+  <button>Create</button>
 </form>
-public _id: string,
-public products?: string,
-  public date?: string,
-  public user?: string,
-  public delivery?: {
-  address?: string,
-  phone?: string
-  },
-  public details?: string,
-  public payment?: string

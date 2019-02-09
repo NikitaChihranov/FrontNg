@@ -9,8 +9,7 @@ import {CommentComponent} from '../comment/comment.component';
 @NgModule({
   declarations: [
     ProductsComponent,
-    ViewProductComponent,
-    CommentComponent
+    ViewProductComponent
   ],
   imports: [
     CommonModule,

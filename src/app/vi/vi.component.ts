@@ -21,7 +21,6 @@ export class ViComponent implements OnInit {
       for (let product of res) {
         this.data.push(product);
       }
-      console.log(this.data);
     });
   }
 

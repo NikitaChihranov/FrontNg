@@ -117,7 +117,7 @@ export class UserPageAdminComponent implements OnInit {
   }
 
 
-  updateUser(userForm: NgForm) {
+  updateUser(userForm: NgForm) {;
     this.user = {...this.user, ...userForm.value};
     this.userService.updateUser(this.user._id, this.user).subscribe((res) => {
       this.userService.updatePhoto(this.photosToUpdate, res).subscribe((response) => {
