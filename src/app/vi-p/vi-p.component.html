@@ -4,8 +4,7 @@
 </div>
 <div>
   <ul *ngFor="let product of data">
-    <h3>{{product.title}}</h3>
-    <li>Id: {{product._id}}</li>
+    <h3 class="productTitle" (click)="viewProduct(product.title)">{{product.title}}</h3>
     <li>Price: {{product.price}}</li>
     <li>About short: {{product.about.short}}</li>
     <li>About: {{product.about.all}}</li>

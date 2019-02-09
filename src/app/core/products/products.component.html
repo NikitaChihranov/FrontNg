@@ -5,7 +5,7 @@
     <li>Price: {{product.price}}</li>
     <li>Short about: {{product.about.short}}</li>
     <li><h2>Photos:</h2>
-        <img [src]="'http://localhost:3000/photos/'+product.photos[0]">
+      <img [src]="'http://localhost:3000/photos/'+product.photos[0]">
     </li>
   </ul>
   <hr>
@@ -18,99 +18,99 @@
   <p>Price: {{foundProductByName.price}}</p>
   <p>Short about: {{foundProductByName.about.short}}</p>
   <li><h2>Photos:</h2>
-        <img [src]="'http://localhost:3000/photos/'+foundProductByName.photos[0]">
+    <img [src]="'http://localhost:3000/photos/'+foundProductByName.photos[0]">
   </li>
   <hr>
 </div>
-<div *ngIf="authorizedUser">
-<h1>Create product</h1>
-<form #aaa="ngForm" (ngSubmit)="createProduct(aaa)" enctype="multipart/form-data">
-  <label>Title: </label>
-  <input type="text" name="title" ngModel>
+<div *ngIf="authorizedUser&&authorizedUser.admin === true">
+  <h1>Create product</h1>
+  <form #aaa="ngForm" (ngSubmit)="createProduct(aaa)" enctype="multipart/form-data">
+    <label>Title: </label>
+    <input type="text" name="title" ngModel>
+    <br>
+    <label>Price: </label>
+    <input type="text" name="price" ngModel>
+    <br>
+    <label>About All: </label>
+    <input type="text" name="about.all" ngModel><br>
+    <label>About Short: </label>
+    <input type="text" name="about.short" ngModel><br>
+    <label>Colors: </label>
+    <input type="text" name="colors" ngModel><br>
+    <label>Photos: </label>
+    <input
+      type="file"
+      name="photos"
+      (change)="fileChangeEvent($event)"
+      multiple="true"
+      ngModel
+    ><br>
+    <label>Quantity: </label>
+    <input type="text" name="quantity" ngModel><br>
+    <label>Gender: </label>
+    <input type="text" name="gender" ngModel><br>
+    <label>Category: </label>
+    <select name="category" ngModel>
+      <option *ngFor="let category of categories">{{category.title}} </option>
+    </select>
+    <br>
+    <label>Producer: </label>
+    <select name="producer" ngModel>
+      <option *ngFor="let producer of producers">{{producer.title}}</option>
+    </select>
+    <button type="submit">Send</button>
+  </form>
   <br>
-  <label>Price: </label>
-  <input type="text" name="price" ngModel>
+  <h1>Update product</h1>
+  <form #updateForm="ngForm" (ngSubmit)="updateProduct(updateForm)">
+    <label>Title: </label>
+    <input type="text" name="title" ngModel>
+    <br>
+    <label>Price: </label>
+    <input type="text" name="price" ngModel>
+    <br>
+    <label>About All: </label>
+    <input type="text" name="about.all" ngModel><br>
+    <label>About Short: </label>
+    <input type="text" name="about.short" ngModel><br>
+    <label>Colors: </label>
+    <input type="text" name="colors" ngModel><br>
+    <label>Photos: </label>
+    <input
+      type="file"
+      name="photos"
+      (change)="fileUpdateEvent($event)"
+      multiple="true"
+      ngModel
+    ><br>
+    <label>Quantity: </label>
+    <input type="text" name="quantity" ngModel><br>
+    <label>Gender: </label>
+    <input type="text" name="gender" ngModel><br>
+    <label>Category: </label>
+    <select name="category" ngModel>
+      <option *ngFor="let category of categories">{{category.title}} </option>
+    </select>
+    <br>
+    <label>Producer: </label>
+    <select name="producer" ngModel>
+      <option *ngFor="let producer of producers">{{producer.title}}</option>
+    </select>
+    <button type="submit">Send</button>
+  </form>
   <br>
-  <label>About All: </label>
-  <input type="text" name="about.all" ngModel><br>
-  <label>About Short: </label>
-  <input type="text" name="about.short" ngModel><br>
-  <label>Colors: </label>
-  <input type="text" name="colors" ngModel><br>
-  <label>Photos: </label>
-  <input
-    type="file"
-    name="photos"
-    (change)="fileChangeEvent($event)"
-    multiple="true"
-    ngModel
-  ><br>
-  <label>Quantity: </label>
-  <input type="text" name="quantity" ngModel><br>
-  <label>Gender: </label>
-  <input type="text" name="gender" ngModel><br>
-  <label>Category: </label>
-  <select name="category" ngModel>
-    <option *ngFor="let category of categories">{{category.title}} </option>
-  </select>
+  <p>Delete product</p>
+  <input type="text" name="_id" #id>
+  <button (click)="deleteProduct(id)">Delete</button>
   <br>
-  <label>Producer: </label>
-  <select name="producer" ngModel>
-    <option *ngFor="let producer of producers">{{producer.title}}</option>
-  </select>
-  <button type="submit">Send</button>
-</form>
-<br>
-<h1>Update product</h1>
-<form #updateForm="ngForm" (ngSubmit)="updateProduct(updateForm)">
-  <label>Title: </label>
-  <input type="text" name="title" ngModel>
-  <br>
-  <label>Price: </label>
-  <input type="text" name="price" ngModel>
-  <br>
-  <label>About All: </label>
-  <input type="text" name="about.all" ngModel><br>
-  <label>About Short: </label>
-  <input type="text" name="about.short" ngModel><br>
-  <label>Colors: </label>
-  <input type="text" name="colors" ngModel><br>
-  <label>Photos: </label>
-  <input
-    type="file"
-    name="photos"
-    (change)="fileUpdateEvent($event)"
-    multiple="true"
-    ngModel
-  ><br>
-  <label>Quantity: </label>
-  <input type="text" name="quantity" ngModel><br>
-  <label>Gender: </label>
-  <input type="text" name="gender" ngModel><br>
-  <label>Category: </label>
-  <select name="category" ngModel>
-    <option *ngFor="let category of categories">{{category.title}} </option>
-  </select>
-  <br>
-  <label>Producer: </label>
-  <select name="producer" ngModel>
-    <option *ngFor="let producer of producers">{{producer.title}}</option>
-  </select>
-  <button type="submit">Send</button>
-</form>
-<br>
-<p>Delete product</p>
-<input type="text" name="_id" #id>
-<button (click)="deleteProduct(id)">Delete</button>
-<br>
-<div *ngIf="deletedProduct">
-  <p>Title: {{deletedProduct.title}}</p>
-  <p>Price: {{deletedProduct.price}}</p>
-  <p>Short about: {{deletedProduct.about.short}}</p>
-  <li><h2>Photos:</h2>
-        <img [src]="'http://localhost:3000/photos/'+deletedProduct.photos[0]">
-  </li>
-</div>
-<h2>Delete all products</h2>
-<button (click)="deleteAllProducts()">Delete</button>
+  <div *ngIf="deletedProduct">
+    <p>Title: {{deletedProduct.title}}</p>
+    <p>Price: {{deletedProduct.price}}</p>
+    <p>Short about: {{deletedProduct.about.short}}</p>
+    <li><h2>Photos:</h2>
+      <img [src]="'http://localhost:3000/photos/'+deletedProduct.photos[0]">
+    </li>
+  </div>
+  <h2>Delete all products</h2>
+  <button (click)="deleteAllProducts()">Delete</button>
 </div>

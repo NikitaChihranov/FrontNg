@@ -1,14 +1,13 @@
 <h1>Producers</h1>
 <div *ngIf="producers!=[]">
   <ul *ngFor="let producer1 of producers">
-    <h3>Title: {{producer1.title}} </h3>
+    <h3 class="title" routerLink="viewAll" (click)="viewAllProductsByProducer(producer1._id)">{{producer1.title}} </h3>
     <li>Short about: {{producer1.about.short}}</li>
     <li>All about: {{producer1.about.all}}</li>
     <li>Photo:
       <img [src]="'http://localhost:3000/ProducerPhotos/' + producer1.photo">
     </li>
     <li>Country:{{producer1.country}}</li>
-    <button routerLink="viewAll" (click)="viewAllProductsByProducer(producer1._id)" >View all products</button>
     <hr>
   </ul>
 </div>
