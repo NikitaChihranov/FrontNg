@@ -6,6 +6,12 @@
   <li><a routerLink="/about">About</a></li>
   <li><a routerLink="/allOrders">Orders</a></li>
 </ul>
-<input type="text" #name (input)="getValue1(name)">
+<input type="text" #name (input)="getValue(name)">
 <button [disabled]="searchValue === ''" (click)="getProductByName(name)">Send</button>
+<div>
+  <h5>Profile:
+    <span *ngIf="authorizedUser">{{authorizedUser.login}}</span>
+    <span *ngIf="!authorizedUser">guest</span>
+  </h5>
+</div>
 <router-outlet></router-outlet>

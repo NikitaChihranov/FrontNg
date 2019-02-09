@@ -1,0 +1,7 @@
+<a routerLink="/categories">Back</a>
+<form #createForm="ngForm" (ngSubmit)="createCategory(createForm)">
+  <label>Title:</label>
+  <input type="text" name="title" ngModel>
+  <br>
+  <button>Create category</button>
+</form>

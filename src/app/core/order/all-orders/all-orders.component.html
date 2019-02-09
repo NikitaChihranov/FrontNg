@@ -57,4 +57,7 @@
     <button (click)="deleteOrder(order._id)">Delete</button>
     <hr>
   </div>
+  <div *ngIf="ordersByUser.length === 0">
+    <h2>There are no orders</h2>
+  </div>
 </div>

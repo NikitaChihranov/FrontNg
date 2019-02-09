@@ -7,9 +7,18 @@ import {ProductsComponent} from '../products/products.component';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {ViComponent} from '../../vi/vi.component';
+import {CreateCategoryComponent} from './create-category/create-category.component';
+import {DeleteCategoryComponent} from './delete-category/delete-category.component';
+import {CreatedComponent} from './created/created.component';
 
 @NgModule({
-  declarations: [CategoriesComponent, ViComponent],
+  declarations: [
+    CategoriesComponent,
+    ViComponent,
+    CreateCategoryComponent,
+    DeleteCategoryComponent,
+    CreatedComponent
+  ],
   imports: [
     CommonModule,
     CategoriesRoutingModule,

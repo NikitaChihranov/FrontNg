@@ -4,19 +4,7 @@
   </span>
 </div>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <h1>Create category</h1>
-  <form #createForm="ngForm" (ngSubmit)="createCategory(createForm)">
-    <label>Title:</label>
-    <input type="text" name="title" ngModel>
-    <br>
-    <button>Create category</button>
-  </form>
-    <h2>Delete category </h2>
-    <form (ngSubmit)="deleteCategory(deleteForm)">
-      <input type="text" #deleteForm>
-      <button>Delete</button>
-    </form>
-    <h2>{{msgDelete}}</h2>
   <br>
-  <button (click)="deleteAllCategories()">Delete all categories</button>
+  <a routerLink="createCategory">Create category</a>
+  <br>
 </div>

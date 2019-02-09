@@ -15,7 +15,6 @@ export class CategoriesComponent implements OnInit {
   authorizedUser: {};
   categories: Category[] = [];
   category: Category;
-  updatedCategory: {};
   foundProductsByCategory: Product[] = [];
   msgDelete = '';
 
@@ -27,7 +26,6 @@ export class CategoriesComponent implements OnInit {
       });
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
-      console.log(this.authorizedUser);
     });
 
 
@@ -37,24 +35,8 @@ export class CategoriesComponent implements OnInit {
   }
 
 
-  createCategory(categoryForm: NgForm) {
-    this.categoriesService.createCategory(categoryForm.value).subscribe((res) => {
-    });
-  }
 
-  deleteCategory(form) {
-    this.categoriesService.deleteCategory(form.value).subscribe((res) => {
-      if(res.title === 'err'){
-        this.msgDelete = 'Nothing found';
-      } else{
-        this.msgDelete = '';
-      }
-    });
-  }
 
-  deleteAllCategories() {
-    this.categoriesService.deleteAllCategories().subscribe((res) => {});
-  }
 
   viewAllProductsByCategory(id) {
     this.categoriesService.viewAllProductsByCategory(id).subscribe((res) => {
