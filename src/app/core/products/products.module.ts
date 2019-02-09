@@ -5,7 +5,6 @@ import {FormsModule} from '@angular/forms';
 import {ProductsRoutingModule} from './products-routing.module';
 import {RouterModule} from '@angular/router';
 import {ViewProductComponent} from './view-product/view-product.component';
-import {CommentComponent} from '../comment/comment.component';
 @NgModule({
   declarations: [
     ProductsComponent,

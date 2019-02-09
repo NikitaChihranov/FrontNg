@@ -16,10 +16,21 @@ export class ViewProductComponent implements OnInit {
   authorizedUser: User;
   comments: Comment[] = [];
   noCommentsMsg = '';
+  noFound = 0;
   constructor( private activatedRoute: ActivatedRoute,
                private userService: UserService,
                private commentService: CommentService,
                private router: Router) {
+    this.activatedRoute.queryParams.subscribe((res) =>{
+      let product = JSON.parse(res.product);
+      if(product.title === 'err'){
+        this.noFound = 1;
+      }else{
+        this.noFound = 0;
+        this.product = product;
+      }
+    }
+  )
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
@@ -27,18 +38,16 @@ export class ViewProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((res) =>{
-        this.product = JSON.parse(res.product);
-      }
-    )
-    this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
-      if (res.text === 'no found') {
-        this.noCommentsMsg = 'No comments found. Sign in to add a comment';
-      } else{
-        this.noCommentsMsg = '';
-        this.comments = res;
+    if(this.product) {
+      this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
+        if (res.text === 'no found') {
+          this.noCommentsMsg = 'No comments found. Sign in to add a comment';
+        } else {
+          this.noCommentsMsg = '';
+          this.comments = res;
+        }
+      })
     }
-    })
   }
   createComment(form) {
     this.commentService.createComment(form.value, this.authorizedUser.login, this.product._id).subscribe(() => {
@@ -60,6 +69,6 @@ export class ViewProductComponent implements OnInit {
   })
   }
   createOrder(id){
-    this.router.navigate(['/orders/create'], {queryParams: {productId: id}});
+    this.router.navigate(['/orders/create'], {queryParams: {productId: id}}).then();
   }
 }

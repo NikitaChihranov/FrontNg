@@ -1,4 +1,9 @@
+<br>
 <a routerLink="/products">Back</a>
+<div *ngIf="noFound === 1 ">
+  <h1>Nothing found</h1>
+</div>
+<div *ngIf="noFound === 0">
 <h2>{{product.title}}</h2>
 <ul>
   <h3>Information:</h3>
@@ -39,4 +44,5 @@
 <div *ngIf="!authorizedUser">
   <h2>Sign up to add comment or create order.</h2>
   <a routerLink="/users">Sign in</a>
+</div>
 </div>

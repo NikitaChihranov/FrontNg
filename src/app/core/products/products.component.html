@@ -10,18 +10,6 @@
   </ul>
   <hr>
 </div>
-<h1>Search product</h1>
-<input type="text" #name>
-<button (click)="getProductByName(name)">Send</button>
-<div *ngIf="foundProductByName">
-  <p>Title: {{foundProductByName.title}}</p>
-  <p>Price: {{foundProductByName.price}}</p>
-  <p>Short about: {{foundProductByName.about.short}}</p>
-  <li><h2>Photos:</h2>
-    <img [src]="'http://localhost:3000/photos/'+foundProductByName.photos[0]">
-  </li>
-  <hr>
-</div>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
   <h1>Create product</h1>
   <form #aaa="ngForm" (ngSubmit)="createProduct(aaa)" enctype="multipart/form-data">
