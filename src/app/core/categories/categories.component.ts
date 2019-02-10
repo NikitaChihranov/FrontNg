@@ -16,7 +16,6 @@ export class CategoriesComponent implements OnInit {
   categories: Category[] = [];
   category: Category;
   foundProductsByCategory: Product[] = [];
-  msgDelete = '';
 
   constructor(
     private categoriesService: CategoriesService,
@@ -27,8 +26,6 @@ export class CategoriesComponent implements OnInit {
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
-
-
   }
 
   ngOnInit() {
@@ -36,8 +33,17 @@ export class CategoriesComponent implements OnInit {
 
 
 
+  deleteCategory(id) {
+    this.categoriesService.deleteCategory(id).subscribe(() => {
+      this.categoriesService.getAllCategories().subscribe((res) => {
+        this.categories = res;
+      });
+    });
+  }
 
-
+  deleteAllCategories(){
+    this.categoriesService.deleteAllCategories().subscribe(() => {});
+  }
   viewAllProductsByCategory(id) {
     this.categoriesService.viewAllProductsByCategory(id).subscribe((res) => {
       this.foundProductsByCategory = res;

@@ -10,9 +10,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import {MainMenuRoutingModule} from './main-menu/main-menu-routing.module';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
 import { AllOrdersComponent } from './core/order/all-orders/all-orders.component';
-import { CreateCategoryComponent } from './core/categories/create-category/create-category.component';
-import { DeleteCategoryComponent } from './core/categories/delete-category/delete-category.component';
-import { CreatedComponent } from './core/categories/created/created.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +18,7 @@ import { CreatedComponent } from './core/categories/created/created.component';
     MainMenuComponent,
     IndexComponent,
     AboutComponent,
-    AllOrdersComponent
+    AllOrdersComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../models/product';
 import {Form, NgForm} from '@angular/forms';
 import {ProductService} from '../../services/product.service';
@@ -18,56 +18,36 @@ import {Router} from '@angular/router';
 export class ProductsComponent implements OnInit {
   categories: Category[];
   products: Product[] = [];
-  foundProductByName: Product;
-  deletedProduct: {};
   product: Product;
   producers: Producer[] = [];
-  filesToUpload: File[];
-  filesToUpdate: File[];
   authorizedUser: {};
 
-  constructor( private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService,
-  private userService: UserService, private router: Router){
+  constructor(private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService,
+              private userService: UserService, private router: Router) {
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
   }
 
   ngOnInit() {
-      this.productService.getAllProducts().subscribe((res) => {
-        this.products = res;
-      });
-    this.categoriesService.getAllCategories().subscribe((res) =>{
-      this.categories = res ? res : [];
+    this.productService.getAllProducts().subscribe((res) => {
+      this.products = res;
     });
-    this.producerService.getAllProducers().subscribe((res) => {
-      this.producers = res ? res : [];
-    });
+
   }
-  viewProduct(title){
+
+  viewProduct(title) {
     this.productService.getProductByName(title).subscribe((res) => {
       this.router.navigate(['/products/productPage'], {queryParams: {product: JSON.stringify(res)}}).then();
     });
   }
-  getProductByName(name) {
-    this.productService.getProductByName(name.value).subscribe((res) => this.foundProductByName = res);
-  }
-  createProduct(productForm: NgForm) {
-    this.productService.createProduct(productForm.value).subscribe((res) => {
-        this.productService.addPhotos(this.filesToUpload, res).subscribe((response) => {
-        });
-  });
-  }
-  updateProduct(productForm: NgForm) {
-    this.product = {...this.product, ...productForm.value};
-    this.productService.updateProduct(this.product.title, this.product).subscribe((res) => {
-      this.productService.updatePhotos(this.filesToUpdate, res).subscribe((response) => {});
+
+  deleteProduct(id) {
+    this.productService.deleteProduct(id).subscribe(() =>{
+      this.productService.getAllProducts().subscribe((res) => {
+        this.products = res;
+      });
     });
-
-    }
-
-  deleteProduct(form) {
-    this.productService.deleteProduct(form.value).subscribe((res) => this.deletedProduct = res);
   }
 
   deleteAllProducts() {
@@ -77,12 +57,7 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  fileChangeEvent(event: any) {
-    this.filesToUpload = (<any>event.target).files;
-  }
-  fileUpdateEvent(event: any) {
-    this.filesToUpdate = (<any>event.target).files;
-  }
+
 }
 
 

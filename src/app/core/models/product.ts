@@ -13,9 +13,10 @@ export class Product {
     public date?: {
       type: string,
     },
-    public gender?: string,
     public category?: string,
     public producer?: string,
   )
-  {}
+  {
+
+  }
 }

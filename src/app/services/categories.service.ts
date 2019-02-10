@@ -23,8 +23,8 @@ export class CategoriesService {
     return this.http.post<Category>(`${this.host}categories`, category);
   }
 
-  deleteCategory(name: string): Observable<Category> {
-    return this.http.delete<Category>(`${this.host}categories/${name}`);
+  deleteCategory(id: string): Observable<Category> {
+    return this.http.delete<Category>(`${this.host}categories/${id}`);
   }
 
   deleteAllCategories(): Observable<Category[]> {

@@ -1,9 +1,0 @@
-<a routerLink="/categories">Back</a>
-<h2>Delete category </h2>
-<form (ngSubmit)="deleteCategory(deleteForm)">
-  <input type="text" #deleteForm>
-  <button>Delete</button>
-</form>
-<h2>{{msgDelete}}</h2>
-<br>
-<button (click)="deleteAllCategories()">Delete all categories</button>

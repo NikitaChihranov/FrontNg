@@ -1,0 +1,16 @@
+<a routerLink="/products">Back</a>
+<h2>You created new product</h2>
+<div *ngIf="product">
+  <h3>Information:</h3>
+  <h2>{{product.title}}</h2>
+  <h4>Price: {{product.price}}</h4>
+  <h4>About: {{product.about.all}}</h4>
+  <h4>Colors: {{product.colors}}</h4>
+  <h4><span *ngFor="let photo of product.photos">
+    <img [src]="'http://localhost:3000/photos/' + photo">
+  </span></h4>
+  <h4>Quantity: {{product.quantity}}</h4>
+  <h4>Date: {{product.date | date: 'medium'}}</h4>
+  <h4>Category: {{product.category}}</h4>
+  <h4>Producer: {{product.producer}}</h4>
+</div>

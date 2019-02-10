@@ -1,0 +1,35 @@
+<a routerLink="/products">Back</a>
+<form #updateForm="ngForm" (ngSubmit)="updateProduct(updateForm)">
+  <label>Title: </label>
+  <input type="text" name="title" ngModel>
+  <br>
+  <label>Price: </label>
+  <input type="text" name="price" ngModel>
+  <br>
+  <label>About All: </label>
+  <input type="text" name="about.all" ngModel><br>
+  <label>About Short: </label>
+  <input type="text" name="about.short" ngModel><br>
+  <label>Colors: </label>
+  <input type="text" name="colors" ngModel><br>
+  <label>Photos: </label>
+  <input
+    type="file"
+    name="photos"
+    (change)="fileUpdateEvent($event)"
+    multiple="true"
+    ngModel
+  ><br>
+  <label>Quantity: </label>
+  <input type="text" name="quantity" ngModel><br>
+  <label>Category: </label>
+  <select name="category" ngModel>
+    <option *ngFor="let category of categories">{{category.title}} </option>
+  </select>
+  <br>
+  <label>Producer: </label>
+  <select name="producer" ngModel>
+    <option *ngFor="let producer of producers">{{producer.title}}</option>
+  </select>
+  <button type="submit">Send</button>
+</form>

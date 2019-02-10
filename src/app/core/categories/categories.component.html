@@ -2,9 +2,15 @@
   <span *ngIf="categories!=[]">
      <a routerLink="viewAll" (click)="viewAllProductsByCategory(category._id)">{{category.title}}</a>
   </span>
+  <span *ngIf="authorizedUser&&authorizedUser.admin === true">
+    <button (click)="deleteCategory(category._id)">Delete</button>
+  </span>
 </div>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
   <br>
   <a routerLink="createCategory">Create category</a>
   <br>
 </div>
+<span *ngIf="authorizedUser&&authorizedUser.admin === true">
+    <button (click)="deleteAllCategories()">Delete all categories</button>
+</span>

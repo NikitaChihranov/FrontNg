@@ -8,7 +8,6 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {ViComponent} from '../../vi/vi.component';
 import {CreateCategoryComponent} from './create-category/create-category.component';
-import {DeleteCategoryComponent} from './delete-category/delete-category.component';
 import {CreatedComponent} from './created/created.component';
 
 @NgModule({
@@ -16,7 +15,6 @@ import {CreatedComponent} from './created/created.component';
     CategoriesComponent,
     ViComponent,
     CreateCategoryComponent,
-    DeleteCategoryComponent,
     CreatedComponent
   ],
   imports: [
