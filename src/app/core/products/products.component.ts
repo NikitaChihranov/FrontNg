@@ -33,7 +33,6 @@ export class ProductsComponent implements OnInit {
     this.productService.getAllProducts().subscribe((res) => {
       this.products = res;
     });
-
   }
 
   viewProduct(title) {
@@ -41,7 +40,9 @@ export class ProductsComponent implements OnInit {
       this.router.navigate(['/products/productPage'], {queryParams: {product: JSON.stringify(res)}}).then();
     });
   }
-
+  update(id){
+    this.router.navigate(['/products/update'], {queryParams: {id: JSON.stringify(id)}})
+  }
   deleteProduct(id) {
     this.productService.deleteProduct(id).subscribe(() =>{
       this.productService.getAllProducts().subscribe((res) => {

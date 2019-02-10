@@ -35,8 +35,8 @@ export class ProductService {
      let id = product._id;
     return this.http.post<Product>(`${this.host}products/upload/${id}`, formData);
   }
-  updateProduct(name: string, product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.host}products/${name}`, product);
+  updateProduct(id: string, product: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.host}products/${id}`, product);
   }
   updatePhotos(photos: File[], product: Product): Observable<Product> {
     const formData: FormData = new FormData();

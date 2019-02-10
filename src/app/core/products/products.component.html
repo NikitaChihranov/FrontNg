@@ -10,12 +10,13 @@
   </ul>
   <div *ngIf="authorizedUser&&authorizedUser.admin === true">
     <button (click)="deleteProduct(product._id)">Delete</button>
+    <button (click)="update(product._id)">Update product</button>
   </div>
   <hr>
 </div>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
   <button routerLink="create">Create product</button>
-  <button routerLink="update">Update product</button>
+
   <br>
 </div>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">

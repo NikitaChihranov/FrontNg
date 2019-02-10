@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Product} from '../../models/product';
 import {ProductService} from '../../../services/product.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CategoriesService} from '../../../services/categories.service';
 import {ProducerService} from '../../../services/producer.service';
 import {Category} from '../../models/category';
@@ -18,11 +18,13 @@ export class UpdateProductComponent implements OnInit {
   filesToUpdate: File[];
   categories: Category[] = [];
   producers: Producer[] = [];
+  productId = '';
   constructor(
     private productService: ProductService,
     private router: Router,
     private categoriesService: CategoriesService,
-    private producerService: ProducerService
+    private producerService: ProducerService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -32,10 +34,14 @@ export class UpdateProductComponent implements OnInit {
     this.producerService.getAllProducers().subscribe((res) => {
       this.producers = res ? res : [];
     });
+    this.activatedRoute.queryParams.subscribe((res) => {
+      this.productId = JSON.parse(res.id);
+    })
   }
   updateProduct(productForm: NgForm) {
     this.product = {...this.product, ...productForm.value};
-    this.productService.updateProduct(this.product.title, this.product).subscribe((res) => {
+    this.product._id = this.productId;
+    this.productService.updateProduct(this.product._id, this.product).subscribe((res) => {
       if(this.filesToUpdate) {
         this.productService.updatePhotos(this.filesToUpdate, res).subscribe((response) => {
           this.router.navigate(['/products/updatedProduct'], {queryParams: {product: JSON.stringify(response)}}).then();
