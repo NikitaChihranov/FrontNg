@@ -42,26 +42,6 @@ export class UserPageAdminComponent implements OnInit {
   ngOnInit() {
   }
 
-  signIn(signForm) {
-    this.userService.signIn(signForm.value.login, signForm.value.password).subscribe((res) => {
-      this.registerClicked = 0;
-      if (res.firstName === 'not found') {
-        this.msg1 = 'Incorrect login or password';
-      } else {
-        this.authorizedUser = res;
-        this.userService.dataSource.next(res);
-        this.msg = '';
-        this.msgFindByName = '';
-        this.msg1 = '';
-        this.msg2 = '';
-        this.msg3 = '';
-      }
-    });
-  }
-
-  logout() {
-    this.userService.dataSource.next(null);
-  }
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe((res) => {
@@ -169,12 +149,7 @@ export class UserPageAdminComponent implements OnInit {
   getValue(input) {
     this.valueInput = input.value;
   }
-  getValueSignInLogin(login){
-    this.loginValue = login.value;
-  }
-  getValueSignInPassword(password){
-    this.passwordValue = password.value;
-  }
+
 }
 
 

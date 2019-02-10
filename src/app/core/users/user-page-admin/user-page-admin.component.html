@@ -1,63 +1,4 @@
-<div>
-  <h1>Sign In</h1>
-  <form #signin="ngForm" (ngSubmit)="signIn(signin)">
-    <label>Login:</label>
-    <input type="text" #login name="login" (input)="getValueSignInLogin(login)" ngModel>
-    <br>
-    <label>Password:</label>
-    <input type="password" #password name="password" (input)="getValueSignInPassword(password)" ngModel>
-    <br>
-    <input type="submit"[disabled]="loginValue === ''||passwordValue === ''" value="Sign in">
-    <br>
-    <input type="button"  (click)="Register()" value="Register">
-  </form>
-  <h2>{{msg1}}</h2>
-</div>
-<div *ngIf="authorizedUser">
-  <button (click)="logout()">Logout</button>
-</div>
-<div *ngIf="registerClicked === 1">
-  <h1>Create user</h1>
-  <br>
-  <form #form1="ngForm" (ngSubmit)="createUser(form1)" enctype="multipart/form-data">
-    <label> Login:</label>
-    <input type="text" name="login" ngModel>
-    <br>
-    <label>Password: </label>
-    <input type="password" name="password" ngModel>
-    <br>
-    <label>Name: </label>
-    <input type="text" name="firstName" ngModel>
-    <br>
-    <label>Surname: </label>
-    <input type="text" name="surname" ngModel>
-    <br>
-    <label>Phone Number: </label>
-    <input type="text" name="phone" ngModel>
-    <br>
-    <label>Photo:</label>
-    <input type="file" name="photos" (change)="fileUploadEvent($event)" ngModel>
-    <br>
-    <label>Email: </label>
-    <input type="text" name="email" ngModel>
-    <br>
-    <label>Adress: </label>
-    <input type="text" name="adress" ngModel>
-    <br>
-    <br>
-    <button>Send</button>
-  </form>
-  <h2>{{msg}}</h2>
-</div>
-
-<div *ngIf="authorizedUser">
-  <div *ngIf="authorizedUser.admin === true">
-    <h3>Admin: {{authorizedUser.login}}</h3>
-  </div>
-  <div *ngIf="authorizedUser.admin === false">
-    <h3>User: {{authorizedUser.login}}</h3>
-  </div>
-</div>
+<app-signin></app-signin>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
   <h3>Get all users</h3>
   <button (click)="getAllUsers()">Get all Users</button>
@@ -69,8 +10,8 @@
     <h4 *ngIf="user.firstName!= ''">Name: {{user.firstName}}</h4>
     <h4 *ngIf="user.firstName === ''">Name: doesn't exist</h4>
     <h4>Id: {{user._id}}</h4>
-    <h4 *ngIf="user.firstName!= ''">Surname: {{user.surname}}</h4>
-    <h4 *ngIf="user.firstName=== ''">Surname: doesn't exist</h4>
+    <h4 *ngIf="user.surname!= ''">Surname: {{user.surname}}</h4>
+    <h4 *ngIf="user.surname=== ''">Surname: doesn't exist</h4>
 
     <h4 *ngIf="user.phone!= ''">Phone number: {{user.phone}}</h4>
     <h4 *ngIf="user.phone=== ''">Phone number: doesn`t exist</h4>

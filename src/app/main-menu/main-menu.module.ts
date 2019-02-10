@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MainMenuComponent} from './main-menu.component';
 import {AboutComponent} from '../core/about/about.component';
@@ -12,6 +12,7 @@ import {RouterModule} from '@angular/router';
 import {AppModule} from '../app.module';
 import {ProductsRoutingModule} from '../core/products/products-routing.module';
 import {ProductsComponent} from '../core/products/products.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {ProductsComponent} from '../core/products/products.component';
     AppModule,
     ProducerRoutingModule,
     RouterModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
   ],
   exports: [
     MainMenuRoutingModule

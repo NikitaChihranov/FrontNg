@@ -4,7 +4,7 @@ import {ProducerComponent} from './producer.component';
 import {FormsModule} from '@angular/forms';
 import {ProducerRoutingModule} from './producer-routing.module';
 import {RouterModule} from '@angular/router';
-import {ViPComponent} from '../../vi-p/vi-p.component';
+import {ViPComponent} from './vi-p/vi-p.component';
 
 @NgModule({
   declarations: [ProducerComponent, ViPComponent],

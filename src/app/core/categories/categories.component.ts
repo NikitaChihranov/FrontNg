@@ -13,16 +13,10 @@ import {Router} from '@angular/router';
 })
 export class CategoriesComponent implements OnInit {
   authorizedUser: {};
-  categories: Category[] = [];
-  category: Category;
-  foundProductsByCategory: Product[] = [];
 
   constructor(
     private categoriesService: CategoriesService,
     private userService: UserService) {
-      this.categoriesService.getAllCategories().subscribe((res) => {
-        this.categories = res;
-      });
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
@@ -31,24 +25,8 @@ export class CategoriesComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
-  deleteCategory(id) {
-    this.categoriesService.deleteCategory(id).subscribe(() => {
-      this.categoriesService.getAllCategories().subscribe((res) => {
-        this.categories = res;
-      });
-    });
-  }
-
   deleteAllCategories(){
     this.categoriesService.deleteAllCategories().subscribe(() => {});
   }
-  viewAllProductsByCategory(id) {
-    this.categoriesService.viewAllProductsByCategory(id).subscribe((res) => {
-      this.foundProductsByCategory = res;
-      this.categoriesService.dataSource.next(res);
-    });
 
-  }
 }

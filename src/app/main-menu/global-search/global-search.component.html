@@ -1,0 +1,4 @@
+<h2>Search:
+  <input type="text" #name (input)="getValue(name)">
+  <button [disabled]="searchValue === ''" (click)="getProductByName(name)">Send</button>
+</h2>

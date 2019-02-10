@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CategoriesComponent} from '../core/categories/categories.component';
-import {Product} from '../core/models/product';
-import {CategoriesService} from '../services/categories.service';
+import {CategoriesComponent} from '../categories.component';
+import {Product} from '../../models/product';
+import {CategoriesService} from '../../../services/categories.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProductService} from '../services/product.service';
+import {ProductService} from '../../../services/product.service';
 
 @Component({
   selector: 'app-vi',

@@ -1,0 +1,6 @@
+<div>
+  <h5>Profile:
+    <span *ngIf="authorizedUser">{{authorizedUser.login}}</span>
+    <span *ngIf="!authorizedUser">guest</span>
+  </h5>
+</div>

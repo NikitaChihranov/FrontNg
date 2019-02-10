@@ -38,7 +38,6 @@ export class CreateOrderComponent implements OnInit {
   }
   createOrder(form: NgForm){
     this.orderService.createOrder(form.value, this.productToOrder, this.authorizedUser).subscribe((res) => {
-      console.log(res);
       this.createdOrder = res;
       this.router.navigate(['/orders'], {queryParams: {order: JSON.stringify(this.createdOrder)}}).then();
     })
