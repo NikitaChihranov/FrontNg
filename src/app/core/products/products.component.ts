@@ -34,15 +34,6 @@ export class ProductsComponent implements OnInit {
       this.products = res;
     });
   }
-
-  viewProduct(title) {
-    this.productService.getProductByName(title).subscribe((res) => {
-      this.router.navigate(['/products/productPage'], {queryParams: {product: JSON.stringify(res)}}).then();
-    });
-  }
-  update(id){
-    this.router.navigate(['/products/update'], {queryParams: {id: JSON.stringify(id)}})
-  }
   deleteProduct(id) {
     this.productService.deleteProduct(id).subscribe(() =>{
       this.productService.getAllProducts().subscribe((res) => {
@@ -50,10 +41,9 @@ export class ProductsComponent implements OnInit {
       });
     });
   }
-
   deleteAllProducts() {
     this.productService.deleteAllProducts().subscribe((res) => {
-        this.products = null;
+      this.products = null;
       }
     );
   }

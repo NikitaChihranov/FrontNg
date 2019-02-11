@@ -1,25 +1,9 @@
 <h1>Products</h1>
-<div *ngFor="let product of products">
-  <h2 class="productTitle" (click)="viewProduct(product.title)">{{product.title}}</h2>
-  <ul *ngIf="products!=[]">
-    <li>Price: {{product.price}}</li>
-    <li>Short about: {{product.about.short}}</li>
-    <li><h2>Photos:</h2>
-      <img [src]="'http://localhost:3000/photos/'+product.photos[0]">
-    </li>
-  </ul>
-  <div *ngIf="authorizedUser&&authorizedUser.admin === true">
-    <button (click)="deleteProduct(product._id)">Delete</button>
-    <button (click)="update(product._id)">Update product</button>
-  </div>
-  <hr>
-</div>
+<product *ngFor="let product of products"
+[product]="product" [authorizedUser]="authorizedUser" (productToDelete)="deleteProduct(product._id)">
+</product>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <button routerLink="create">Create product</button>
-  <br>
+  <createProduct></createProduct>
+  <deleteAllProducts (deleteProducts)="deleteAllProducts()"></deleteAllProducts>
 </div>
-<div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <p>Delete all products
-    <button (click)="deleteAllProducts()">Delete</button>
-  </p>
-</div>
+

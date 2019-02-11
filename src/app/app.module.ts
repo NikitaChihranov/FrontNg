@@ -15,6 +15,9 @@ import {ProfileComponent} from './main-menu/profile/profile.component';
 import {GlobalSearchComponent} from './main-menu/global-search/global-search.component';
 import { SigninComponent } from './core/users/user-page-admin/signin/signin.component';
 import { AllCategoriesComponent } from './core/categories/all-categories/all-categories.component';
+import { EachProductComponent } from './core/products/each-product/each-product.component';
+import { AllProductsCreateProductComponent } from './core/products/all-products-create-product/all-products-create-product.component';
+import { AllProductsDeleteAllProductsComponent } from './core/products/all-products-delete-all-products/all-products-delete-all-products.component';
 
 
 
@@ -35,6 +38,7 @@ import { AllCategoriesComponent } from './core/categories/all-categories/all-cat
     FormsModule,
     HttpClientModule,
     MainMenuRoutingModule
+
   ],
   providers: [
     {

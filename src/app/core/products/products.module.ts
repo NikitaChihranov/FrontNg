@@ -9,6 +9,9 @@ import {CreateProductComponent} from './create-product/create-product.component'
 import {CreatedProductComponent} from './created-product/created-product.component';
 import {UpdateProductComponent} from './update-product/update-product.component';
 import {UpdatedProductComponent} from './updated-product/updated-product.component';
+import {EachProductComponent} from './each-product/each-product.component';
+import {AllProductsDeleteAllProductsComponent} from './all-products-delete-all-products/all-products-delete-all-products.component';
+import {AllProductsCreateProductComponent} from './all-products-create-product/all-products-create-product.component';
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -16,7 +19,10 @@ import {UpdatedProductComponent} from './updated-product/updated-product.compone
     CreateProductComponent,
     CreatedProductComponent,
     UpdateProductComponent,
-    UpdatedProductComponent
+    UpdatedProductComponent,
+    EachProductComponent,
+    AllProductsDeleteAllProductsComponent,
+    AllProductsCreateProductComponent
   ],
   imports: [
     CommonModule,
