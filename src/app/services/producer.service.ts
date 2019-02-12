@@ -20,6 +20,9 @@ export class ProducerService {
   getProducerByName(name: string): Observable<Producer> {
     return this.http.get<Producer>(`${this.host}producers/${name}`);
   }
+  getProducersByAuthor(id: string): Observable<Producer[]> {
+    return this.http.get<Producer[]>(`${this.host}producers/author/${id}`);
+  }
   createProducer(producer: Producer): Observable<Producer> {
     return this.http.post<Producer>(`${this.host}producers`, producer);
   }
@@ -33,7 +36,7 @@ export class ProducerService {
     return this.http.delete<Producer[]>(`${this.host}producers`);
   }
   viewAllProductsByProducer(id: string): Observable<Product[]> {
-      return this.http.get<Producer[]>(`${this.host}producers/viewAll/${id}`);
+      return this.http.get<Product[]>(`${this.host}producers/viewAll/${id}`);
   }
   uploadPhoto(photos: File[], producer: Producer): Observable<Producer> {
     const formData: FormData = new FormData;

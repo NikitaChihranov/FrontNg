@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AboutComponent} from '../core/about/about.component';
 import {AllOrdersComponent} from '../core/order/all-orders/all-orders.component';
+import {StatsComponent} from '../core/stats/stats.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
       {path: 'products', loadChildren: '../core/products/products.module#ProductsModule'},
       {path: 'producers', loadChildren: '../core/producers/producer.module#ProducerModule'},
       {path: 'orders', loadChildren: '../core/order/order.module#OrderModule'},
-      {path: 'allOrders', component: AllOrdersComponent}
+      {path: 'allOrders', component: AllOrdersComponent},
+      {path: 'stats', loadChildren: '../core/stats/stats.module#StatsModule'}
     ]
   }
 ];

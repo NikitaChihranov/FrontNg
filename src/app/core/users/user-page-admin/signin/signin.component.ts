@@ -66,6 +66,9 @@ export class SigninComponent implements OnInit {
   logout() {
     this.userService.dataSource.next(null);
   }
+  fileUploadEvent(event: any) {
+    this.photosToUpload = (<any>event.target).files;
+  }
 
   getValueSignInLogin(login){
     this.loginValue = login.value;

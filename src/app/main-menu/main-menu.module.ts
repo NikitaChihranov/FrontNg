@@ -12,6 +12,8 @@ import {RouterModule} from '@angular/router';
 import {AppModule} from '../app.module';
 import {ProductsRoutingModule} from '../core/products/products-routing.module';
 import {ProductsComponent} from '../core/products/products.component';
+import {StatsComponent} from '../core/stats/stats.component';
+import {StatsRoutingModule} from '../core/stats/stats.routing.module';
 
 
 @NgModule({
@@ -22,7 +24,7 @@ import {ProductsComponent} from '../core/products/products.component';
     CategoriesComponent,
     ProducerComponent,
     UserPageAdminComponent,
-    ProductsComponent
+    ProductsComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import {ProductsComponent} from '../core/products/products.component';
     ProducerRoutingModule,
     RouterModule,
     ProductsRoutingModule,
+    StatsRoutingModule
   ],
   exports: [
     MainMenuRoutingModule

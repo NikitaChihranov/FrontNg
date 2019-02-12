@@ -28,8 +28,7 @@ export class UserPageAdminComponent implements OnInit {
   msg3 = '';
   registerClicked = 0;
   valueInput = '';
-  loginValue = '';
-  passwordValue = '';
+
 
   constructor(
     private userService: UserService,

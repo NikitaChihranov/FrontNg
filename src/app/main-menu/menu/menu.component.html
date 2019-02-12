@@ -5,4 +5,5 @@
   <li><a routerLink="/producers">Producers</a></li>
   <li><a routerLink="/about">About</a></li>
   <li><a routerLink="/allOrders">Orders</a></li>
+  <li *ngIf="authorizedUser && authorizedUser.superAdmin === true"><a routerLink="/stats">Statistic</a></li>
 </ul>

@@ -9,7 +9,8 @@ export class User {
     public email?: string,
     public photo?: string,
     public adress?: string,
-    public admin?: boolean
+    public admin?: boolean,
+    public superAdmin?: boolean
   ) {
   }
 }

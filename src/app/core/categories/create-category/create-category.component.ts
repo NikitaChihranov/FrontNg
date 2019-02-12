@@ -21,6 +21,5 @@ export class CreateCategoryComponent implements OnInit {
     this.categoriesService.createCategory(categoryForm.value).subscribe((res) => {
       this.router.navigate(['/categories/created'], {queryParams: {category: JSON.stringify(res)}}).then();
     });
-
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../core/models/user';
 import {UserService} from '../../services/user.service';
 
@@ -8,16 +8,12 @@ import {UserService} from '../../services/user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  authorizedUser: User;
+  @Input() authorizedUser: User;
 
   constructor(
-    private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.userService.dataSource.subscribe(value => {
-      this.authorizedUser = value ? value : null;
-    });
   }
 
 }

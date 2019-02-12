@@ -1,0 +1,14 @@
+<a routerLink="/stats">Back to stats</a>
+<br>
+<div style="float: left;
+width: 50%;">
+  <div *ngFor="let product of products">
+    {{product.title}}
+  </div>
+</div>
+<div style="float: left;
+width: 50%;">
+  <div *ngFor="let amount of amounts">
+    {{amount}}
+  </div>
+</div>
