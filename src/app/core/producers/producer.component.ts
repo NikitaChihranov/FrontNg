@@ -4,6 +4,7 @@ import {Producer} from '../models/producer';
 import {NgForm} from '@angular/forms';
 import {Product} from '../models/product';
 import {UserService} from '../../services/user.service';
+import {User} from '../models/user';
 
 @Component({
   selector: 'app-producer',
@@ -19,7 +20,7 @@ export class ProducerComponent implements OnInit {
   foundProductsByProducer: Product[] = [];
   filesToUpload: File[];
   filesToUpdate: File[];
-  authorizedUser: {};
+  authorizedUser: User;
 
   constructor(private producerService: ProducerService, private userService: UserService) {
     this.userService.dataSource.subscribe(value => {
@@ -42,7 +43,7 @@ export class ProducerComponent implements OnInit {
   }
 
   createProducer(producerForm: NgForm) {
-    this.producerService.createProducer(producerForm.value).subscribe((res) => {
+    this.producerService.createProducer(producerForm.value, this.authorizedUser._id).subscribe((res) => {
       this.producerService.uploadPhoto(this.filesToUpload, res).subscribe((response) => {
       });
     });

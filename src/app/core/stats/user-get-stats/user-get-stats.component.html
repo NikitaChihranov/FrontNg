@@ -1,3 +1,22 @@
-<p>
-  user-get-stats works!
-</p>
+<h2>Categories created:</h2>
+<div *ngFor="let category of categories">
+  <h3>Name: {{category.title}}</h3>
+  <h3>Date of creation: {{category.date | date: 'medium'}}</h3>
+  <hr>
+</div>
+<h2>Products added:</h2>
+<div *ngFor="let product of products">
+  <h3>Product title: {{product.title}}</h3>
+  <h3>Date of creation: {{product.date | date: 'medium'}}</h3>
+  <h3>Price: {{product.price}}</h3>
+  <h3>Quantity: {{product.quantity}}</h3>
+  <h3>Producer: {{product.producer}}</h3>
+  <h3>Category: {{product.category}}</h3>
+  <hr>
+</div>
+<h2>Producers created:</h2>
+<div *ngFor="let producer of producers">
+  <h3>Title: {{producer.title}}</h3>
+  <h3>Date of creation: {{producer.date | date: 'medium'}}</h3>
+  <h3>Country: {{producer.country}}</h3>
+</div>

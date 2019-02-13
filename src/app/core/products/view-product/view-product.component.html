@@ -18,7 +18,7 @@
   <li>Category: {{product.category}}</li>
   <li>Producer: {{product.producer}}</li>
 </ul>
-<div *ngIf="authorizedUser">
+<div *ngIf="authorizedUser && authorizedUser.superAdmin === false">
   <a (click)="createOrder(product._id)">Order this product</a>
 </div>
 <h3>Comments:</h3>

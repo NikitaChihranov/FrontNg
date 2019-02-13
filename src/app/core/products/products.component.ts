@@ -8,6 +8,7 @@ import {ProducerService} from '../../services/producer.service';
 import {Producer} from '../models/producer';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
+import {User} from '../models/user';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   product: Product;
   producers: Producer[] = [];
-  authorizedUser: {};
+  authorizedUser: User;
 
   constructor(private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService,
               private userService: UserService, private router: Router) {
@@ -31,7 +32,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.productService.getAllProducts().subscribe((res) => {
-      console.log(res);
       this.products = res;
     });
   }

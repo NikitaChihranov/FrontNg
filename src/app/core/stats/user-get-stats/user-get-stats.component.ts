@@ -4,6 +4,9 @@ import {OrderService} from '../../../services/order.service';
 import {ProductService} from '../../../services/product.service';
 import {CategoriesService} from '../../../services/categories.service';
 import {ProducerService} from '../../../services/producer.service';
+import {Category} from '../../models/category';
+import {Product} from '../../models/product';
+import {Producer} from '../../models/producer';
 
 @Component({
   selector: 'app-user-get-stats',
@@ -12,6 +15,9 @@ import {ProducerService} from '../../../services/producer.service';
 })
 export class UserGetStatsComponent implements OnInit {
   id = '';
+  categories: Category[];
+  products: Product[];
+  producers: Producer[];
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
@@ -23,15 +29,14 @@ export class UserGetStatsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((res) => {
       this.id = JSON.parse(res.id);
-      console.log(this.id);
       this.productService.getProductsByAuthor(this.id).subscribe((res) => {
-        console.log(res);
+        this.products = res;
       });
       this.categoriesService.getCategoriesByAuthor(this.id).subscribe((res) => {
-        console.log(res);
+        this.categories = res;
       });
       this.producerService.getProducersByAuthor(this.id).subscribe((res) => {
-        console.log(res);
+        this.producers = res;
       })
     })
   }

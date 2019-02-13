@@ -23,7 +23,8 @@ export class ProducerService {
   getProducersByAuthor(id: string): Observable<Producer[]> {
     return this.http.get<Producer[]>(`${this.host}producers/author/${id}`);
   }
-  createProducer(producer: Producer): Observable<Producer> {
+  createProducer(producer: Producer, id: string): Observable<Producer> {
+    producer.userIdAuthor = id;
     return this.http.post<Producer>(`${this.host}producers`, producer);
   }
   updateProducer(name: string, producer: Producer): Observable<Producer> {

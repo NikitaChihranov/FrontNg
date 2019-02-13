@@ -21,7 +21,8 @@ export class CategoriesService {
   getCategoriesByAuthor(id: string): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.host}categories/author/${id}`);
   }
-  createCategory(category: Category): Observable<Category> {
+  createCategory(category: Category, id: string): Observable<Category> {
+    category.userIdAuthor = id;
     return this.http.post<Category>(`${this.host}categories`, category);
   }
 

@@ -23,6 +23,7 @@ export class StatsOrdersComponent implements OnInit {
       this.products = res;
       for (let product of this.products) {
         this.orderService.getAmountOfOrdersByProduct(product._id).subscribe((res) => {
+          console.log(res);
           this.amounts.push(res);
         });
       }

@@ -24,7 +24,9 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.host}users/`);
   }
-
+  getAllAdmins(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.host}users/admins`);
+  }
   getUserByLogin(login: string): Observable<User> {
     return this.http.get<User>(`${this.host}users/${login}`);
   }
