@@ -14,6 +14,8 @@ import {MenuComponent} from './main-menu/menu/menu.component';
 import {ProfileComponent} from './main-menu/profile/profile.component';
 import {GlobalSearchComponent} from './main-menu/global-search/global-search.component';
 import { UserGetStatsComponent } from './core/stats/user-get-stats/user-get-stats.component';
+import { GetAllUsersComponent } from './core/users/user-page-admin/get-all-users/get-all-users.component';
+import { AllUsersComponent } from './core/users/all-users/all-users.component';
 
 @NgModule({
   declarations: [

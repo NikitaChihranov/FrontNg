@@ -42,12 +42,6 @@ export class UserPageAdminComponent implements OnInit {
   }
 
 
-  getAllUsers() {
-    this.userService.getAllUsers().subscribe((res) => {
-      this.users = res ? res : [];
-      this.deletedUser = null;
-    });
-  }
 
   getUserByLogin(userLogin) {
     this.userService.getUserByLogin(userLogin.value).subscribe((res) => {

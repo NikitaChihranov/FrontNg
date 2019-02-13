@@ -1,0 +1,23 @@
+<a routerLink="/users">Back</a>
+<div *ngFor="let user of users">
+  <span *ngIf="users!=[]">
+    <h4>Login: {{user.login}}</h4>
+    <h4>Password: {{user.password}}</h4>
+    <h4 *ngIf="user.firstName!= ''">Name: {{user.firstName}}</h4>
+    <h4 *ngIf="user.firstName === ''">Name: doesn't exist</h4>
+    <h4 *ngIf="user.surname!= ''">Surname: {{user.surname}}</h4>
+    <h4 *ngIf="user.surname=== ''">Surname: doesn't exist</h4>
+
+    <h4 *ngIf="user.phone!= ''">Phone number: {{user.phone}}</h4>
+    <h4 *ngIf="user.phone=== ''">Phone number: doesn`t exist</h4>
+    <h4 *ngIf="user.photo!='no photo'">Photo:
+    <img [src]="'http://localhost:3000/userPhotos/' + user.photo"></h4>
+    <h4 *ngIf="user.photo === 'no photo' || !user.photo">Photo: doesn`t exist</h4>
+    <h4 *ngIf="user.email!=''">Email: {{user.email}}</h4>
+    <h4 *ngIf="user.email === ''">Email: doesn`t exist</h4>
+    <h4 *ngIf="user.adress != ''">Adress: {{user.adress}}</h4>
+    <h4 *ngIf="user.adress === ''">Adress: doesn`t exist</h4>
+    <h4>Admin: {{user.admin}}</h4>
+  </span>
+  <hr>
+</div>

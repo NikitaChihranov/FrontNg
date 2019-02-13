@@ -1,32 +1,5 @@
 <app-signin></app-signin>
-<div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <h3>Get all users</h3>
-  <button (click)="getAllUsers()">Get all Users</button>
-  <br>
-  <div *ngFor="let user of users">
-  <span *ngIf="users!=[]">
-    <h4>Login: {{user.login}}</h4>
-    <h4>Password: {{user.password}}</h4>
-    <h4 *ngIf="user.firstName!= ''">Name: {{user.firstName}}</h4>
-    <h4 *ngIf="user.firstName === ''">Name: doesn't exist</h4>
-    <h4>Id: {{user._id}}</h4>
-    <h4 *ngIf="user.surname!= ''">Surname: {{user.surname}}</h4>
-    <h4 *ngIf="user.surname=== ''">Surname: doesn't exist</h4>
-
-    <h4 *ngIf="user.phone!= ''">Phone number: {{user.phone}}</h4>
-    <h4 *ngIf="user.phone=== ''">Phone number: doesn`t exist</h4>
-    <h4 *ngIf="user.photo!='no photo'">Photo:
-    <img [src]="'http://localhost:3000/userPhotos/' + user.photo"></h4>
-    <h4 *ngIf="user.photo === 'no photo' || !user.photo">Photo: doesn`t exist</h4>
-    <h4 *ngIf="user.email!=''">Email: {{user.email}}</h4>
-    <h4 *ngIf="user.email === ''">Email: doesn`t exist</h4>
-    <h4 *ngIf="user.adress != ''">Adress: {{user.adress}}</h4>
-    <h4 *ngIf="user.adress === ''">Adress: doesn`t exist</h4>
-    <h4>Admin: {{user.admin}}</h4>
-  </span>
-    <hr>
-  </div>
-</div>
+<app-get-all-users *ngIf="authorizedUser&&authorizedUser.admin === true"></app-get-all-users>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
   <p>Get User by Login</p>
   <input type="text" #getUser>
@@ -36,7 +9,6 @@
     <h4>Password: {{foundUserByLogin.password}}</h4>
     <h4 *ngIf="foundUserByLogin.firstName!= ''">Name: {{foundUserByLogin.firstName}}</h4>
     <h4 *ngIf="foundUserByLogin.firstName === ''">Name: doesn't exist</h4>
-    <h4>Id: {{foundUserByLogin._id}}</h4>
     <h4 *ngIf="foundUserByLogin.firstName!= ''">Surname: {{foundUserByLogin.surname}}</h4>
     <h4 *ngIf="foundUserByLogin.firstName=== ''">Surname: doesn't exist</h4>
     <h4 *ngIf="foundUserByLogin.phone!= ''">Phone number: {{foundUserByLogin.phone}}</h4>

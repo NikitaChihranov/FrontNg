@@ -8,6 +8,8 @@ import {CreatedUserComponent} from './created-user/created-user.component';
 import {CreatedAdminComponent} from './created-admin/created-admin.component';
 import {DeletedUserComponent} from './deleted-user/deleted-user.component';
 import {SigninComponent} from './user-page-admin/signin/signin.component';
+import {GetAllUsersComponent} from './user-page-admin/get-all-users/get-all-users.component';
+import {AllUsersComponent} from './all-users/all-users.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {SigninComponent} from './user-page-admin/signin/signin.component';
     CreatedUserComponent,
     CreatedAdminComponent,
     DeletedUserComponent,
-    SigninComponent
+    SigninComponent,
+    GetAllUsersComponent,
+    AllUsersComponent
   ],
   imports: [
     CommonModule,
