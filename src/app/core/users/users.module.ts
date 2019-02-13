@@ -10,6 +10,9 @@ import {DeletedUserComponent} from './deleted-user/deleted-user.component';
 import {SigninComponent} from './user-page-admin/signin/signin.component';
 import {GetAllUsersComponent} from './user-page-admin/get-all-users/get-all-users.component';
 import {AllUsersComponent} from './all-users/all-users.component';
+import {SuperAllUsersComponent} from './super-all-users/super-all-users.component';
+import {UpdateUserComponent} from './update-user/update-user.component';
+import {UpdatedUserComponentComponent} from './updated-user-component/updated-user-component.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import {AllUsersComponent} from './all-users/all-users.component';
     DeletedUserComponent,
     SigninComponent,
     GetAllUsersComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    SuperAllUsersComponent,
+    UpdateUserComponent,
+    UpdatedUserComponentComponent
   ],
   imports: [
     CommonModule,

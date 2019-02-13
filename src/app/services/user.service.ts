@@ -24,6 +24,9 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.host}users/`);
   }
+  getAll(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.host}users/all`);
+  }
   getAllAdmins(): Observable<User[]> {
     return this.http.get<User[]>(`${this.host}users/admins`);
   }
@@ -52,8 +55,9 @@ export class UserService {
     const id = user._id;
     return this.http.put<User>(`${this.host}users/updatePhoto/${id}`, formData);
   }
-  deleteUser(login: string): Observable<User> {
-    return this.http.delete<User>(`${this.host}users/delete/${login}`);
+  deleteUser(id: string): Observable<User> {
+    console.log(id);
+    return this.http.delete<User>(`${this.host}users/delete/${id}`);
   }
   deleteProfile(): Observable<User> {
     return this.http.delete<User>(`${this.host}users/deleteProfile`);

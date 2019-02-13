@@ -1,5 +1,5 @@
 <app-signin></app-signin>
-<app-get-all-users *ngIf="authorizedUser&&authorizedUser.admin === true"></app-get-all-users>
+<app-get-all-users [authorizedUser]="authorizedUser" *ngIf="authorizedUser&&authorizedUser.admin === true"></app-get-all-users>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
   <p>Get User by Login</p>
   <input type="text" #getUser>
@@ -89,89 +89,6 @@
   </form>
   <h2>{{msg2}}</h2>
 </div>
-<div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <h1>
-    Now input new values of User
-  </h1>
-  <br>
-  <form #form2="ngForm" (ngSubmit)="updateUser(form2)" enctype="multipart/form-data">
-    <label>Id: </label>
-    <input type="text" name="_id" ngModel>
-    <br>
-    <label> Login:</label>
-    <input type="text" name="login" ngModel>
-    <br>
-    <label>Password: </label>
-    <input type="password" name="password" ngModel>
-    <br>
-    <label>Name: </label>
-    <input type="text" name="firstName" ngModel>
-    <br>
-    <label>Surname: </label>
-    <input type="text" name="surname" ngModel>
-    <br>
-    <label>Phone Number: </label>
-    <input type="text" name="phone" ngModel>
-    <br>
-    <label>Photo:</label>
-    <input type="file" name="photos" (change)="fileUpdateEvent($event)" ngModel>
-    <br>
-    <label>Email: </label>
-    <input type="text" name="email" ngModel>
-    <br>
-    <label>Adress: </label>
-    <input type="text" name="adress" ngModel>
-    <br>
-    <button type="submit">Send</button>
-  </form>
-  <form *ngIf="updatedUser">
-    <h4>Login: {{updatedUser.login}}</h4>
-    <h4>Password: {{updatedUser.password}}</h4>
-    <h4 *ngIf="updatedUser.firstName!= ''">Name: {{updatedUser.firstName}}</h4>
-    <h4 *ngIf="updatedUser.firstName === ''">Name: doesn't exist</h4>
-    <h4>Id: {{updatedUser._id}}</h4>
-    <h4 *ngIf="updatedUser.firstName!= ''">Surname: {{updatedUser.surname}}</h4>
-    <h4 *ngIf="updatedUser.firstName=== ''">Surname: doesn't exist</h4>
-    <h4 *ngIf="updatedUser.phone!= ''">Phone number: {{updatedUser.phone}}</h4>
-    <h4 *ngIf="updatedUser.phone=== ''">Phone number: doesn`t exist</h4>
-    <h4 *ngIf="updatedUser.photo!='no photo'">Photo:
-      <img [src]="'http://localhost:3000/userPhotos/' + updatedUser.photo"></h4>
-    <h4 *ngIf="updatedUser.photo === 'no photo' || !updatedUser.photo">Photo: doesn`t exist</h4>
-    <h4 *ngIf="updatedUser.email!=''">Email: {{updatedUser.email}}</h4>
-    <h4 *ngIf="updatedUser.email === ''">Email: doesn`t exist</h4>
-    <h4 *ngIf="updatedUser.adress != ''">Adress: {{updatedUser.adress}}</h4>
-    <h4 *ngIf="updatedUser.adress === ''">Adress: doesn`t exist</h4>
-    <h4>Admin: {{updatedUser.admin}}</h4>
-  </form>
-</div>
-<div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <h1>Delete someone</h1>
-  <input (input)="getValue(a1)" #a1 type="text" name="id" ngModel>
-  <button [disabled]="valueInput===''" (click)="deleteUser(a1)">Send</button>
-  <h2>{{msg3}}</h2>
-  <form *ngIf="deletedUser">
-    <h4>Login: {{deletedUser.login}}</h4>
-    <h4>Password: {{deletedUser.password}}</h4>
-    <h4 *ngIf="deletedUser.firstName!= ''">Name: {{deletedUser.firstName}}</h4>
-    <h4 *ngIf="deletedUser.firstName === ''">Name: doesn't exist</h4>
-    <h4>Id: {{deletedUser._id}}</h4>
-    <h4 *ngIf="deletedUser.firstName!= ''">Surname: {{deletedUser.surname}}</h4>
-    <h4 *ngIf="deletedUser.firstName=== ''">Surname: doesn't exist</h4>
-    <h4 *ngIf="deletedUser.phone!= ''">Phone number: {{deletedUser.phone}}</h4>
-    <h4 *ngIf="deletedUser.phone=== ''">Phone number: doesn`t exist</h4>
-    <h4 *ngIf="deletedUser.photo!='no photo'">Photo:
-      <img [src]="'http://localhost:3000/userPhotos/' + deletedUser.photo"></h4>
-    <h4 *ngIf="deletedUser.photo === 'no photo' || !deletedUser.photo">Photo: doesn`t exist</h4>
-    <h4 *ngIf="deletedUser.email!=''">Email: {{deletedUser.email}}</h4>
-    <h4 *ngIf="deletedUser.email === ''">Email: doesn`t exist</h4>
-    <h4 *ngIf="deletedUser.adress != ''">Adress: {{deletedUser.adress}}</h4>
-    <h4 *ngIf="deletedUser.adress === ''">Adress: doesn`t exist</h4>
-    <h4>Admin: {{deletedUser.admin}}</h4>
-  </form>
-</div>
-<div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <button (click)="deleteAllUsers()">Delete all users</button>
-</div>
 <div *ngIf="authorizedUser&&authorizedUser.admin === false">
   <h4>Login: {{authorizedUser.login}}</h4>
   <h4>Password: {{authorizedUser.password}}</h4>
@@ -206,6 +123,6 @@
     Adress: doesn't exist
   </h4>
 </div>
-<div *ngIf="authorizedUser">
+<div *ngIf="authorizedUser&&authorizedUser.superAdmin === false">
   <button (click)="deleteProfile()">Delete profile</button>
 </div>

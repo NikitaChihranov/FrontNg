@@ -39,7 +39,6 @@ export class UpdateProductComponent implements OnInit {
     })
   }
   updateProduct(productForm: NgForm) {
-    console.log(productForm.value);
     this.product = {...this.product, ...productForm.value};
     this.product._id = this.productId;
     this.productService.updateProduct(this.product._id, this.product).subscribe((res) => {

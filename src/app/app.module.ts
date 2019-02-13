@@ -16,6 +16,8 @@ import {GlobalSearchComponent} from './main-menu/global-search/global-search.com
 import { UserGetStatsComponent } from './core/stats/user-get-stats/user-get-stats.component';
 import { GetAllUsersComponent } from './core/users/user-page-admin/get-all-users/get-all-users.component';
 import { AllUsersComponent } from './core/users/all-users/all-users.component';
+import { SuperAllUsersComponent } from './core/users/super-all-users/super-all-users.component';
+import { UpdatedUserComponentComponent } from './core/users/updated-user-component/updated-user-component.component';
 
 @NgModule({
   declarations: [

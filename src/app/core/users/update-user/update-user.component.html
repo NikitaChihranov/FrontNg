@@ -1,0 +1,25 @@
+<a routerLink="/users/superAllUsers">Back</a>
+<form #form2="ngForm" (ngSubmit)="updateUser(form2)" enctype="multipart/form-data">
+  <label>Password: </label>
+  <input type="password" #password name="password" (input)="getValue(password)" ngModel>
+  <br>
+  <label>Name: </label>
+  <input type="text" name="firstName" ngModel>
+  <br>
+  <label>Surname: </label>
+  <input type="text" name="surname" ngModel>
+  <br>
+  <label>Phone Number: </label>
+  <input type="text" name="phone" ngModel>
+  <br>
+  <label>Photo:</label>
+  <input type="file" name="photo" (change)="fileUpdateEvent($event)" ngModel>
+  <br>
+  <label>Email: </label>
+  <input type="text" name="email" ngModel>
+  <br>
+  <label>Adress: </label>
+  <input type="text" name="adress" ngModel>
+  <br>
+  <button [disabled]="passwordValue === ''" type="submit">Send</button>
+</form>

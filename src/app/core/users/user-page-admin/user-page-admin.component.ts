@@ -99,16 +99,7 @@ export class UserPageAdminComponent implements OnInit {
     });
   }
 
-  deleteUser(userLogin) {
-    this.userService.deleteUser(userLogin.value).subscribe((res) => {
-      if (res.firstName === 'can`t delete') this.msg3 = 'You can`t delete yourself here';
-      else if (res.firstName === 'nothing to delete') this.msg3 = 'There`s not user with such login';
-      else {
-        this.deletedUser = res;
-        this.msg3 = '';
-      }
-    });
-  }
+
 
   deleteAllUsers() {
     this.userService.deleteAllUsers().subscribe((res) => {
@@ -135,9 +126,7 @@ export class UserPageAdminComponent implements OnInit {
     this.photosToUploadAdmin = (<any>event.target).files;
   }
 
-  fileUpdateEvent(event: any) {
-    this.photosToUpdate = (<any>event.target).files;
-  }
+
 
   getValue(input) {
     this.valueInput = input.value;
