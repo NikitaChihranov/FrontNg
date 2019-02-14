@@ -26,9 +26,10 @@ export class ProducerComponent implements OnInit {
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
-      this.producerService.getAllProducers().subscribe((res) => {
-        this.producers = res;
-      });
+    this.producerService.getAllProducers().subscribe((res) => {
+      console.log(res);
+      this.producers = res;
+    });
   }
 
 
@@ -36,25 +37,25 @@ export class ProducerComponent implements OnInit {
   }
 
 
-  getProducerByName(form) {
-    this.producerService.getProducerByName(form.value).subscribe((res) => {
-      this.foundProducerByName = res;
-    });
-  }
-
   createProducer(producerForm: NgForm) {
     this.producerService.createProducer(producerForm.value, this.authorizedUser._id).subscribe((res) => {
-      this.producerService.uploadPhoto(this.filesToUpload, res).subscribe((response) => {
-      });
+      if (this.filesToUpload) {
+        this.producerService.uploadPhoto(this.filesToUpload, res).subscribe((response) => {
+        });
+      }
     });
   }
 
   updateProducer(producerForm: NgForm) {
     this.producer = {...this.producer, ...producerForm.value};
     this.producerService.updateProducer(this.producer.title, this.producer).subscribe((res) => {
-      this.producerService.updatePhoto(this.filesToUpdate, res).subscribe((response) => {
-        this.updatedProducer = response;
-      });
+      if (this.filesToUpdate) {
+        this.producerService.updatePhoto(this.filesToUpdate, res).subscribe((response) => {
+          this.updatedProducer = response;
+        });
+      } else {
+        this.updatedProducer = res;
+      }
     });
   }
 
@@ -70,12 +71,6 @@ export class ProducerComponent implements OnInit {
     });
   }
 
-  viewAllProductsByProducer(id) {
-    this.producerService.viewAllProductsByProducer(id).subscribe((res) => {
-      this.foundProductsByProducer = res ? res : [];
-      this.producerService.dataSource.next(res);
-    });
-  }
 
   hide() {
     this.deletedProducer = null;

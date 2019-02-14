@@ -1,0 +1,4 @@
+<h2>Search
+  <input type="text" #name (input)="getValue(name)">
+  <button [disabled]="inputValue === ''" (click)="getProducerByName(name)">Search</button>
+</h2>

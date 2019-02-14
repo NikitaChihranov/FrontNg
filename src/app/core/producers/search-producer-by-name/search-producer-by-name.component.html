@@ -1,0 +1,12 @@
+<a routerLink="/producers">Back</a>
+<ul *ngIf="producer">
+  <li><h3>Id:</h3>{{producer._id}}</li>
+  <li><h3>Title:</h3>{{producer.title}}</li>
+  <li><h3>Short about:</h3>{{producer.about.short}}</li>
+  <li><h3>About:</h3>{{producer.about.all}}</li>
+  <li>Photo:
+    <img [src]="'http://localhost:3000/ProducerPhotos/' + producer.photo">
+  </li>
+  <li><h3>Country:</h3>{{producer.country}}</li>
+</ul>
+<h2>{{msg}}</h2>

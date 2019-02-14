@@ -10,9 +10,9 @@
 
     <h4 *ngIf="user.phone!= ''">Phone number: {{user.phone}}</h4>
     <h4 *ngIf="user.phone=== ''">Phone number: doesn`t exist</h4>
-    <h4 *ngIf="user.photo!='no photo' || user.photo!=''">Photo:
+    <h4 *ngIf="user.photo!==''&&user.photo!=='no photo'">Photo:
     <img [src]="'http://localhost:3000/userPhotos/' + user.photo"></h4>
-    <h4 *ngIf="user.photo === '' || user.photo === 'no photo'">Photo: doesn`t exist</h4>
+    <h4 *ngIf="user.photo === 'no photo'|| user.photo === ''">Photo: doesn`t exist</h4>
     <h4 *ngIf="user.email!=''">Email: {{user.email}}</h4>
     <h4 *ngIf="user.email === ''">Email: doesn`t exist</h4>
     <h4 *ngIf="user.adress != ''">Adress: {{user.adress}}</h4>

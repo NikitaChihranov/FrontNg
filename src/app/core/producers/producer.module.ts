@@ -5,9 +5,18 @@ import {FormsModule} from '@angular/forms';
 import {ProducerRoutingModule} from './producer-routing.module';
 import {RouterModule} from '@angular/router';
 import {ViPComponent} from './vi-p/vi-p.component';
+import {EachProducerComponent} from './each-producer/each-producer.component';
+import {SearchProducerComponent} from './search-producer/search-producer.component';
+import {SearchProducerByNameComponent} from './search-producer-by-name/search-producer-by-name.component';
 
 @NgModule({
-  declarations: [ProducerComponent, ViPComponent],
+  declarations: [
+    ProducerComponent,
+    ViPComponent,
+    EachProducerComponent,
+    SearchProducerComponent,
+    SearchProducerByNameComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

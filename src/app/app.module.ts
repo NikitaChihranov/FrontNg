@@ -23,6 +23,9 @@ import { SearchUserByLoginComponent } from './core/users/search-user-by-login/se
 import { CreateUserComponent } from './core/users/create-user/create-user.component';
 import { CreateAdmiComponent } from './core/users/create-admi/create-admi.component';
 import { UserInfoComponent } from './core/users/user-page-admin/user-info/user-info.component';
+import { EachProducerComponent } from './core/producers/each-producer/each-producer.component';
+import { SearchProducerComponent } from './core/producers/search-producer/search-producer.component';
+import { SearchProducerByNameComponent } from './core/producers/search-producer-by-name/search-producer-by-name.component';
 
 @NgModule({
   declarations: [

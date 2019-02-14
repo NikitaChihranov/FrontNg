@@ -1,22 +1,20 @@
 <a routerLink="/producers">Back</a>
-<div *ngIf="data.length===0">
-  <h1>There are no products made by this producer</h1>
-</div>
-<div>
-  <ul *ngFor="let product of data">
-    <h3 class="productTitle" (click)="viewProduct(product.title)">{{product.title}}</h3>
-    <li>Price: {{product.price}}</li>
-    <li>About short: {{product.about.short}}</li>
-    <li>About: {{product.about.all}}</li>
-    <li>Colors: {{product.colors}}</li>
-    <li><h2>Photos</h2>
-    <div *ngFor="let link of product.photos">
-      <img [src]="'http://localhost:3000/photos/' + link">
-    </div>
-  </li>
-    <li>Quantity: {{product.quantity}}</li>
-    <li>Category: {{product.category}}</li>
-    <li>Producer: {{product.producer}}</li>
-    <hr>
-  </ul>
-</div>
+  <div>
+    <ul *ngFor="let product of products">
+      <h3 class="productTitle" (click)="viewProduct(product._id)">{{product.title}}</h3>
+      <li>Price: {{product.price}}</li>
+      <li>About short: {{product.about.short}}</li>
+      <li>About: {{product.about.all}}</li>
+      <li>Colors: {{product.colors}}</li>
+      <li><h2>Photos</h2>
+        <div *ngFor="let link of product.photos">
+          <img [src]="'http://localhost:3000/photos/' + link">
+        </div>
+      </li>
+      <li>Quantity: {{product.quantity}}</li>
+      <li>Category: {{product.category}}</li>
+      <li>Producer: {{product.producer}}</li>
+      <hr>
+    </ul>
+  </div>
+<h2>{{msg}}</h2>
