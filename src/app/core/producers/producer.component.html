@@ -1,57 +1,7 @@
 <h1>Producers</h1>
-<app-search-producer></app-search-producer>
-<app-each-producer [producer]="producer" *ngFor="let producer of producers"></app-each-producer>
+<searchProducer></searchProducer>
+<eachProducer [authorizedUser]="authorizedUser" [producer]="producer" (prod)="deleteProducer(producer._id)" *ngFor="let producer of producers"></eachProducer>
 <div *ngIf="authorizedUser && authorizedUser.admin === true">
-  <form #producerForm="ngForm" (ngSubmit)="createProducer(producerForm)" enctype="multipart/form-data">
-    <h3>Create new producer</h3>
-    Title: <input type="text" name="title" ngModel><br>
-    Short about: <input type="text" name="about.short" ngModel><br>
-    All about: <input type="text" name="about.all" ngModel><br>
-    Photo:<input type="file" name="photos" (change)="fileChangeEvent($event)" ngModel><br>
-    Country: <input type="text" name="country" ngModel><br>
-    <button type="submit">Create</button>
-  </form>
-  <form #updateForm="ngForm" (ngSubmit)="updateProducer(updateForm)" enctype="multipart/form-data">
-    <h3>Update someone</h3>
-    Title: <input type="text" name="title" ngModel><br>
-    Short about: <input type="text" name="about.short" ngModel><br>
-    All about: <input type="text" name="about.all" ngModel><br>
-    Photo <input type="file" name="photos" (change)="fileUpdateEvent($event)" ngModel><br>
-    Country: <input type="text" name="country" ngModel><br>
-    <button type="submit">Update</button>
-  </form>
-  <div *ngIf="updatedProducer">
-    <h2>Updated producer</h2>
-    <ul>
-      <li>Title: {{updatedProducer.title}}</li>
-      <li>Short about: {{updatedProducer.about.short}}</li>
-      <li>About: {{updatedProducer.about.all}}</li>
-      <li>Photo:
-        <img [src]="'http://localhost:3000/ProducerPhotos/' + updatedProducer.photo">
-      </li>
-      <li>Country: {{updatedProducer.country}}</li>
-    </ul>
-  </div>
-  <form>
-    <h3>Delete someone</h3>
-    <input type="text" #name>
-    <br>
-    <button (click)="deleteProducer(name)">Delete</button>
-  </form>
-  <div *ngIf="deletedProducer">
-    <button (click)="hide()">Hide</button>
-    <ul>
-      <li>Title: {{deletedProducer.title}}</li>
-      <li>Short about: {{deletedProducer.about.short}}</li>
-      <li>About: {{deletedProducer.about.all}}</li>
-      <li>Photo:
-        <img [src]="'http://localhost:3000/ProducerPhotos/' + deletedProducer.photo">
-      </li>
-      <li>Country: {{deletedProducer.country}}</li>
-    </ul>
-  </div>
-  <form>
-    <h3>Delete all producers</h3>
-    <button (click)="deleteAllProducers()">Delete all</button>
-  </form>
+  <h3 (click)="createProducer()">Create new producer</h3>
+  <deleteAll *ngIf="authorizedUser.superAdmin === true" (deleteAll)="deleteAllProducers()"></deleteAll>
 </div>

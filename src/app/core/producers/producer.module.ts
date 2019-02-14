@@ -8,6 +8,9 @@ import {ViPComponent} from './vi-p/vi-p.component';
 import {EachProducerComponent} from './each-producer/each-producer.component';
 import {SearchProducerComponent} from './search-producer/search-producer.component';
 import {SearchProducerByNameComponent} from './search-producer-by-name/search-producer-by-name.component';
+import {DeleteAllProducersComponent} from './delete-all-producers/delete-all-producers.component';
+import {UpdateProducerComponent} from './update-producer/update-producer.component';
+import {CreateProducerComponent} from './create-producer/create-producer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import {SearchProducerByNameComponent} from './search-producer-by-name/search-pr
     ViPComponent,
     EachProducerComponent,
     SearchProducerComponent,
-    SearchProducerByNameComponent
+    SearchProducerByNameComponent,
+    DeleteAllProducersComponent,
+    UpdateProducerComponent,
+    CreateProducerComponent
   ],
   imports: [
     CommonModule,

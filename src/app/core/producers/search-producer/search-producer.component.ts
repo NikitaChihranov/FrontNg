@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {stringify} from 'querystring';
 
 @Component({
-  selector: 'app-search-producer',
+  selector: 'searchProducer',
   templateUrl: './search-producer.component.html',
   styleUrls: ['./search-producer.component.css']
 })

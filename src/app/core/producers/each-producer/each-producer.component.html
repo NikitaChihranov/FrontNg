@@ -1,8 +1,10 @@
-<h3 class="title" (click)="viewAllProductsByProducer(producer._id)">{{producer.title}} </h3>
-<li>Short about: {{producer.about.short}}</li>
-<li>All about: {{producer.about.all}}</li>
-<li *ngIf="producer.photo !== '' && producer.photo !== 'no photo'">Photo:
-  <img [src]="'http://localhost:3000/ProducerPhotos/' + producer.photo">
-</li>
-<li>Country:{{producer.country}}</li>
-<hr>
+  <h3 class="title" (click)="viewAllProductsByProducer(producer._id)">{{producer.title}} </h3>
+  <li>Short about: {{producer.about.short}}</li>
+  <li>All about: {{producer.about.all}}</li>
+  <li *ngIf="producer.photo !== '' && producer.photo !== 'no photo'">Photo:
+    <img [src]="'http://localhost:3000/ProducerPhotos/' + producer.photo">
+  </li>
+  <li>Country:{{producer.country}}</li>
+  <button *ngIf="authorizedUser && authorizedUser.admin === true" (click)="updateProducer(producer._id)">Update</button>
+  <button *ngIf="authorizedUser && authorizedUser.admin === true" (click)="deleteProducer()">Delete</button>
+  <hr>

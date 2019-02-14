@@ -27,11 +27,11 @@ export class ProducerService {
     producer.userIdAuthor = id;
     return this.http.post<Producer>(`${this.host}producers`, producer);
   }
-  updateProducer(name: string, producer: Producer): Observable<Producer> {
-    return this.http.put<Producer>(`${this.host}producers/${name}`, producer);
+  updateProducer(id: string, producer: Producer): Observable<Producer> {
+    return this.http.put<Producer>(`${this.host}producers/${id}`, producer);
   }
-  deleteProducer(name: string): Observable<Producer> {
-    return this.http.delete<Producer>(`${this.host}producers/${name}`);
+  deleteProducer(id: string): Observable<Producer> {
+    return this.http.delete<Producer>(`${this.host}producers/${id}`);
   }
   deleteAllProducers(): Observable<Producer[]> {
     return this.http.delete<Producer[]>(`${this.host}producers`);

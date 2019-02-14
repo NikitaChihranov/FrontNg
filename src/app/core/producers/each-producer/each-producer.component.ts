@@ -1,16 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Producer} from '../../models/producer';
 import {ProducerService} from '../../../services/producer.service';
 import {Product} from '../../models/product';
 import {Router} from '@angular/router';
+import {User} from '../../models/user';
 
 @Component({
-  selector: 'app-each-producer',
+  selector: 'eachProducer',
   templateUrl: './each-producer.component.html',
   styleUrls: ['./each-producer.component.css']
 })
 export class EachProducerComponent implements OnInit {
   @Input() producer: Producer;
+  @Input() authorizedUser: User;
+  @Output() prod = new EventEmitter();
   constructor(
     private producerService: ProducerService,
     private router: Router
@@ -21,5 +24,10 @@ export class EachProducerComponent implements OnInit {
   viewAllProductsByProducer(id) {
     this.router.navigate(['/producers/viewAll'], {queryParams: {id: JSON.stringify(id)}}).then();
   }
-
+  deleteProducer(){
+    this.prod.emit();
+  }
+  updateProducer(id) {
+    this.router.navigate(['/producers/update'], {queryParams: {id: JSON.stringify(id)}}).then();
+  }
 }

@@ -41,7 +41,7 @@ export class ViewProductComponent implements OnInit {
     if(this.product) {
       this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
         if (res.text === 'no found') {
-          this.noCommentsMsg = 'No comments found. Sign in to add a comment';
+          this.noCommentsMsg = 'No comments found.';
         } else {
           this.noCommentsMsg = '';
           this.comments = res;
