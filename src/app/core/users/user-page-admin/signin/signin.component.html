@@ -7,7 +7,7 @@
     <label>Password:</label>
     <input type="password" #password name="password" (input)="getValueSignInPassword(password)" ngModel>
     <br>
-    <input type="submit"[disabled]="loginValue === ''||passwordValue === ''" value="Sign in">
+    <input type="submit"[disabled]="loginValue === ''||passwordValue === '' || authorizedUser" value="Sign in">
     <br>
     <input type="button"  (click)="Register()" value="Register">
   </form>

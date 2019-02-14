@@ -18,6 +18,11 @@ import { GetAllUsersComponent } from './core/users/user-page-admin/get-all-users
 import { AllUsersComponent } from './core/users/all-users/all-users.component';
 import { SuperAllUsersComponent } from './core/users/super-all-users/super-all-users.component';
 import { UpdatedUserComponentComponent } from './core/users/updated-user-component/updated-user-component.component';
+import { SearchUserComponent } from './core/users/user-page-admin/search-user/search-user.component';
+import { SearchUserByLoginComponent } from './core/users/search-user-by-login/search-user-by-login.component';
+import { CreateUserComponent } from './core/users/create-user/create-user.component';
+import { CreateAdmiComponent } from './core/users/create-admi/create-admi.component';
+import { UserInfoComponent } from './core/users/user-page-admin/user-info/user-info.component';
 
 @NgModule({
   declarations: [

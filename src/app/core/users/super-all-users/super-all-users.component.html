@@ -19,6 +19,6 @@
     <h4 *ngIf="user.adress === ''">Adress: doesn`t exist</h4>
   </span>
   <button (click)="toUpdate(user._id)">Update</button>
-  <button (click)="deleteUser(user._id)">Delete</button>
+  <button *ngIf="user.superAdmin===false" (click)="deleteUser(user._id)">Delete</button>
   <hr>
 </div>
