@@ -1,0 +1,3 @@
+<p>Search <input type="text" #getUser (input)="getValue(getUser)">
+  <button [disabled]="inputValue === ''" (click)="getUserByLogin(getUser)">Get user</button>
+</p>

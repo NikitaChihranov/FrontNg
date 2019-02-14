@@ -1,0 +1,33 @@
+<h2>Your profile:</h2>
+<h4>Login: {{authorizedUser.login}}</h4>
+<h4>Password: {{authorizedUser.password}}</h4>
+<h4 *ngIf="authorizedUser.firstName!==''">
+  Name: {{authorizedUser.firstName}}
+</h4>
+<h4 *ngIf="authorizedUser.firstName==''">
+  Name: doesn't exist
+</h4>
+<h4 *ngIf="authorizedUser.surname!==''">
+  Surname: {{authorizedUser.surname}}
+</h4>
+<h4 *ngIf="authorizedUser.surname==''">
+  Surname: doesn't exist
+</h4>
+<h4 *ngIf="authorizedUser.phone!==''">
+  Phone number: {{authorizedUser.phone}}
+</h4>
+<h4 *ngIf="authorizedUser.phone==''">
+  Phone number: doesn't exist
+</h4>
+<h4 *ngIf="authorizedUser.photo!=='no photo'&&authorizedUser.photo!==''">
+  <img [src]="'http://localhost:3000/userPhotos/' + authorizedUser.photo">
+</h4>
+<h4 *ngIf="authorizedUser.photo === 'no photo' || authorizedUser.photo === ''">
+  Photo: doesn't exist
+</h4>
+<h4 *ngIf="authorizedUser.adress!==''">
+  Adress: {{authorizedUser.adress}}
+</h4>
+<h4 *ngIf="authorizedUser.adress === ''">
+  Adress: doesn't exist
+</h4>
