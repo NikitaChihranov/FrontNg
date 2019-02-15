@@ -13,7 +13,9 @@ import { AllOrdersComponent } from './core/order/all-orders/all-orders.component
 import {MenuComponent} from './main-menu/menu/menu.component';
 import {ProfileComponent} from './main-menu/profile/profile.component';
 import {GlobalSearchComponent} from './main-menu/global-search/global-search.component';
-import { CreateProducerComponent } from './core/producers/create-producer/create-producer.component';
+import { CreateAComponent } from './core/about/create-a/create-a.component';
+import { UpdateComponent } from './core/about/update/update.component';
+import { AboutItselfComponent } from './core/about/about-itself/about-itself.component';
 
 
 @NgModule({
@@ -21,7 +23,6 @@ import { CreateProducerComponent } from './core/producers/create-producer/create
     AppComponent,
     MainMenuComponent,
     IndexComponent,
-    AboutComponent,
     AllOrdersComponent,
     MenuComponent,
     ProfileComponent,

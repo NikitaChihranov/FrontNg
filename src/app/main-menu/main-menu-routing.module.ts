@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', component: MainMenuComponent, children: [
       {path: 'categories', loadChildren: '../core/categories/categories.module#CategoriesModule'},
       {path: 'users', loadChildren: '../core/users/users.module#UserModule'},
-      {path: 'about', component: AboutComponent},
+      {path: 'about', loadChildren: '../core/about/about.module#AboutModule'},
       {path: 'products', loadChildren: '../core/products/products.module#ProductsModule'},
       {path: 'producers', loadChildren: '../core/producers/producer.module#ProducerModule'},
       {path: 'orders', loadChildren: '../core/order/order.module#OrderModule'},

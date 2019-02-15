@@ -1,0 +1,8 @@
+<a routerLink="/about">Back</a>
+<form #updateForm="ngForm" (ngSubmit)="update(updateForm)" enctype="multipart/form-data">
+  <h2>If About already exists, you can update it.</h2>
+  <textarea rows="13" cols="80" name="text" ngModel></textarea>
+  <br>
+  <input type="file" name="logo" (change)="fileUpdateEvent($event)" ngModel>
+  <button type="submit">Send</button>
+</form>

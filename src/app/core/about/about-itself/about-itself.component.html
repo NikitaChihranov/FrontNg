@@ -1,0 +1,5 @@
+<h1>ABOUT PAGE</h1>
+<h3> {{aboutContent.text}}</h3>
+<div *ngIf="aboutContent.logo">
+  <img [src]="'http://localhost:3000/photosAbout/' + aboutContent.logo">
+</div>

@@ -1,27 +1,6 @@
-<h1>ABOUT PAGE</h1>
-<div *ngIf="aboutContent">
-  <h3> {{aboutContent.text}}</h3>
-  <div *ngIf="aboutContent.logo">
-    <img [src]="'http://localhost:3000/photosAbout/' + aboutContent.logo">
-  </div>
-</div>
+<app-about-itself *ngIf="aboutContent" [aboutContent]="aboutContent"></app-about-itself>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
-<form #aboutForm = "ngForm" (ngSubmit)="create(aboutForm)"  enctype="multipart/form-data">
-  <h2>Create about content</h2>
-  <textarea rows="13" cols="80" name="text" ngModel></textarea>
-  <br>
-  <label>Logo</label>
-  <input type="file"  name="photos" (change)="fileChangeEvent($event)" ngModel>
-  <button type="submit">Send</button>
-</form>
-
-<form #updateForm = "ngForm" (ngSubmit)="update(updateForm)" enctype="multipart/form-data">
-  <h2>If About already exists, you can update it.</h2>
-  <textarea rows="13" cols="80" name="text" ngModel></textarea>
-  <br>
-  <input type="file"  name="photos" (change)="fileUpdateEvent($event)" ngModel>
-  <button type="submit">Send</button>
-</form>
-<br>
-<button (click)="delete()">Delete</button>
+  <app-create-a *ngIf="!aboutContent"></app-create-a>
+  <app-update *ngIf="aboutContent&&aboutContent.text !== ''"></app-update>
+  <button (click)="delete()">Delete</button>
 </div>
