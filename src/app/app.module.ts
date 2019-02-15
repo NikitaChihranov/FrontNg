@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './core/about/about.component';
 import {FormsModule} from '@angular/forms';
-import {IndexComponent} from './index/index.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import {MainMenuRoutingModule} from './main-menu/main-menu-routing.module';
 import {AuthInterceptorService} from './services/auth-interceptor.service';
@@ -25,7 +24,6 @@ import { EachProductInViewComponent } from './core/products/view-product/each-pr
   declarations: [
     AppComponent,
     MainMenuComponent,
-    IndexComponent,
     AllOrdersComponent,
     MenuComponent,
     ProfileComponent,

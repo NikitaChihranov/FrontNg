@@ -1,4 +1,5 @@
-<h2>Search:
-  <input type="text" #name (input)="getValue(name)">
-  <button [disabled]="searchValue === ''" (click)="getProductByName(name)">Send</button>
-</h2>
+<div class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" #name (input)="getValue(name)" type="text" placeholder="Search">
+  <button [disabled]="searchValue === ''" (click)="getProductByName(name)" class="btn btn-secondary my-2 my-sm-0">Search
+  </button>
+</div>

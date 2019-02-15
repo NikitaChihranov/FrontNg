@@ -22,6 +22,7 @@ export class GlobalSearchComponent implements OnInit {
     });
   }
   getValue(input){
+    console.log(input.value);
     this.searchValue = input.value;
   }
 }

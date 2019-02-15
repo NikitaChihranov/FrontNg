@@ -4,6 +4,7 @@ import {Category} from '../../models/category';
 import {Product} from '../../models/product';
 import {UserService} from '../../../services/user.service';
 import {User} from '../../models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-all-categories',
@@ -16,7 +17,8 @@ export class AllCategoriesComponent implements OnInit {
   foundProductsByCategory: Product[] = [];
   constructor(
     private categoriesService: CategoriesService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
 
   }
@@ -39,6 +41,7 @@ export class AllCategoriesComponent implements OnInit {
     this.categoriesService.deleteCategory(id).subscribe(() => {
       this.categoriesService.getAllCategories().subscribe((res) => {
         this.categories = res;
+        this.router.navigate(['/categories']).then();
       });
     });
   }

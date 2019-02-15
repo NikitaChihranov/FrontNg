@@ -1,9 +1,33 @@
-<ul>
-  <li><a routerLink="/categories">Categories</a></li>
-  <li><a routerLink="/products">Products</a></li>
-  <li><a routerLink="/users">Users</a></li>
-  <li><a routerLink="/producers">Producers</a></li>
-  <li><a routerLink="/about">About</a></li>
-  <li><a routerLink="/allOrders">Orders</a></li>
-  <li *ngIf="authorizedUser && authorizedUser.superAdmin === true"><a routerLink="/stats">Statistic</a></li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark pl-5">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link apple">Apple shop</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="nav-link" routerLink="/categories">Categories</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="nav-link" routerLink="/products">Products</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="nav-link" routerLink="/producers">Producers</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="nav-link" routerLink="/users">Sign in</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="nav-link" routerLink="/allOrders">Orders</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="nav-link" routerLink="/about">About us</a>
+    </li>
+    <li class="nav-item mr-5" *ngIf="authorizedUser && authorizedUser.superAdmin === true">
+      <a class="nav-link" routerLink="/stats">Statistic</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link"><app-profile [authorizedUser]="authorizedUser"></app-profile></a>
+    </li>
+  </ul>
+  <app-global-search></app-global-search>
+</nav>
+

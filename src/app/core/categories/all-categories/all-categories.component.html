@@ -1,8 +1,19 @@
-<div *ngFor="let category of categories">
-  <span *ngIf="categories!=[]">
-     <a routerLink="viewAll" (click)="viewAllProductsByCategory(category._id)">{{category.title}}</a>
-  </span>
+<h1 class="mt-3 mb-4">Categories:</h1>
+<!--<ul>-->
+<!--<li routerLink="viewAll"-->
+    <!--(click)="viewAllProductsByCategory(category._id)"-->
+    <!--*ngFor="let category of categories">-->
+      <!--{{category.title}}-->
+
+<!--</li>-->
+<!--</ul>-->
+
+<ul class="list-group list-group-flush">
+  <li class="display-4 list-group-item list-group-item-action list-group-item-light" routerLink="viewAll"
+       (click)="viewAllProductsByCategory(category._id)"
+       *ngFor="let category of categories">{{category.title}}
   <span *ngIf="authorizedUser&&authorizedUser.admin === true">
-    <button (click)="deleteCategory(category._id)">Delete</button>
+    <button class="button" (click)="deleteCategory(category._id)">Delete</button>
   </span>
-</div>
+  </li>
+</ul>
