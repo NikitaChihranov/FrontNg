@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../../models/product';
 import {UserService} from '../../../services/user.service';
@@ -17,20 +17,21 @@ export class ViewProductComponent implements OnInit {
   comments: Comment[] = [];
   noCommentsMsg = '';
   noFound = 0;
-  constructor( private activatedRoute: ActivatedRoute,
-               private userService: UserService,
-               private commentService: CommentService,
-               private router: Router) {
-    this.activatedRoute.queryParams.subscribe((res) =>{
-      let product = JSON.parse(res.product);
-      if(product.title === 'err'){
-        this.noFound = 1;
-      }else{
-        this.noFound = 0;
-        this.product = product;
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private userService: UserService,
+              private commentService: CommentService,
+              private router: Router) {
+    this.activatedRoute.queryParams.subscribe((res) => {
+        let product = JSON.parse(res.product);
+        if (product.title === 'err') {
+          this.noFound = 1;
+        } else {
+          this.noFound = 0;
+          this.product = product;
+        }
       }
-    }
-  )
+    );
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
     });
@@ -38,7 +39,7 @@ export class ViewProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.product) {
+    if (this.product) {
       this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
         if (res.text === 'no found') {
           this.noCommentsMsg = 'No comments found.';
@@ -46,29 +47,31 @@ export class ViewProductComponent implements OnInit {
           this.noCommentsMsg = '';
           this.comments = res;
         }
-      })
+      });
     }
   }
-  createComment(form) {
-    this.commentService.createComment(form.value, this.authorizedUser.login, this.product._id).subscribe(() => {
-      this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
-        this.comments = res;
-        this.noCommentsMsg = '';
-      })
-    })
+
+  createComment() {
+    this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
+      this.comments = res;
+      this.noCommentsMsg = '';
+    });
   }
-  deleteComment(id){
+
+
+  deleteComment(id) {
     this.commentService.deleteCommentById(id).subscribe(() => {
       this.commentService.getCommentsByProduct(this.product._id).subscribe((res) => {
-        if(res.length === 0) {
+        if (res.length === 0) {
           this.noCommentsMsg = 'No comments found.';
-        }else{
+        } else {
           this.comments = res;
         }
-    })
-  })
+      });
+    });
   }
-  createOrder(id){
+
+  createOrder(id) {
     this.router.navigate(['/orders/create'], {queryParams: {productId: id}}).then();
   }
 }

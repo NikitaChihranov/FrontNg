@@ -1,0 +1,5 @@
+<h2>Add comments</h2>
+<form #commentForm="ngForm" (submit)="createComment(commentForm)">
+  <input type="text" name="text" ngModel>
+  <button>Send</button>
+</form>

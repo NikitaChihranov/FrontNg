@@ -4,44 +4,27 @@
   <h1>Nothing found</h1>
 </div>
 <div *ngIf="noFound === 0">
-<h2>{{product.title}}</h2>
-<ul>
-  <h3>Information:</h3>
-  <li>Price: {{product.price}}</li>
-  <li>About: {{product.about.all}}</li>
-  <li>Colors: {{product.colors}}</li>
-  <li *ngFor="let photo of product.photos">
-    <img [src]="'http://localhost:3000/photos/' + photo">
-  </li>
-  <li>Quantity: {{product.quantity}}</li>
-  <li>Date: {{product.date}}</li>
-  <li>Category: {{product.category}}</li>
-  <li>Producer: {{product.producer}}</li>
-</ul>
-<div *ngIf="authorizedUser && authorizedUser.superAdmin === false">
-  <a (click)="createOrder(product._id)">Order this product</a>
-</div>
-<h3>Comments:</h3>
-{{noCommentsMsg}}
-<div *ngFor="let comment of comments">
-  {{comment.text}}
-  <br>
-  <h3>Author: {{comment.user}}</h3>
-  <h5>Date: {{comment.date | date: 'medium'}}</h5>
-  <div *ngIf="authorizedUser&&authorizedUser.admin === true">
-    <button (click)="deleteComment(comment._id)">Delete</button>
+  <h2>{{product.title}}</h2>
+  <app-each-product-in-view [product]="product"></app-each-product-in-view>
+  <div *ngIf="authorizedUser && authorizedUser.superAdmin === false">
+    <a (click)="createOrder(product._id)">Order this product</a>
   </div>
-  <hr>
-</div>
-<div *ngIf="authorizedUser">
-  <h2>Add comments</h2>
-  <form #commentForm="ngForm" (submit)="createComment(commentForm)">
-    <input type="text" name="text" ngModel>
-    <button>Send</button>
-  </form>
-</div>
-<div *ngIf="!authorizedUser">
-  <h2>Sign up to add comment or create order.</h2>
-  <a routerLink="/users">Sign in</a>
-</div>
+  <h3>Comments:</h3>
+  {{noCommentsMsg}}
+  <app-each-comment
+    *ngFor="let comment of comments"
+    [authorizedUser]="authorizedUser"
+    [comment]="comment"
+    (deleteClicked)="deleteComment(comment._id)">
+  </app-each-comment>
+  <app-add-comments
+    *ngIf="authorizedUser"
+    [product]="product"
+    [authorizedUser]="authorizedUser"
+    (create)="createComment()">
+  </app-add-comments>
+  <div *ngIf="!authorizedUser">
+    <h2>Sign up to add comment or create order.</h2>
+    <a routerLink="/users">Sign in</a>
+  </div>
 </div>

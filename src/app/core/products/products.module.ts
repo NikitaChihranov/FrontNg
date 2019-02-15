@@ -12,6 +12,9 @@ import {UpdatedProductComponent} from './updated-product/updated-product.compone
 import {EachProductComponent} from './each-product/each-product.component';
 import {AllProductsDeleteAllProductsComponent} from './all-products-delete-all-products/all-products-delete-all-products.component';
 import {AllProductsCreateProductComponent} from './all-products-create-product/all-products-create-product.component';
+import {EachCommentComponent} from './view-product/each-comment/each-comment.component';
+import {AddCommentsComponent} from './view-product/add-comments/add-comments.component';
+import {EachProductInViewComponent} from './view-product/each-product-in-view/each-product-in-view.component';
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -22,7 +25,10 @@ import {AllProductsCreateProductComponent} from './all-products-create-product/a
     UpdatedProductComponent,
     EachProductComponent,
     AllProductsDeleteAllProductsComponent,
-    AllProductsCreateProductComponent
+    AllProductsCreateProductComponent,
+    EachCommentComponent,
+    AddCommentsComponent,
+    EachProductInViewComponent
   ],
   imports: [
     CommonModule,

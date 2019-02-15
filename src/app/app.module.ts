@@ -16,6 +16,9 @@ import {GlobalSearchComponent} from './main-menu/global-search/global-search.com
 import { CreateAComponent } from './core/about/create-a/create-a.component';
 import { UpdateComponent } from './core/about/update/update.component';
 import { AboutItselfComponent } from './core/about/about-itself/about-itself.component';
+import { EachCommentComponent } from './core/products/view-product/each-comment/each-comment.component';
+import { AddCommentsComponent } from './core/products/view-product/add-comments/add-comments.component';
+import { EachProductInViewComponent } from './core/products/view-product/each-product-in-view/each-product-in-view.component';
 
 
 @NgModule({
