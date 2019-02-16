@@ -1,8 +1,14 @@
-<br>
-<a routerLink="/categories">Back</a>
-<div *ngIf="noFound === 1 ">
-  <h1>Nothing found</h1>
-</div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col">
+      <button routerLink="/categories" class="btn btn-lg btn-dark">Back</button>
+    </div>
+  </div>
+  <div *ngIf="noFound === 1 " class="row">
+    <div class="col mt-33">
+      <h1>Nothing found</h1>
+    </div>
+  </div>
 <div *ngIf="noFound === 0">
   <h2>{{product.title}}</h2>
   <app-each-product-in-view [product]="product"></app-each-product-in-view>
@@ -27,4 +33,5 @@
     <h2>Sign up to add comment or create order.</h2>
     <a routerLink="/users">Sign in</a>
   </div>
+</div>
 </div>

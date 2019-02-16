@@ -1,18 +1,34 @@
-<a routerLink="/categories">Back</a>
-<h1>All products</h1>
-<ul *ngFor="let product of data">
-  <h3 class="productTitle" (click)="viewProduct(product.title)">{{product.title}}</h3>
-  <li>Price: {{product.price}}</li>
-  <li>About short: {{product.about.short}}</li>
-  <li>About: {{product.about.all}}</li>
-  <li><h2>Photos</h2>
-    <div *ngFor="let link of product.photos">
-      <img [src]="'http://localhost:3000/photos/' + link">
+<div class="container pb-5">
+<div class="row mt-5">
+  <button routerLink="/categories" class="btn btn-lg btn-dark">Back</button>
+</div>
+  <div class="row">
+    <h1 class="float-center mt-3 mb-2">All products</h1>
+  </div>
+  <div class="row">
+    <div *ngFor="let product of data" class="card ml-5 mt-3 d-inline-flex" style="width: 18rem;">
+      <img class="productTitle card-img-top" (click)="viewProduct(product.title)" style="width: 18rem; height: auto;" [src]="'http://localhost:3000/photos/' + product.photos[0]" alt="No photo">
+      <div class="card-body">
+        <h3 (click)="viewProduct(product.title)" class="productTitle card-title">{{product.title}}</h3>
+        <p class="card-text">{{product.about.short}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><span id="sp">{{product.colors}}</span></li>
+        <li class="list-group-item">{{product.price}},-</li>
+      </ul>
     </div>
-  </li>
-  <li>Colors: {{product.colors}}</li>
-  <li>Quantity: {{product.quantity}}</li>
-  <li>Category: {{product.category}}</li>
-  <li>Producer: {{product.producer}}</li>
-  <hr>
-</ul>
+  </div>
+  <!--<h3 class="productTitle">{{product.title}}</h3>-->
+  <!--<li>Price: {{product.price}}</li>-->
+  <!--<li>About short: {{product.about.short}}</li>-->
+  <!--<li>About: {{product.about.all}}</li>-->
+  <!--<li><h2>Photos</h2>-->
+      <!--<img [src]="'http://localhost:3000/photos/' + product.photos[0]">-->
+  <!--</li>-->
+  <!--<li>Colors: {{product.colors}}</li>-->
+  <!--<li>Quantity: {{product.quantity}}</li>-->
+  <!--<li>Category: {{product.category}}</li>-->
+  <!--<li>Producer: {{product.producer}}</li>-->
+  <!--<hr>-->
+<!--</ul>-->
+</div>

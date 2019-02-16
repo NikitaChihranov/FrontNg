@@ -9,3 +9,6 @@ img{
 .productTitle:hover{
   cursor: pointer;
 }
+#sp{
+  font-size: 17px;
+}
