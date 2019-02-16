@@ -1,11 +1,19 @@
 <div class="container">
-  <app-all-categories></app-all-categories>
-  <div *ngIf="authorizedUser&&authorizedUser.admin === true">
-    <br>
-    <a routerLink="createCategory">Create category</a>
-    <br>
+  <div class="row mt-5">
+    <div class="col">
+      <app-all-categories></app-all-categories>
+    </div>
   </div>
-  <span *ngIf="authorizedUser&&authorizedUser.admin === true">
-    <button (click)="deleteAllCategories()">Delete all categories</button>
-</span>
+  <div class="row mt-5 mb-2">
+    <div class="col"
+         *ngIf="authorizedUser&&authorizedUser.admin === true">
+      <a routerLink="createCategory" class="btn btn-outline-dark">Create category</a>
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-dark"
+              *ngIf="authorizedUser&&authorizedUser.admin === true"
+              (click)="deleteAllCategories()">Delete all categories
+      </button>
+    </div>
+  </div>
 </div>
