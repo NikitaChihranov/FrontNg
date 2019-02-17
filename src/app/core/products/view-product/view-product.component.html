@@ -10,34 +10,35 @@
     </div>
   </div>
   <div *ngIf="noFound === 0">
-  <div class="row mt-3">
+    <div class="row mt-3">
       <h1 class="mx-auto">{{product.title}}</h1>
-  </div>
+    </div>
     <div class="row d-block w-100">
       <div class="col">
         <app-each-product-in-view [product]="product"></app-each-product-in-view>
       </div>
     </div>
-  <div *ngIf="authorizedUser && authorizedUser.superAdmin === false">
-    <a (click)="createOrder(product._id)">Order this product</a>
+    <div *ngIf="authorizedUser && authorizedUser.superAdmin === false">
+      <a (click)="createOrder(product._id)">Order this product</a>
+    </div>
+    <h4>Comments:</h4>
+    {{noCommentsMsg}}
+    <app-each-comment
+      *ngFor="let comment of comments"
+      [authorizedUser]="authorizedUser"
+      [comment]="comment"
+      (deleteClicked)="deleteComment(comment._id)">
+    </app-each-comment>
+    <app-add-comments
+      *ngIf="authorizedUser"
+      [product]="product"
+      [authorizedUser]="authorizedUser"
+      (create)="createComment()">
+    </app-add-comments>
+    <div *ngIf="!authorizedUser">
+      <h2>Sign up to add comment or create order.
+      </h2>
+      <button class="btn btn-dark mb-3" routerLink="/users">Sign in</button>
+    </div>
   </div>
-  <h3>Comments:</h3>
-  {{noCommentsMsg}}
-  <app-each-comment
-    *ngFor="let comment of comments"
-    [authorizedUser]="authorizedUser"
-    [comment]="comment"
-    (deleteClicked)="deleteComment(comment._id)">
-  </app-each-comment>
-  <app-add-comments
-    *ngIf="authorizedUser"
-    [product]="product"
-    [authorizedUser]="authorizedUser"
-    (create)="createComment()">
-  </app-add-comments>
-  <div *ngIf="!authorizedUser">
-    <h2>Sign up to add comment or create order.</h2>
-    <a routerLink="/users">Sign in</a>
-  </div>
-</div>
 </div>

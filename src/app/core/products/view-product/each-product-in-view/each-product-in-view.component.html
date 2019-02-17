@@ -1,5 +1,5 @@
 <br>
-<p class="mx-auto">{{product.about.all}}</p>
+<p class="text-justify">{{product.about.all}}</p>
 <span *ngIf="product.photos != ''">
   <div *ngFor="let photo of product.photos" class="d-inline-flex ml-3">
     <img style="width:500px; height: 300px;" [src]="'http://localhost:3000/photos/' + photo">
@@ -12,3 +12,4 @@
 <h6>Producer: <span class="h5">{{product.producer}}</span></h6>
 <h2 class="float-right font-weight-bold">{{product.price}},-</h2>
 <br>
+<hr>
