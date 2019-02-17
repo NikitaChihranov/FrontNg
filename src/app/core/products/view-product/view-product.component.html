@@ -5,13 +5,19 @@
     </div>
   </div>
   <div *ngIf="noFound === 1 " class="row">
-    <div class="col mt-33">
+    <div class="col mt-3">
       <h1>Nothing found</h1>
     </div>
   </div>
-<div *ngIf="noFound === 0">
-  <h2>{{product.title}}</h2>
-  <app-each-product-in-view [product]="product"></app-each-product-in-view>
+  <div *ngIf="noFound === 0">
+  <div class="row mt-3">
+      <h1 class="mx-auto">{{product.title}}</h1>
+  </div>
+    <div class="row d-block w-100">
+      <div class="col">
+        <app-each-product-in-view [product]="product"></app-each-product-in-view>
+      </div>
+    </div>
   <div *ngIf="authorizedUser && authorizedUser.superAdmin === false">
     <a (click)="createOrder(product._id)">Order this product</a>
   </div>

@@ -8,7 +8,8 @@ import {Product} from '../../../models/product';
 })
 export class EachProductInViewComponent implements OnInit {
   @Input() product: Product;
-  constructor() { }
+  constructor() {
+     }
 
   ngOnInit() {
   }
