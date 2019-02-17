@@ -20,8 +20,9 @@ export class AddCommentsComponent implements OnInit {
   }
 
   createComment(form) {
-    this.commentService.createComment(form.value, this.authorizedUser.login, this.product._id).subscribe(() => {
+    this.commentService.createComment(form.value, this.authorizedUser.login, this.product._id).subscribe((res) => {
      this.create.emit();
+     console.log(res);
     });
   }
 

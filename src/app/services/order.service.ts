@@ -32,6 +32,7 @@ export class OrderService {
     order.name = user.firstName;
     order.totalPrice = productTitle.price;
     order.userId = user._id;
+    order.date = Date.now();
     return this.http.post<Order>(`${this.host}orders`, order);
   }
   updateOrder(order: Order): Observable<Order> {

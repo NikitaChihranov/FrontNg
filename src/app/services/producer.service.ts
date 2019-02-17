@@ -25,6 +25,7 @@ export class ProducerService {
   }
   createProducer(producer: Producer, id: string): Observable<Producer> {
     producer.userIdAuthor = id;
+    producer.date = Date.now();
     return this.http.post<Producer>(`${this.host}producers`, producer);
   }
   updateProducer(id: string, producer: Producer): Observable<Producer> {

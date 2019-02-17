@@ -11,9 +11,7 @@ export class Product {
     public colors?: string,
     public photos?: string[],
     public quantity?: number,
-    public date?: {
-      type: string,
-    },
+    public date?: any,
     public category?: string,
     public producer?: string,
   )

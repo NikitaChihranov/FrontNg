@@ -9,7 +9,7 @@ export class Producer {
     public photo?: string,
     public country?: string,
     public userIdAuthor?: string,
-    public date?: string
+    public date?: any
   )
   {
   }

@@ -13,6 +13,7 @@ export class EachCommentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.comment);
   }
   deleteComment(){
     this.deleteClicked.emit();

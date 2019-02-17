@@ -3,7 +3,7 @@ export class Order {
     public _id: string,
     public userId: string,
     public product?: string,
-    public date?: string,
+    public date?: any,
     public name?: string,
     public surname?: string,
     public addressDelivery?: string,

@@ -23,6 +23,7 @@ export class CategoriesService {
   }
   createCategory(category: Category, id: string): Observable<Category> {
     category.userIdAuthor = id;
+    category.date = Date.now();
     return this.http.post<Category>(`${this.host}categories`, category);
   }
 

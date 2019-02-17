@@ -23,6 +23,7 @@ export class CommentService {
   createComment(comment: Comment, user: string, productId: string): Observable<Comment> {
     comment.user = user;
     comment.product = productId;
+    comment.date = Date.now();
     return this.http.post<Comment>(`${this.host}comments`, comment);
   }
   deleteCommentById(id: string): Observable<Comment> {

@@ -26,6 +26,7 @@ export class ProductService {
   }
   createProduct(product: Product, id: string): Observable<Product> {
     product.userIdAuthor = id;
+    product.date = Date.now();
     return this.http.post<Product>(`${this.host}products`, product);
   }
 
