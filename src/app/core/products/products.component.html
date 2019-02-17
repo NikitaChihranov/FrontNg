@@ -3,7 +3,7 @@
     <product
       [products]="products"
       [authorizedUser]="authorizedUser"
-      (productToDelete)="deleteProduct(product._id)">
+      (productToDelete)="deleteProduct($event)">
     </product>
   </div>
   <div *ngIf="authorizedUser&&authorizedUser.admin === true" class="row mt-3 mb-2">
