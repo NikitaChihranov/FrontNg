@@ -6,7 +6,7 @@
     <h1 class="float-center mt-3 mb-2">All products</h1>
   </div>
   <div class="row mx-auto">
-    <div *ngFor="let product of data" class="card ml-5 mt-3 mx-auto d-inline-flex" style="width: 18rem;">
+    <div *ngFor="let product of data" class="card ml-5 mt-3 d-inline-flex" style="width: 18rem;">
       <img class="productTitle card-img-top" (click)="viewProduct(product.title)" style="width: 18rem; height: auto;" [src]="'http://localhost:3000/photos/' + product.photos[0]" alt="No photo">
       <div class="card-body">
         <h3 (click)="viewProduct(product.title)" class="productTitle card-title">{{product.title}}</h3>
@@ -18,17 +18,4 @@
       </ul>
     </div>
   </div>
-  <!--<h3 class="productTitle">{{product.title}}</h3>-->
-  <!--<li>Price: {{product.price}}</li>-->
-  <!--<li>About short: {{product.about.short}}</li>-->
-  <!--<li>About: {{product.about.all}}</li>-->
-  <!--<li><h2>Photos</h2>-->
-      <!--<img [src]="'http://localhost:3000/photos/' + product.photos[0]">-->
-  <!--</li>-->
-  <!--<li>Colors: {{product.colors}}</li>-->
-  <!--<li>Quantity: {{product.quantity}}</li>-->
-  <!--<li>Category: {{product.category}}</li>-->
-  <!--<li>Producer: {{product.producer}}</li>-->
-  <!--<hr>-->
-<!--</ul>-->
 </div>

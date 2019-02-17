@@ -1,5 +1,7 @@
-<h2>Add comments</h2>
+<h4>Add comments</h4>
 <form #commentForm="ngForm" (submit)="createComment(commentForm)">
-  <input type="text" name="text" ngModel>
-  <button>Send</button>
+  <div class="input-group w-50 mb-3">
+    <input type="text" ngModel name="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+    <button class="btn btn-outline-dark ml-1">Send</button>
+  </div>
 </form>

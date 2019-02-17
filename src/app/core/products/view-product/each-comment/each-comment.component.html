@@ -3,6 +3,6 @@
 <p class="font-weight-light mb-1 text-right">{{comment.user}}</p>
 <h5 class=" mt-0 blockquote-footer font-italic text-right ">{{comment.date | date: 'medium'}}</h5>
 <div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <button (click)="deleteComment()">Delete</button>
+  <button class="btn btn-dark" (click)="deleteComment()">Delete</button>
 </div>
 <hr>

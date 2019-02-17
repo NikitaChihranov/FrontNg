@@ -12,7 +12,7 @@ import {User} from '../../models/user';
 })
 export class EachProductComponent implements OnInit {
   @Input() authorizedUser: User;
-  @Input() product;
+  @Input() products;
   @Output() productToDelete = new EventEmitter();
 
   constructor(

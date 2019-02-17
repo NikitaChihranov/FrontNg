@@ -1,35 +1,93 @@
-<a routerLink="/products">Back</a>
-<form #aaa="ngForm" (ngSubmit)="createProduct(aaa)" enctype="multipart/form-data">
-  <label>Title: </label>
-  <input type="text" name="title" ngModel>
-  <br>
-  <label>Price: </label>
-  <input type="text" name="price" ngModel>
-  <br>
-  <label>About All: </label>
-  <input type="text" name="about.all" ngModel><br>
-  <label>About Short: </label>
-  <input type="text" name="about.short" ngModel><br>
-  <label>Colors: </label>
-  <input type="text" name="colors" ngModel><br>
-  <label>Photos: </label>
-  <input
-    type="file"
-    name="photos"
-    (change)="fileChangeEvent($event)"
-    multiple="true"
-    ngModel
-  ><br>
-  <label>Quantity: </label>
-  <input type="text" name="quantity" ngModel><br>
-  <label>Category: </label>
-  <select name="category" ngModel>
-    <option *ngFor="let category of categories">{{category.title}} </option>
-  </select>
-  <br>
-  <label>Producer: </label>
-  <select name="producer" ngModel>
-    <option *ngFor="let producer of producers">{{producer.title}}</option>
-  </select>
-  <button type="submit">Send</button>
-</form>
+<div class="container pt-3">
+  <div class="row">
+    <button routerLink="/products" class="btn btn-lg btn-dark">Back</button>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <form #aaa="ngForm" (ngSubmit)="createProduct(aaa)" enctype="multipart/form-data">
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Title</span>
+          </div>
+          <input type="text" name="title" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon2">Price</span>
+          </div>
+          <input type="text" name="price" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon2">
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">All about</span>
+          </div>
+          <input type="text" name="about.all" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon4">Short about</span>
+          </div>
+          <input type="text" name="about.short" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon4">
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon5">Colors</span>
+          </div>
+          <input type="text" name="colors" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon5">
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Photos</span>
+          </div>
+          <div class="custom-file ">
+            <input type="file" name="photos"
+                   (change)="fileChangeEvent($event)"
+                   multiple="true"
+                   ngModel class="custom-file-input" id="inputGroupFile01">
+            <label class="custom-file-label" for="inputGroupFile01">Add photos</label>
+          </div>
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon6">Quantity</span>
+          </div>
+          <input type="text" name="quantity" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon6">
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Category</label>
+          </div>
+          <select name="category" ngModel class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose category</option>
+            <option *ngFor="let category of categories">{{category.title}} </option>
+          </select>
+        </div>
+        <!--<label>Category: </label>-->
+        <!--<select name="category" ngModel>-->
+          <!--<option *ngFor="let category of categories">{{category.title}} </option>-->
+        <!--</select>-->
+        <!--<br>-->
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect02">Producer</label>
+          </div>
+          <select name="producer" ngModel class="custom-select" id="inputGroupSelect02">
+            <option selected>Choose producer</option>
+            <option *ngFor="let producer of producers">{{producer.title}} </option>
+          </select>
+        </div>
+        <!--<label>Producer: </label>-->
+        <!--<select name="producer" ngModel>-->
+          <!--<option *ngFor="let producer of producers">{{producer.title}}</option>-->
+        <!--</select>-->
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,15 @@
+li {
+  font-family: Verdana;
+  font-size: 15pt;
+}
 img{
-  width: 200px;
-  height: 150px;
+  width: 400px;
+  height: 250px;
 }
 .productTitle:hover{
   cursor: pointer;
 }
+#sp{
+  font-size: 17px;
+}
+

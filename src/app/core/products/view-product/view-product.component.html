@@ -3,6 +3,11 @@
     <div class="col">
       <button routerLink="/categories" class="btn btn-lg btn-dark">Back</button>
     </div>
+    <div class="col">
+    <div class="text-right" *ngIf="authorizedUser && authorizedUser.superAdmin === false">
+    <button class="btn btn-lg btn-dark" (click)="createOrder(product._id)">Make order</button>
+    </div>
+    </div>
   </div>
   <div *ngIf="noFound === 1 " class="row">
     <div class="col mt-3">
@@ -10,16 +15,13 @@
     </div>
   </div>
   <div *ngIf="noFound === 0">
-    <div class="row mt-3">
+    <div class="row">
       <h1 class="mx-auto">{{product.title}}</h1>
     </div>
     <div class="row d-block w-100">
       <div class="col">
         <app-each-product-in-view [product]="product"></app-each-product-in-view>
       </div>
-    </div>
-    <div *ngIf="authorizedUser && authorizedUser.superAdmin === false">
-      <a (click)="createOrder(product._id)">Order this product</a>
     </div>
     <h4>Comments:</h4>
     {{noCommentsMsg}}
@@ -36,8 +38,8 @@
       (create)="createComment()">
     </app-add-comments>
     <div *ngIf="!authorizedUser">
-      <h2>Sign up to add comment or create order.
-      </h2>
+      <h5 class="mt-2">Sign up to add comment or create order.
+      </h5>
       <button class="btn btn-dark mb-3" routerLink="/users">Sign in</button>
     </div>
   </div>
