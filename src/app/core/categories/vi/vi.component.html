@@ -7,7 +7,7 @@
   </div>
   <div class="row mx-auto">
     <div *ngFor="let product of data" class="card ml-5 mt-3 d-inline-flex" style="width: 18rem;">
-      <img class="productTitle card-img-top" (click)="viewProduct(product.title)" style="width: 18rem; height: auto;" [src]="'http://localhost:3000/photos/' + product.photos[0]" alt="No photo">
+      <img class="productTitle card-img-top" (click)="viewProduct(product.title)" style="width: 18rem; height: 12rem;" [src]="'http://localhost:3000/photos/' + product.photos[0]" alt="No photo">
       <div class="card-body">
         <h3 (click)="viewProduct(product.title)" class="productTitle card-title">{{product.title}}</h3>
         <p class="card-text">{{product.about.short}}</p>

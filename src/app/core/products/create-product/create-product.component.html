@@ -68,11 +68,6 @@
             <option *ngFor="let category of categories">{{category.title}} </option>
           </select>
         </div>
-        <!--<label>Category: </label>-->
-        <!--<select name="category" ngModel>-->
-          <!--<option *ngFor="let category of categories">{{category.title}} </option>-->
-        <!--</select>-->
-        <!--<br>-->
         <div class="input-group mb-3 w-50 mx-auto">
           <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect02">Producer</label>
@@ -82,11 +77,9 @@
             <option *ngFor="let producer of producers">{{producer.title}} </option>
           </select>
         </div>
-        <!--<label>Producer: </label>-->
-        <!--<select name="producer" ngModel>-->
-          <!--<option *ngFor="let producer of producers">{{producer.title}}</option>-->
-        <!--</select>-->
-        <button type="submit">Send</button>
+        <div class="text-center">
+        <button class="btn btn-lg mt-1 mb-3 btn-outline-dark" type="submit">Send</button>
+        </div>
       </form>
     </div>
   </div>
