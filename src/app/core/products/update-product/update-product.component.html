@@ -4,7 +4,7 @@
 </div>
   <div class="row mt-3">
     <div class="col">
-<form #updateForm="ngForm" (ngSubmit)="updateProduct(updateForm)">
+<form #updateForm="ngForm" (ngSubmit)="updateProduct(updateForm)" enctype="multipart/form-data">
   <div class="input-group mb-3 w-50 mx-auto">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">Title</span>
@@ -44,7 +44,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text">Photos</span>
     </div>
-    <div class="custom-file ">
+    <div class="custom-file">
       <input type="file" name="photos"
              (change)="fileUpdateEvent($event)"
              multiple="true"
@@ -78,7 +78,7 @@
     </select>
   </div>
   <div class="text-center">
-    <button class="btn btn-lg mt-1 mb-3 btn-outline-dark" type="submit">Send</button>
+    <button class="btn btn-lg mt-1 mb-3 btn-outline-dark" type="submit">Update</button>
   </div>
 </form>
     </div>

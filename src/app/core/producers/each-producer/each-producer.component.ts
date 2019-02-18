@@ -11,7 +11,7 @@ import {User} from '../../models/user';
   styleUrls: ['./each-producer.component.css']
 })
 export class EachProducerComponent implements OnInit {
-  @Input() producer: Producer;
+  @Input() producers: Producer[];
   @Input() authorizedUser: User;
   @Output() prod = new EventEmitter();
   constructor(
@@ -24,8 +24,8 @@ export class EachProducerComponent implements OnInit {
   viewAllProductsByProducer(id) {
     this.router.navigate(['/producers/viewAll'], {queryParams: {id: JSON.stringify(id)}}).then();
   }
-  deleteProducer(){
-    this.prod.emit();
+  deleteProducer(id){
+    this.prod.emit(id);
   }
   updateProducer(id) {
     this.router.navigate(['/producers/update'], {queryParams: {id: JSON.stringify(id)}}).then();

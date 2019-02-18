@@ -1,9 +1,61 @@
-<a routerLink="/producers">Back</a>
-<form #producerForm="ngForm" (ngSubmit)="createProducer(producerForm)" enctype="multipart/form-data">
-  Title: <input type="text" name="title" ngModel><br>
-  Short about: <input type="text" name="about.short" ngModel><br>
-  All about: <input type="text" name="about.all" ngModel><br>
-  Photo:<input type="file" name="photo" (change)="fileChangeEvent($event)" ngModel><br>
-  Country: <input type="text" name="country" ngModel><br>
-  <button type="submit">Create</button>
-</form>
+<div class="container pb-5">
+  <div class="row mt-5">
+    <button routerLink="/producers" class="btn btn-lg btn-dark">Back</button>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <form #producerForm="ngForm" (ngSubmit)="createProducer(producerForm)" enctype="multipart/form-data">
+       <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Title</span>
+          </div>
+          <input type="text" name="title" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon2">Short about</span>
+          </div>
+          <input type="text" name="about.short" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon2">
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">All about</span>
+          </div>
+          <input type="text" name="about.all" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Photo</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" name="photo"
+                   (change)="fileChangeEvent($event)"
+                   ngModel class="custom-file-input" id="inputGroupFile01">
+            <label class="custom-file-label" for="inputGroupFile01">Add photo</label>
+          </div>
+        </div>
+        <div class="input-group mb-3 w-50 mx-auto">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon6">Country</span>
+          </div>
+          <input type="text" name="country" ngModel class="form-control" aria-label="Username"
+                 aria-describedby="basic-addon6">
+        </div>
+        <div class="text-center">
+          <button class="btn btn-lg mt-1 mb-3 btn-outline-dark" type="submit">Send</button>
+        </div>
+      </form>
+    <!--Title: <input type="text" name="title" ngModel><br>-->
+    <!--Short about: <input type="text" name="about.short" ngModel><br>-->
+    <!--All about: <input type="text" name="about.all" ngModel><br>-->
+    <!--Photo:<input type="file" name="photo" (change)="fileChangeEvent($event)" ngModel><br>-->
+    <!--Country: <input type="text" name="country" ngModel><br>-->
+    <!--<button type="submit">Create</button>-->
+  <!---->
+<!--</div>-->
+    </div>
+  </div>
+</div>

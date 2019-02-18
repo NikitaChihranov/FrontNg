@@ -7,10 +7,10 @@
   <div class="row text-center mt-5 mb-2">
     <div class="col"
          *ngIf="authorizedUser&&authorizedUser.admin === true">
-      <a routerLink="createCategory" class="btn btn-outline-dark">Create category</a>
+      <button routerLink="createCategory" class="btn btn-outline-dark">Create category</button>
     </div>
     <div class="col">
-      <button class="btn btn-outline-dark"
+      <button class="btn btn-outline-danger"
               *ngIf="authorizedUser&&authorizedUser.admin === true"
               (click)="deleteAllCategories()">Delete all categories
       </button>

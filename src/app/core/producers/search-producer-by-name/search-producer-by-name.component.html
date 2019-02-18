@@ -1,11 +1,17 @@
-<a routerLink="/producers">Back</a>
-<div *ngIf="producer">
-  <h3>Title:</h3>{{producer.title}}
-  <h3>Short about:</h3>{{producer.about.short}}
-  <h3>About:</h3>{{producer.about.all}}
-  <h3>Photo:
-    <img [src]="'http://localhost:3000/ProducerPhotos/' + producer.photo">
-  </h3>
-  <h3>Country:</h3>{{producer.country}}
+<div class="container">
+<div class="row mt-5">
+  <button routerLink="/producers" class="btn btn-lg btn-dark">Back</button>
 </div>
-<h2>{{msg}}</h2>
+<div class="w-100" *ngIf="producer">
+  <h2 class="title text-center mb-3">{{producer.title}} </h2>
+  <h4 class="text-center">
+    <img *ngIf="producer.photo !== '' && producer.photo !== 'no photo'"
+         style="width: 25rem; height: auto;"
+         [src]="'http://localhost:3000/ProducerPhotos/' + producer.photo">
+  </h4>
+  <p class="text-justify"><span class="h4">Short about:</span><br>{{producer.about.short}}</p>
+  <p class="text-justify"><span class="h4">All about:</span><br>{{producer.about.all}}</p>
+  <h3 class="text-right text-muted">{{producer.country}}</h3>
+</div>
+  <h1 class="mt-2">{{msg}}</h1>
+</div>

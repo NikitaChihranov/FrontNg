@@ -1,4 +1,11 @@
-<h2>Search
-  <input type="text" #name (input)="getValue(name)">
-  <button [disabled]="inputValue === ''" (click)="getProducerByName(name)">Search</button>
-</h2>
+<div class="input-group w-50 mt-3 mb-3">
+  <input type="text"
+         class="form-control mr-1"
+         #name
+         (input)="getValue(name)"
+         placeholder="Title">
+  <button [disabled]="inputValue === ''"
+          (click)="getProducerByName(name)"
+          class="btn btn-outline-danger">Search
+  </button>
+</div>

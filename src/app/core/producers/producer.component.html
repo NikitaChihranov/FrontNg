@@ -1,7 +1,20 @@
-<h1>Producers</h1>
-<searchProducer></searchProducer>
-<eachProducer [authorizedUser]="authorizedUser" [producer]="producer" (prod)="deleteProducer(producer._id)" *ngFor="let producer of producers"></eachProducer>
-<div *ngIf="authorizedUser && authorizedUser.admin === true">
-  <h3 (click)="createProducer()">Create new producer</h3>
-  <deleteAll *ngIf="authorizedUser.superAdmin === true" (deleteAll)="deleteAllProducers()"></deleteAll>
+<div class="container">
+  <div class="row p-0">
+    <div class="col">
+      <searchProducer></searchProducer>
+    </div>
+  </div>
+  <eachProducer
+    [authorizedUser]="authorizedUser"
+    [producers]="producers"
+    (prod)="deleteProducer($event)">
+  </eachProducer>
+  <div class="row text-center mb-2" *ngIf="authorizedUser&&authorizedUser.admin === true">
+    <div class="col">
+      <button class="btn btn-lg btn-outline-dark" (click)="createProducer()">Create new producer</button>
+    </div>
+    <div class="col">
+      <deleteAll *ngIf="authorizedUser.superAdmin === true" (deleteAll)="deleteAllProducers()"></deleteAll>
+    </div>
+  </div>
 </div>

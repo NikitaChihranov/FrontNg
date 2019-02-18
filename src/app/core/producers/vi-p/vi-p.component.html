@@ -1,20 +1,20 @@
-<a routerLink="/producers">Back</a>
-  <div>
-    <ul *ngFor="let product of products">
-      <h3 class="productTitle" (click)="viewProduct(product._id)">{{product.title}}</h3>
-      <li>Price: {{product.price}}</li>
-      <li>About short: {{product.about.short}}</li>
-      <li>About: {{product.about.all}}</li>
-      <li>Colors: {{product.colors}}</li>
-      <li><h2>Photos</h2>
-        <div *ngFor="let link of product.photos">
-          <img [src]="'http://localhost:3000/photos/' + link">
-        </div>
-      </li>
-      <li>Quantity: {{product.quantity}}</li>
-      <li>Category: {{product.category}}</li>
-      <li>Producer: {{product.producer}}</li>
-      <hr>
-    </ul>
+<div class="container pb-5">
+  <div class="row mt-5">
+    <button routerLink="/producers" class="btn btn-lg btn-dark">Back</button>
   </div>
-<h2>{{msg}}</h2>
+  <div class="row">
+    <div *ngFor="let product of products" class="card ml-5 mt-3 d-inline-flex" style="width: 18rem;">
+      <img class="productTitle card-img-top" (click)="viewProduct(product._id)" style="width: 18rem; height: 12rem;"
+           [src]="'http://localhost:3000/photos/' + product.photos[0]" alt="No photo">
+      <div class="card-body">
+        <h3 (click)="viewProduct(product._id)" class="productTitle card-title">{{product.title}}</h3>
+        <p class="card-text">{{product.about.short}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><span id="sp">{{product.colors}}</span></li>
+        <li class="list-group-item">{{product.price}},-</li>
+      </ul>
+    </div>
+  </div>
+  <h2>{{msg}}</h2>
+</div>
