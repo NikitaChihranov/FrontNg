@@ -1,11 +1,20 @@
-<app-signin></app-signin>
-<app-get-all-users [authorizedUser]="authorizedUser" *ngIf="authorizedUser&&authorizedUser.admin === true"></app-get-all-users>
-  <app-search-user *ngIf="authorizedUser&&authorizedUser.admin === true"></app-search-user>
-<div *ngIf="authorizedUser&&authorizedUser.admin === true">
-    <h1 class="link" (click)="createUser()">Create user</h1>
-  <h1 class="link" (click)="createAdmin()">Create admin</h1>
+<div class="container">
+  <div class="row">
+    <div class="col mt-5">
+      <app-signin></app-signin>
+    </div>
+  </div>
+  <div class="row">
+    <app-get-all-users [authorizedUser]="authorizedUser" *ngIf="authorizedUser&&authorizedUser.admin === true"></app-get-all-users>
+    <app-search-user *ngIf="authorizedUser&&authorizedUser.admin === true"></app-search-user>
+    <div *ngIf="authorizedUser&&authorizedUser.admin === true">
+      <h1 class="link" (click)="createUser()">Create user</h1>
+      <h1 class="link" (click)="createAdmin()">Create admin</h1>
+    </div>
+    <app-user-info [authorizedUser]="authorizedUser" *ngIf="authorizedUser&&authorizedUser.admin === false"></app-user-info>
+    <div *ngIf="authorizedUser&&authorizedUser.superAdmin === false">
+      <button (click)="deleteProfile()">Delete profile</button>
+
+    </div>
 </div>
-  <app-user-info [authorizedUser]="authorizedUser" *ngIf="authorizedUser&&authorizedUser.admin === false"></app-user-info>
-<div *ngIf="authorizedUser&&authorizedUser.superAdmin === false">
-  <button (click)="deleteProfile()">Delete profile</button>
 </div>
