@@ -30,6 +30,7 @@ export class SigninComponent implements OnInit {
     });
   }
   ngOnInit() {
+
   }
   signIn(signForm) {
     this.userService.signIn(signForm.value.login, signForm.value.password).subscribe((res) => {
@@ -47,6 +48,7 @@ export class SigninComponent implements OnInit {
   }
   Register() {
     this.registerClicked = 1;
+    this.msg1='';
   }
 
   createUser(userForm) {
@@ -63,9 +65,7 @@ export class SigninComponent implements OnInit {
       }
     });
   }
-  logout() {
-    this.userService.dataSource.next(null);
-  }
+
   fileUploadEvent(event: any) {
     this.photosToUpload = (<any>event.target).files;
   }

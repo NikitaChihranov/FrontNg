@@ -1,21 +1,57 @@
-<a routerLink="/users">Back</a>
-<div *ngIf="user">
-  <h3>User:</h3>
-  <h4>Login: {{user.login}}</h4>
-  <h4>Password: {{user.password}}</h4>
-  <h4 *ngIf="user.firstName!= ''">Name: {{user.firstName}}</h4>
-  <h4 *ngIf="user.firstName === ''">Name: doesn't exist</h4>
-  <h4 *ngIf="user.firstName!= ''">Surname: {{user.surname}}</h4>
-  <h4 *ngIf="user.firstName=== ''">Surname: doesn't exist</h4>
-  <h4 *ngIf="user.phone!= ''">Phone number: {{user.phone}}</h4>
-  <h4 *ngIf="user.phone=== ''">Phone number: doesn`t exist</h4>
-  <h4 *ngIf="user.photo!='no photo'">Photo:
-    <img [src]="'http://localhost:3000/userPhotos/' + user.photo"></h4>
-  <h4 *ngIf="user.photo === 'no photo' || !user.photo">Photo: doesn`t exist</h4>
-  <h4 *ngIf="user.email!=''">Email: {{user.email}}</h4>
-  <h4 *ngIf="user.email === ''">Email: doesn`t exist</h4>
-  <h4 *ngIf="user.adress != ''">Adress: {{user.adress}}</h4>
-  <h4 *ngIf="user.adress === ''">Adress: doesn`t exist</h4>
-  <h4>Admin: {{user.admin}}</h4>
+<div class="container pt-2">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-lg btn-dark" routerLink="/users">Back</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="user">
+    <div class="col">
+  <ul class="list-group mx-auto" style="width: 40%; font-size: 20px;">
+    <li class="list-group-item">
+      Login: {{user.login}}
+    </li>
+    <li class="list-group-item">
+      Password: {{user.password}}
+    </li>
+    <li class="list-group-item" *ngIf="user.firstName!==''">
+      Name: {{user.firstName}}
+    </li>
+    <li class="list-group-item" *ngIf="user.firstName==''">
+      Name: doesn't exist
+    </li>
+    <li class="list-group-item" *ngIf="user.surname!==''">
+      Surname: {{user.surname}}
+    </li>
+    <li class="list-group-item" *ngIf="user.surname==''">
+      Surname: doesn't exist
+    </li>
+    <li class="list-group-item" *ngIf="user.phone!==''">
+      Phone number: {{user.phone}}
+    </li>
+    <li class="list-group-item" *ngIf="user.phone==''">
+      Phone number: doesn't exist
+    </li>
+    <li class="list-group-item" *ngIf="user.photo!=='no photo'&&user.photo!==''">
+      Photo: <img style="width: 85%; height: auto;" [src]="'http://localhost:3000/userPhotos/' + user.photo">
+    </li>
+    <li class="list-group-item" *ngIf="user.photo === 'no photo' || user.photo === ''">
+      Photo: doesn't exist
+    </li>
+    <li class="list-group-item" *ngIf="user.email!==''">
+      Email: {{user.email}}
+    </li>
+    <li class="list-group-item" *ngIf="user.email === ''">
+      Email: doesn't exist
+    </li>
+    <li class="list-group-item" *ngIf="user.adress!==''">
+      Adress: {{user.adress}}
+    </li>
+    <li class="list-group-item" *ngIf="user.adress === ''">
+      Adress: doesn't exist
+    </li>
+  </ul>
 </div>
-<h2>{{msgFindByName}}</h2>
+  </div>
+  <h1 class="mt-2">{{msgFindByName}}</h1>
+</div>
+

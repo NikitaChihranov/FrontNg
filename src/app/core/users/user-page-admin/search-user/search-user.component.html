@@ -1,3 +1,12 @@
-<p>Search <input type="text" #getUser (input)="getValue(getUser)">
-  <button [disabled]="inputValue === ''" (click)="getUserByLogin(getUser)">Get user</button>
-</p>
+<div class="input-group w-50 mt-3 mb-3">
+  <input type="text"
+         class="form-control mr-1"
+         #name
+         (input)="getValue(name)"
+         placeholder="Login">
+  <button [disabled]="inputValue === ''"
+          (click)="getUserByLogin(name)"
+          class="btn btn-outline-danger">Search
+  </button>
+</div>
+

@@ -11,6 +11,7 @@ export class UserInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.authorizedUser);
   }
 
 }

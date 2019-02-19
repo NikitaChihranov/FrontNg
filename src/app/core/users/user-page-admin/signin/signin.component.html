@@ -24,41 +24,81 @@
   <input class="btn btn-dark"  type="button" (click)="Register()" value="Register">
 </h3>
 </form>
-<h2>{{msg1}}</h2>
+<h4 class="text-center" style="color: red;">{{msg1}}</h4>
 </div>
-<div *ngIf="authorizedUser">
-  <button (click)="logout()">Logout</button>
-</div>
-<div *ngIf="registerClicked === 1">
-  <h1>Create user</h1>
-  <br>
-  <form #form1="ngForm" (ngSubmit)="createUser(form1)" enctype="multipart/form-data">
-    <label> Login:</label>
-    <input type="text" name="login" ngModel>
-    <br>
-    <label>Password: </label>
-    <input type="password" name="password" ngModel>
-    <br>
-    <label>Name: </label>
-    <input type="text" name="firstName" ngModel>
-    <br>
-    <label>Surname: </label>
-    <input type="text" name="surname" ngModel>
-    <br>
-    <label>Phone Number: </label>
-    <input type="text" name="phone" ngModel>
-    <br>
-    <label>Photo:</label>
-    <input type="file" name="photos" (change)="fileUploadEvent($event)" ngModel>
-    <br>
-    <label>Email: </label>
-    <input type="text" name="email" ngModel>
-    <br>
-    <label>Adress: </label>
-    <input type="text" name="adress" ngModel>
-    <br>
-    <br>
-    <button>Send</button>
+<hr>
+<div class="mt-4" *ngIf="registerClicked === 1">
+    <form #form1="ngForm" (ngSubmit)="createUser(form1)" enctype="multipart/form-data">
+      <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+      <div class="input-group-prepend" >
+        <span class="input-group-text" style="font-size: 15px;background: #0002b8; color: ghostwhite" id="q1">Login</span>
+      </div>
+      <input type="text" name="login"
+             ngModel
+             class="form-control" aria-describedby="q1">
+    </div>
+      <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+        <div class="input-group-prepend" >
+          <span class="input-group-text" style="font-size: 15px;background: #0002b8; color: ghostwhite" id="q2">Password</span>
+        </div>
+        <input type="text" name="password"
+             ngModel
+               class="form-control" aria-describedby="q2">
+      </div>
+      <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+        <div class="input-group-prepend" >
+          <span class="input-group-text" style="font-size: 15px;background: #0002b8; color: ghostwhite" id="q3">Name</span>
+        </div>
+        <input type="text"  name="firstName"
+               ngModel
+               class="form-control" aria-describedby="q3">
+      </div>
+      <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+        <div class="input-group-prepend" >
+          <span class="input-group-text" style="font-size: 15px;background: #0002b8; color: ghostwhite" id="q4">Surname</span>
+        </div>
+        <input type="text"  name="surname"
+               ngModel
+               class="form-control" aria-describedby="q4">
+      </div>
+      <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+        <div class="input-group-prepend" >
+          <span class="input-group-text" style="font-size: 15px;background: #0002b8; color: ghostwhite" id="q5">Phone number</span>
+        </div>
+        <input type="text"  name="phone"
+               ngModel
+               class="form-control" aria-describedby="q5">
+      </div>
+      <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="font-size: 15px;background: #0002b8; color: ghostwhite" >Photo</span>
+        </div>
+        <div class="custom-file">
+          <input type="file" name="photo"
+                 (change)="fileUploadEvent($event)"
+                 ngModel class="custom-file-input" id="inputGroupFile01">
+          <label class="custom-file-label" for="inputGroupFile01">Add photo</label>
+        </div>
+      </div>
+      <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+        <div class="input-group-prepend" >
+          <span class="input-group-text" style="font-size: 15px;background: #0002b8; color: ghostwhite" id="q6">Email</span>
+        </div>
+        <input type="text"  name="email"
+               ngModel
+               class="form-control" aria-describedby="q6">
+      </div>
+      <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+        <div class="input-group-prepend" >
+          <span class="input-group-text" style="font-size: 15px;background: #0002b8; color: ghostwhite" id="q7">Adress</span>
+        </div>
+        <input type="text"  name="adress"
+               ngModel
+               class="form-control" aria-describedby="q7">
+      </div>
+      <h3 class="text-center">
+        <button class="btn btn-dark mt-4">Register</button>
+      </h3>
   </form>
-  <h2>{{msg}}</h2>
+  <h4 class="text-center" style="color: red;">{{msg}}</h4>
 </div>

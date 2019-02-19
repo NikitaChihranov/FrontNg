@@ -50,7 +50,9 @@ export class UserPageAdminComponent implements OnInit {
 
   }
 
-
+  logout() {
+    this.userService.dataSource.next(null);
+  }
 
 
   deleteProfile() {

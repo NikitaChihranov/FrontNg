@@ -1,33 +1,39 @@
-<h2>Your profile:</h2>
-<h4>Login: {{authorizedUser.login}}</h4>
-<h4>Password: {{authorizedUser.password}}</h4>
-<h4 *ngIf="authorizedUser.firstName!==''">
-  Name: {{authorizedUser.firstName}}
-</h4>
-<h4 *ngIf="authorizedUser.firstName==''">
-  Name: doesn't exist
-</h4>
-<h4 *ngIf="authorizedUser.surname!==''">
-  Surname: {{authorizedUser.surname}}
-</h4>
-<h4 *ngIf="authorizedUser.surname==''">
-  Surname: doesn't exist
-</h4>
-<h4 *ngIf="authorizedUser.phone!==''">
-  Phone number: {{authorizedUser.phone}}
-</h4>
-<h4 *ngIf="authorizedUser.phone==''">
-  Phone number: doesn't exist
-</h4>
-<h4 *ngIf="authorizedUser.photo!=='no photo'&&authorizedUser.photo!==''">
-  <img [src]="'http://localhost:3000/userPhotos/' + authorizedUser.photo">
-</h4>
-<h4 *ngIf="authorizedUser.photo === 'no photo' || authorizedUser.photo === ''">
-  Photo: doesn't exist
-</h4>
-<h4 *ngIf="authorizedUser.adress!==''">
-  Adress: {{authorizedUser.adress}}
-</h4>
-<h4 *ngIf="authorizedUser.adress === ''">
-  Adress: doesn't exist
-</h4>
+<h2 class="text-center mb-3">Your profile:</h2>
+<ul class="list-group mx-auto" style="width: 40%; font-size: 20px;">
+  <li class="list-group-item">
+    Login: {{authorizedUser.login}}
+  </li>
+  <li class="list-group-item">
+    Password: {{authorizedUser.password}}
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.firstName!==''">
+    Name: {{authorizedUser.firstName}}
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.firstName==''">
+    Name: doesn't exist
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.surname!==''">
+    Surname: {{authorizedUser.surname}}
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.surname==''">
+    Surname: doesn't exist
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.phone!==''">
+    Phone number: {{authorizedUser.phone}}
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.phone==''">
+    Phone number: doesn't exist
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.photo!=='no photo'&&authorizedUser.photo!==''">
+    Photo: <img style="width: 85%; height: auto;" [src]="'http://localhost:3000/userPhotos/' + authorizedUser.photo">
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.photo === 'no photo' || authorizedUser.photo === ''">
+    Photo: doesn't exist
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.adress!==''">
+    Adress: {{authorizedUser.adress}}
+  </li>
+  <li class="list-group-item" *ngIf="authorizedUser.adress === ''">
+    Adress: doesn't exist
+  </li>
+</ul>
