@@ -1,16 +1,18 @@
 <div class="row">
   <div class="w-100" *ngFor="let producer of producers">
     <h1 class="title text-center mt-2 mb-3" (click)="viewAllProductsByProducer(producer._id)">{{producer.title}} </h1>
-    <h4 class="text-center mb-4">
+    <span class="float-left mb-2 mr-4">
       <img *ngIf="producer.photo !== '' && producer.photo !== 'no photo'"
            style="width: 25rem; height: auto;"
            [src]="'http://localhost:3000/ProducerPhotos/' + producer.photo">
-    </h4>
+    </span>
     <p class="text-justify">{{producer.about.short}}</p>
-    <h3 class="text-right text-muted">{{producer.country}}</h3>
+    <h3 class="text-right text-muted" style="clear: both;">{{producer.country}}</h3>
+    <br>
     <button  class="btn btn-lg btn-dark" *ngIf="authorizedUser && authorizedUser.admin === true" (click)="updateProducer(producer._id)">Update
     </button>
-    <button class="btn btn-lg btn-danger ml-5" *ngIf="authorizedUser && authorizedUser.admin === true" (click)="deleteProducer(producer._id)">Delete</button>
+    <button class="btn btn-lg btn-danger ml-5" *ngIf="authorizedUser && authorizedUser.admin === true" (click)="deleteProducer(producer._id)">Delete
+    </button>
     <hr>
   </div>
 </div>

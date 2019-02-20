@@ -25,7 +25,7 @@ export class SuperAllUsersComponent implements OnInit {
   }
   deleteUser(id) {
     this.userService.deleteUser(id).subscribe(() => {
-      this.userService.getAllUsers().subscribe((res) => {
+      this.userService.getAll().subscribe((res) => {
         this.users = res;
       })
     });

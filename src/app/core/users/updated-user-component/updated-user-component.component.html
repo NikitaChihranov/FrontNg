@@ -1,14 +1,12 @@
-<a routerLink="/users/superAllUsers">Back</a>
-<h2>You updated user:</h2>
-<div>
-  <h3>Login: {{updatedUser.login}}</h3>
-  <h3>Password: {{updatedUser.password}}</h3>
-  <h3>Name: {{updatedUser.firstName}}</h3>
-  <h3>Surname: {{updatedUser.surname}}</h3>
-  <h3>Phone: {{updatedUser.phone}}</h3>
-  <h3 *ngIf="updatedUser.photo!='' && updatedUser.photo!='no photo'">Photo:
-    <img [src]="'http://localhost:3000/userPhotos/' + updatedUser.photo">
-  </h3>
-  <h3>Email: {{updatedUser.email}}</h3>
-  <h3>Address: {{updatedUser.adress}}</h3>
+<div class="container">
+  <div class="row">
+    <div class="col text-center" style="margin-top:8em;">
+      <h2>You updated user {{updatedUser.login}}!</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center mt-3">
+      <button routerLink="/users" class="btn btn-lg btn-dark">Back</button>
+    </div>
+  </div>
 </div>

@@ -21,7 +21,7 @@ export class CreateAdmiComponent implements OnInit {
     this.userService.createAdmin(adminForm.value).subscribe((res) => {
       if (res.firstName === 'Already exists!') this.msg = 'Admin with such login already exists';
       else if (res.firstName === 'err') {
-        this.msg = 'You cannot create admin without user or password';
+        this.msg = 'You cannot create admin without login or password';
       } else {
         if (this.photosToUploadAdmin) {
           this.userService.uploadPhoto(this.photosToUploadAdmin, res).subscribe((response) => {

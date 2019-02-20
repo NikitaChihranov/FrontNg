@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="row" style="margin-left: 5em; margin-right: 5em;" *ngIf="authorizedUser&&authorizedUser.admin === true">
-    <div class="col text-center">
+    <div class="col text-center mb-4">
       <button class="btn btn-lg btn-outline-dark float-left" (click)="createUser()">Create user</button>
       <button class="btn btn-lg btn-outline-danger float-right" (click)="createAdmin()">Create admin</button>
     </div>
@@ -35,9 +35,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col mb-2">
+    <div class="col mb-2" style="margin-top: 4em;">
       <div *ngIf="authorizedUser&&authorizedUser.superAdmin === false">
-        <button class="btn btn-lg btn-danger float-right" (click)="deleteProfile()">Delete profile</button>
+        <button class="btn btn-lg btn-danger float-left" (click)="deleteProfile()">Delete profile</button>
       </div>
     </div>
   </div>

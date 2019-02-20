@@ -21,7 +21,7 @@ export class CreateUserComponent implements OnInit {
     this.userService.createUser(userForm.value).subscribe((res) => {
       if (res.firstName === 'Already exists!') this.msg = 'User with such login already exists';
       else if (res.firstName === 'err') {
-        this.msg = 'You cannot create user without user or password';
+        this.msg = 'You cannot create user without login or password';
       } else {
         if (this.photosToUpload) {
           this.userService.uploadPhoto(this.photosToUpload, res).subscribe((response) => {
