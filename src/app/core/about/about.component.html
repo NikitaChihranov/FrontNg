@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="row">
+  <div class="row ">
     <div class="col">
       <app-about-itself *ngIf="aboutContent" [aboutContent]="aboutContent"></app-about-itself>
     </div>
@@ -8,7 +8,7 @@
 
 
   <div class="row" *ngIf="authorizedUser&&authorizedUser.admin === true">
-    <div class="col ml-3 mr-3">
+    <div class="col ml-3 mb-2 mr-3">
       <app-create-a *ngIf="!aboutContent"></app-create-a>
       <app-update *ngIf="aboutContent&&aboutContent.text !== ''"></app-update>
       <button *ngIf="aboutContent.text!==''&&authorizedUser&&authorizedUser.admin === true"  class="btn btn-lg btn-danger float-right" (click)="delete()">Delete</button>

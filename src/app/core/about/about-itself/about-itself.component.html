@@ -3,6 +3,7 @@
     <div class="col text-center">
       <h1 class="text-center" style="margin-top:2em; margin-bottom: 1em;">About us</h1>
       <img  *ngIf="aboutContent.logo"
+            style="width: 42rem; height: auto;"
             [src]="'http://localhost:3000/photosAbout/' + aboutContent.logo">
       <p class="text-justify lead">{{aboutContent.text}}</p>
     </div>

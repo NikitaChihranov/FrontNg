@@ -36,7 +36,7 @@
         </div>
         <hr>
     </div>
-    <h1 class="text-center mt-3 mb-1" *ngIf="orders.length !== 0">All orders:</h1>
+    <h1 class="text-center mt-3 mb-4" *ngIf="orders.length !== 0">All orders:</h1>
     <div class="row">
       <div class="ml-4 mx-auto mb-3 d-inline-flex"
            *ngFor="let order of orders"
@@ -57,19 +57,6 @@
           </li>
         </ul>
       </div>
-    <!--<div *ngFor="let order of orders">-->
-      <!--<h3>Name: {{order.name}}</h3>-->
-      <!--<h3>Surname: {{order.surname}}</h3>-->
-      <!--<h3>Product: {{order.product}}</h3>-->
-      <!--<h3>Date of creation: {{order.date | date: 'medium'}}</h3>-->
-      <!--<h3>Phone number: {{order.phoneNumber}}</h3>-->
-      <!--<h3>Address of delivery: {{order.addressDelivery}}</h3>-->
-      <!--<h3>Details: {{order.details}}</h3>-->
-      <!--<h3>Price: {{order.totalPrice}}</h3>-->
-      <!--<h3>Payment type: {{order.paymentType}}</h3>-->
-      <!--<button (click)="deleteOrderFromAllOrders(order._id)">Delete</button>-->
-      <!--<hr>-->
-    <!--</div>-->
     </div>
     <div *ngIf="orders.length === 0">
       <h2 class="text-center">There are no orders</h2>

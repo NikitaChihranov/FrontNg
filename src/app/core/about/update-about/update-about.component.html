@@ -1,8 +1,36 @@
-<a routerLink="/about">Back</a>
-<form #updateForm="ngForm" (ngSubmit)="update(updateForm)" enctype="multipart/form-data">
-  <h2>If About already exists, you can update it.</h2>
-  <textarea rows="13" cols="80" name="text" ngModel></textarea>
-  <br>
-  <input type="file" name="logo" (change)="fileUpdateEvent($event)" ngModel>
-  <button type="submit">Send</button>
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col mt-3">
+      <button class="btn btn-lg btn-dark" routerLink="/about">Back</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center mb-5">
+      <form #updateForm="ngForm" (ngSubmit)="update(updateForm)" enctype="multipart/form-data">
+        <div class="input-group mb-2 mx-auto" style="width: 25rem;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="color: #d2d2d2; background: #005602;">Text</span>
+          </div>
+          <textarea class="form-control"
+                    rows="5" cols="60"
+                    name="text" ngModel
+                    aria-label="With textarea"></textarea>
+        </div>
+        <div class="input-group mb-2 mx-auto" style="width: 25rem;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="color: #d2d2d2; background: #005602;">Photo</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" name="logo"
+                   (change)="fileUpdateEvent($event)"
+                   ngModel class="custom-file-input" id="inputGroupFile01">
+            <label class="custom-file-label" for="inputGroupFile01">Add photo</label>
+          </div>
+        </div>
+        <h1 class="text-center">
+          <button class="btn btn-lg btn-dark">Create</button>
+        </h1>
+      </form>
+    </div>
+  </div>
+</div>
