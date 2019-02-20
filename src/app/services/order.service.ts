@@ -20,10 +20,10 @@ export class OrderService {
     return this.http.get<Order>(`${this.host}orders/${id}`);
   }
   getOrdersByUser(id: string): Observable<Order[]> {
+    console.log(id);
     return this.http.get<Order[]>(`${this.host}orders/user/${id}`);
   }
   getAmountOfOrdersByProduct(id: string): Observable<any> {
-    console.log(111);
     return this.http.get<any>(`${this.host}orders/product/${id}`);
   }
   createOrder(order: Order, productTitle: Product, user: User ): Observable<Order> {

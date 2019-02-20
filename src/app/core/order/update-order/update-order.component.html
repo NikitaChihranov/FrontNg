@@ -1,17 +1,67 @@
-<a routerLink="/orders">Back</a>
-<h1>Update your order!</h1>
-<form #updateForm="ngForm"(ngSubmit)="updateOrder(updateForm)">
-  <h3>Delivery:</h3>
-  <label>Address</label>
-  <input type="text" #address name="addressDelivery"(input)="inputAdress(address)" ngModel>
-  <label>Phone number:</label>
-  <input type="text" #phone name="phoneNumber"(input)="inputPhone(phone)" ngModel>
-  <label>Some details</label>
-  <input type="text" #details name="details"(input)="inputDetails(details)" ngModel>
-  <label>Payment type</label>
-  <select name="paymentType" #payment (input)="inputPayment(payment)"ngModel>
-    <option>Cash</option>
-    <option>Credit card</option>
-  </select>
-  <button [disabled]="addressValue===''||phoneValue===''||detailsValue===''||paymentValue===''">Update</button>
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col mt-3">
+      <button class="btn btn-lg btn-dark" routerLink="/orders">Back</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mt-3">
+      <h1 class="text-center">Update order!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center mb-5">
+      <form #updateForm="ngForm"(ngSubmit)="updateOrder(updateForm)">
+        <div class="input-group mt-2 mb-2 mx-auto" style="width: 20rem;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="font-size: 15px;background: #605500; color: ghostwhite"
+                  id="q1">Delivery adress</span>
+          </div>
+          <input type="text"
+                 #address
+                 (input)="inputAdress(address)"
+                 name="addressDelivery" ngModel
+                 class="form-control" aria-describedby="q1">
+        </div>
+        <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="font-size: 15px;background: #605500; color: ghostwhite" id="q2">Phone number</span>
+          </div>
+          <input type="text"  name="phoneNumber" ngModel
+                 #phone
+                 (input)="inputPhone(phone)"
+                 class="form-control" aria-describedby="q2">
+        </div>
+        <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="font-size: 15px;background: #605500; color: ghostwhite"
+                  id="q3">Some details</span>
+          </div>
+          <input type="text" name="details"
+                 ngModel #details
+                 (input)="inputDetails(details)"
+                 class="form-control" aria-describedby="q3">
+        </div>
+        <div class="input-group mb-2 mx-auto" style="width: 20rem;">
+          <div class="input-group-prepend">
+            <label class="input-group-text"
+                   style="font-size: 15px;background: #605500; color: ghostwhite"
+                   for="inputGroupSelect01">Payment type</label>
+          </div>
+          <select name="paymentType"
+                  #payment
+                  (input)="inputPayment(payment)"
+                  ngModel class="custom-select" id="inputGroupSelect01">
+            <option>Credit card</option>
+            <option>Cash</option>
+          </select>
+        </div>
+        <h3 class="text-center">
+          <button
+            [disabled]="addressValue===''||phoneValue===''||detailsValue===''||paymentValue===''"
+            class="btn btn-lg btn-dark mt-2">Create</button>
+        </h3>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,63 +1,107 @@
-<div *ngIf="!authorizedUser">
-  Sign in to make order!
-  <button routerLink="/users">Sign in</button>
-</div>
-<div *ngIf="authorizedUser&&authorizedUser.admin === true">
-  <h2>Your orders:</h2>
-  <div *ngFor="let order of ordersByUser">
-    <h3>Name: {{order.name}}</h3>
-    <h3>Surname: {{order.surname}}</h3>
-    <h3>Product: {{order.product}}</h3>
-    <h3>Date of creation: {{order.date | date: 'medium'}}</h3>
-    <h3>Phone number: {{order.phoneNumber}}</h3>
-    <h3>Address of delivery: {{order.addressDelivery}}</h3>
-    <h3>Details: {{order.details}}</h3>
-    <h3>Price: {{order.totalPrice}}</h3>
-    <h3>Payment type: {{order.paymentType}}</h3>
-    <h4>Update order: </h4>
-    <button (click)="updateOrder(order)">Push</button>
-    <button (click)="deleteOrder(order._id)">Delete</button>
-    <hr>
+<div class="container">
+  <div class="row" *ngIf="!authorizedUser">
+    <div class="col text-center" style="margin-top:7em; margin-bottom:1em;">
+      <h1>Sign in to make order!</h1>
+      <button class="btn btn-lg btn-dark" routerLink="/users">Sign in</button>
+    </div>
   </div>
-  <div *ngIf="ordersByUser.length === 0">
-    <h2>There are no orders</h2>
+  <div *ngIf="authorizedUser&&authorizedUser.admin === true">
+    <div *ngIf="authorizedUser.superAdmin === false">
+      <h1 class="text-center mt-3 mb-2">Your orders:</h1>
+      <div class="row">
+        <div class="ml-4 mx-auto mb-3 d-inline-flex"
+             *ngFor="let order of ordersByUser"
+             style="width: 21.5rem; border:2px solid #8e8e8e; border-radius: 5px; padding: 8px;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Name: {{order.name}}</li>
+            <li class="list-group-item">Surname: {{order.surname}}</li>
+            <li class="list-group-item">Product: {{order.product}}</li>
+            <li class="list-group-item">Date of creation: {{order.date | date: 'medium'}}</li>
+            <li class="list-group-item">Phone number: {{order.phoneNumber}}</li>
+            <li class="list-group-item">Address of delivery: {{order.addressDelivery}}</li>
+            <li class="list-group-item">Details: {{order.details}}</li>
+            <li class="list-group-item">Price: {{order.totalPrice}}</li>
+            <li class="list-group-item">Payment type: {{order.paymentType}}</li>
+            <li class="list-group-item">
+              <button class="btn btn-dark float-left" (click)="updateOrder(order)">Update</button>
+              <button class="btn btn-danger float-right" (click)="deleteOrder(order)">Delete</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+        <div class="row" style="margin-top: 1em;" *ngIf="ordersByUser.length === 0">
+          <div class="col text-center">
+            <h1>no orders</h1>
+          </div>
+        </div>
+        <hr>
+    </div>
+    <h1 class="text-center mt-3 mb-1" *ngIf="orders.length !== 0">All orders:</h1>
+    <div class="row">
+      <div class="ml-4 mx-auto mb-3 d-inline-flex"
+           *ngFor="let order of orders"
+           style="width: 21.5rem; border:2px solid #8e8e8e; border-radius: 5px; padding: 8px;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Name: {{order.name}}</li>
+          <li class="list-group-item">Surname: {{order.surname}}</li>
+          <li class="list-group-item">Product: {{order.product}}</li>
+          <li class="list-group-item">Date of creation: {{order.date | date: 'medium'}}</li>
+          <li class="list-group-item">Phone number: {{order.phoneNumber}}</li>
+          <li class="list-group-item">Address of delivery: {{order.addressDelivery}}</li>
+          <li class="list-group-item">Details: {{order.details}}</li>
+          <li class="list-group-item">Price: {{order.totalPrice}}</li>
+          <li class="list-group-item">Payment type: {{order.paymentType}}</li>
+          <li class="list-group-item">
+            <button class="btn btn-dark float-left" (click)="updateOrder(order)">Update</button>
+            <button class="btn btn-danger float-right" (click)="deleteOrderFromAllOrders(order)">Delete</button>
+          </li>
+        </ul>
+      </div>
+    <!--<div *ngFor="let order of orders">-->
+      <!--<h3>Name: {{order.name}}</h3>-->
+      <!--<h3>Surname: {{order.surname}}</h3>-->
+      <!--<h3>Product: {{order.product}}</h3>-->
+      <!--<h3>Date of creation: {{order.date | date: 'medium'}}</h3>-->
+      <!--<h3>Phone number: {{order.phoneNumber}}</h3>-->
+      <!--<h3>Address of delivery: {{order.addressDelivery}}</h3>-->
+      <!--<h3>Details: {{order.details}}</h3>-->
+      <!--<h3>Price: {{order.totalPrice}}</h3>-->
+      <!--<h3>Payment type: {{order.paymentType}}</h3>-->
+      <!--<button (click)="deleteOrderFromAllOrders(order._id)">Delete</button>-->
+      <!--<hr>-->
+    <!--</div>-->
+    </div>
+    <div *ngIf="orders.length === 0">
+      <h2 class="text-center">There are no orders</h2>
+    </div>
   </div>
-  <h1>All orders:</h1>
-  <div *ngFor="let order of orders">
-      <h3>Name: {{order.name}}</h3>
-      <h3>Surname: {{order.surname}}</h3>
-      <h3>Product: {{order.product}}</h3>
-      <h3>Date of creation: {{order.date | date: 'medium'}}</h3>
-      <h3>Phone number: {{order.phoneNumber}}</h3>
-      <h3>Address of delivery: {{order.addressDelivery}}</h3>
-      <h3>Details: {{order.details}}</h3>
-      <h3>Price: {{order.totalPrice}}</h3>
-      <h3>Payment type: {{order.paymentType}}</h3>
-    <button (click)="deleteOrder(order._id)">Delete</button>
-    <hr>
-  </div>
-  <div *ngIf="orders.length === 0">
-    There are no orders
-  </div>
-</div>
-<div *ngIf="authorizedUser && authorizedUser.admin === false&&ordersByUser">
-  <h2>Orders:</h2>
-  <div *ngFor="let order of ordersByUser">
-    <h3>Name: {{order.name}}</h3>
-    <h3>Surname: {{order.surname}}</h3>
-    <h3>Product: {{order.product}}</h3>
-    <h3>Date of creation: {{order.date | date: 'medium'}}</h3>
-    <h3>Phone number: {{order.phoneNumber}}</h3>
-    <h3>Address of delivery: {{order.addressDelivery}}</h3>
-    <h3>Details: {{order.details}}</h3>
-    <h3>Price: {{order.totalPrice}}</h3>
-    <h3>Payment type: {{order.paymentType}}</h3>
-    <h4>Update order: </h4>
-    <button (click)="updateOrder(order)">Push</button>
-    <button (click)="deleteOrder(order._id)">Delete</button>
-    <hr>
-  </div>
-  <div *ngIf="ordersByUser.length === 0">
-    <h2>There are no orders</h2>
+  <div *ngIf="authorizedUser && authorizedUser.admin === false&&ordersByUser">
+    <h1 class="text-center mt-3 mb-2" *ngIf="ordersByUser.length !== 0">Orders:</h1>
+    <div class="row">
+      <div class="ml-4 mx-auto mb-3 d-inline-flex"
+           *ngFor="let order of ordersByUser"
+           style="width: 21.5rem; border:2px solid #8e8e8e; border-radius: 5px; padding: 8px;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Name: {{order.name}}</li>
+          <li class="list-group-item">Surname: {{order.surname}}</li>
+          <li class="list-group-item">Product: {{order.product}}</li>
+          <li class="list-group-item">Date of creation: {{order.date | date: 'medium'}}</li>
+          <li class="list-group-item">Phone number: {{order.phoneNumber}}</li>
+          <li class="list-group-item">Address of delivery: {{order.addressDelivery}}</li>
+          <li class="list-group-item">Details: {{order.details}}</li>
+          <li class="list-group-item">Price: {{order.totalPrice}}</li>
+          <li class="list-group-item">Payment type: {{order.paymentType}}</li>
+          <li class="list-group-item">
+            <button class="btn btn-dark float-left" (click)="updateOrder(order)">Update</button>
+            <button class="btn btn-danger float-right" (click)="deleteOrder(order)">Delete</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 5em;" *ngIf="ordersByUser.length === 0">
+      <div class="col text-center">
+        <h1>There are no orders</h1>
+      </div>
+    </div>
   </div>
 </div>

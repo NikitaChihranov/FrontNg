@@ -20,8 +20,10 @@ export class AllOrdersComponent implements OnInit {
     private orderService: OrderService,
     private router: Router
   ) {
+    console.log(111);
     this.userService.dataSource.subscribe(value => {
       this.authorizedUser = value ? value : null;
+      console.log(this.authorizedUser);
     });
     this.orderService.getAllOrders().subscribe((res) => {
       this.orders = res;
@@ -29,24 +31,39 @@ export class AllOrdersComponent implements OnInit {
     if (this.authorizedUser) {
       this.orderService.getOrdersByUser(this.authorizedUser._id).subscribe((res) => {
         this.ordersByUser = res;
+        console.log(111);
+        console.log(this.ordersByUser);
       });
     }
   }
 
   ngOnInit() {
+    console.log(111);
   }
 
   updateOrder(order) {
     this.router.navigate(['/orders/updateOrder'], {queryParams: {order: JSON.stringify(order)}}).then();
   }
 
-  deleteOrder(id) {
-    this.orderService.deleteOrderById(id).subscribe(() => {
-      this.orderService.getAllOrders().subscribe((res) => {
-        this.orders = res;
+  deleteOrder(order) {
+    this.orderService.deleteOrderById(order._id).subscribe((response) => {
+      this.orderService.getOrdersByUser(this.authorizedUser._id).subscribe((res) => {
         this.ordersByUser = res;
       });
-
+      this.orderService.getAllOrders().subscribe((re) => {
+        this.orders = re;
+      })
     });
+  }
+  deleteOrderFromAllOrders(order) {
+    this.orderService.deleteOrderById(order._id).subscribe(() => {
+      this.orderService.getAllOrders().subscribe((res) => {
+        this.orders = res;
+      });
+      this.orderService.getOrdersByUser(this.authorizedUser._id).subscribe((response) => {
+        this.ordersByUser = response;
+      })
+    })
+
   }
 }
