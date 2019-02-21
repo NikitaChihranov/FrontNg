@@ -11,7 +11,7 @@
     <div class="col ml-3 mb-2 mr-3">
       <app-create-a *ngIf="!aboutContent"></app-create-a>
       <app-update *ngIf="aboutContent&&aboutContent.text !== ''"></app-update>
-      <button *ngIf="aboutContent.text!==''&&authorizedUser&&authorizedUser.admin === true"  class="btn btn-lg btn-danger float-right" (click)="delete()">Delete</button>
+      <button *ngIf="aboutContent&&aboutContent.text!==''&&authorizedUser&&authorizedUser.admin === true"  class="btn btn-lg btn-danger float-right" (click)="delete()">Delete</button>
     </div>
   </div>
 </div>

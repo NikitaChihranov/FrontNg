@@ -7,49 +7,49 @@
   <div class="row" *ngIf="users!=[]" >
     <div class="mt-5 ml-3 mb-2 mx-auto d-inline-flex" *ngFor="let user of users"  style="width: 20rem;">
       <ul class="list-group" style="font-size: 20px;">
-        <li class="list-group-item">
+        <li class="list-group-item list-group-item-secondary">
           <span style="font-size: 17px;">Login: </span>{{user.login}}
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item list-group-item-secondary">
           <span style="font-size: 17px;">Password: </span>{{user.password}}
         </li>
-        <li class="list-group-item" *ngIf="user.firstName!==''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.firstName!==''">
           <span style="font-size: 17px;">Name: </span>{{user.firstName}}
         </li>
-        <li class="list-group-item" *ngIf="user.firstName==''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.firstName==''">
           <span style="font-size: 17px;">Name: doesn't exist</span>
         </li>
-        <li class="list-group-item" *ngIf="user.surname!==''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.surname!==''">
           <span style="font-size: 17px;">Surname: </span>{{user.surname}}
         </li>
-        <li class="list-group-item" *ngIf="user.surname==''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.surname==''">
           <span style="font-size: 17px;">Surname: doesn't exist</span>
         </li>
-        <li class="list-group-item" *ngIf="user.phone!==''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.phone!==''">
           <span style="font-size: 17px;">Phone number: </span>{{user.phone}}
         </li>
-        <li class="list-group-item" *ngIf="user.phone==''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.phone==''">
           <span style="font-size: 17px;">Phone number: doesn't exist</span>
         </li>
-        <li class="list-group-item" *ngIf="user.photo!=='no photo'&&user.photo!==''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.photo!=='no photo'&&user.photo!==''">
           <span style="font-size: 17px;">Photo:</span> <img style="width: 85%; height: auto;" [src]="'http://localhost:3000/userPhotos/' + user.photo">
         </li>
-        <li class="list-group-item" *ngIf="user.photo === 'no photo' || user.photo === ''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.photo === 'no photo' || user.photo === ''">
           <span style="font-size: 17px;">Photo: doesn't exist</span>
         </li>
-        <li class="list-group-item" *ngIf="user.adress!==''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.adress!==''">
           <span style="font-size: 17px;">Adress:</span> {{user.adress}}
         </li>
-        <li class="list-group-item" *ngIf="user.adress === ''">
+        <li class="list-group-item list-group-item-secondary" *ngIf="user.adress === ''">
           <span style="font-size: 17px;">Adress: doesn't exist</span>
         </li>
-        <li class="list-group-item" style="color:red" *ngIf="user.admin === true">
+        <li class="list-group-item list-group-item-secondary" style="color:red" *ngIf="user.admin === true">
           <span style="font-weight: 600;">Admin roots!</span>
         </li>
-        <li class="list-group-item"  style="color:red" *ngIf="user.admin === false">
+        <li class="list-group-item list-group-item-secondary"  style="color:red" *ngIf="user.admin === false">
           <span style="font-weight: 600;">No admin roots!</span>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item list-group-item-secondary">
           <button class="btn btn-sm btn-dark float-left" (click)="toUpdate(user._id)">Update</button>
           <button class="btn btn-sm btn-danger float-right" *ngIf="user.superAdmin===false" (click)="deleteUser(user._id)">Delete</button>
         </li>

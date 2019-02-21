@@ -1,3 +1,17 @@
-<div *ngFor="let user of users">
-  <button (click)="getStats(user._id)">{{user.login}}</button>
+<div class="container">
+  <div class="row">
+    <div class="col mb-2" style="margin-top:4em;">
+      <h1 class="text-center">Choose admin</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center w-100">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let user of users" (click)="getStats(user._id)">
+        <h4 class="link">{{user.login}}</h4>
+      </li>
+    </ul>
+    </div>
+    </div>
 </div>
+
