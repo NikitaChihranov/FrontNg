@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {ObjectUnsubscribedError, Observable} from 'rxjs';
 import {Order} from '../core/models/order';
 import {User} from '../core/models/user';
 import {Product} from '../core/models/product';
@@ -34,6 +34,18 @@ export class OrderService {
     order.userId = user._id;
     order.date = Date.now();
     return this.http.post<Order>(`${this.host}orders`, order);
+  }
+  setPaid(id: string) : Observable<Order> {
+    //@ts-ignore
+    return this.http.put<Order>(`${this.host}orders/order/setPaid/${id}`);
+  }
+  setDelivered(id: string): Observable<Order>{
+    //@ts-ignore
+    return this.http.put<Order>(`${this.host}orders/order/setDelivered/${id}`);
+  }
+  setClosed(id: string): Observable<Order> {
+    //@ts-ignore
+    return this.http.put<Order>(`${this.host}orders/order/setClosed/${id}`);
   }
   updateOrder(order: Order): Observable<Order> {
     console.log(order);

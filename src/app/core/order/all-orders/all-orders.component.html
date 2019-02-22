@@ -12,7 +12,7 @@
         <div class="ml-4 mx-auto mb-3 d-inline-flex"
              *ngFor="let order of ordersByUser"
              style="width: 21.5rem; border:2px solid #8e8e8e; border-radius: 5px; padding: 8px;">
-          <ul class="list-group list-group-flush">
+          <ul *ngIf="order.status!=='closed'" class="list-group list-group-flush">
             <li class="list-group-item">Name: {{order.name}}</li>
             <li class="list-group-item">Surname: {{order.surname}}</li>
             <li class="list-group-item">Product: {{order.product}}</li>
@@ -22,9 +22,40 @@
             <li class="list-group-item">Details: {{order.details}}</li>
             <li class="list-group-item">Price: {{order.totalPrice}}</li>
             <li class="list-group-item">Payment type: {{order.paymentType}}</li>
+            <li class="list-group-item">Status: <span style="color:red;">{{order.status}}</span></li>
+            <li class="list-group-item" *ngIf="order.status === 'ordered'">
+              <button class="btn btn-sm btn-danger float-left" (click)="setPaid(order)">Set paid</button>
+              <button class="btn btn-sm btn-danger ml-3 float-center" (click)="setDelivered(order)">Set delivered</button>
+              <button class="btn btn-sm btn-danger float-right" (click)="setClosed(order)">Set closed</button>
+            </li>
+            <li class="list-group-item text-center" *ngIf="order.status === 'paid'">
+              <button class="btn btn-sm btn-danger float-left" (click)="setDelivered(order)">Set delivered</button>
+              <button class="btn btn-sm btn-danger float-right" (click)="setClosed(order)">Set closed</button>
+            </li>
+            <li class="list-group-item" *ngIf="order.status === 'delivered'">
+              <button class="btn btn-sm btn-danger float-left" (click)="setPaid(order)">Set paid</button>
+              <button class="btn btn-sm btn-danger float-right" (click)="setClosed(order)">Set closed</button>
+            </li>
             <li class="list-group-item">
               <button class="btn btn-dark float-left" (click)="updateOrder(order)">Update</button>
-              <button class="btn btn-danger float-right" (click)="deleteOrder(order)">Delete</button>
+              <button class="btn btn-danger float-right" (click)="deleteOrderFromAllOrders(order)">Delete</button>
+            </li>
+          </ul>
+          <ul *ngIf="order.status==='closed'" class="list-group list-group-flush">
+            <li class="list-group-item  list-group-item-secondary">Name: {{order.name}}</li>
+            <li class="list-group-item  list-group-item-secondary">Surname: {{order.surname}}</li>
+            <li class="list-group-item  list-group-item-secondary">Product: {{order.product}}</li>
+            <li class="list-group-item  list-group-item-secondary">Date of creation: {{order.date | date: 'medium'}}</li>
+            <li class="list-group-item  list-group-item-secondary">Phone number: {{order.phoneNumber}}</li>
+            <li class="list-group-item  list-group-item-secondary">Address of delivery: {{order.addressDelivery}}</li>
+            <li class="list-group-item  list-group-item-secondary">Details: {{order.details}}</li>
+            <li class="list-group-item  list-group-item-secondary">Price: {{order.totalPrice}}</li>
+            <li class="list-group-item  list-group-item-secondary">Payment type: {{order.paymentType}}</li>
+            <li class="list-group-item  list-group-item-secondary">
+              <p class="text-center">Closed order</p>
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+              <button class="btn btn-danger float-right" (click)="deleteOrderFromAllOrders(order)">Delete</button>
             </li>
           </ul>
         </div>
@@ -36,28 +67,59 @@
         </div>
         <hr>
     </div>
-    <h1 class="text-center mt-3 mb-4" *ngIf="orders.length !== 0">All orders:</h1>
+    <h1 class="text-center mt-3 mb-2" *ngIf="orders.length !== 0">All orders:</h1>
     <div class="row">
       <div class="ml-4 mx-auto mb-3 d-inline-flex"
            *ngFor="let order of orders"
            style="width: 21.5rem; border:2px solid #8e8e8e; border-radius: 5px; padding: 8px;">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Name: {{order.name}}</li>
-          <li class="list-group-item">Surname: {{order.surname}}</li>
-          <li class="list-group-item">Product: {{order.product}}</li>
-          <li class="list-group-item">Date of creation: {{order.date | date: 'medium'}}</li>
-          <li class="list-group-item">Phone number: {{order.phoneNumber}}</li>
-          <li class="list-group-item">Address of delivery: {{order.addressDelivery}}</li>
-          <li class="list-group-item">Details: {{order.details}}</li>
-          <li class="list-group-item">Price: {{order.totalPrice}}</li>
-          <li class="list-group-item">Payment type: {{order.paymentType}}</li>
-          <li class="list-group-item">
-            <button class="btn btn-dark float-left" (click)="updateOrder(order)">Update</button>
+        <ul *ngIf="order.status!=='closed'" class="list-group list-group-flush">
+        <li class="list-group-item">Name: {{order.name}}</li>
+        <li class="list-group-item">Surname: {{order.surname}}</li>
+        <li class="list-group-item">Product: {{order.product}}</li>
+        <li class="list-group-item">Date of creation: {{order.date | date: 'medium'}}</li>
+        <li class="list-group-item">Phone number: {{order.phoneNumber}}</li>
+        <li class="list-group-item">Address of delivery: {{order.addressDelivery}}</li>
+        <li class="list-group-item">Details: {{order.details}}</li>
+        <li class="list-group-item">Price: {{order.totalPrice}}</li>
+        <li class="list-group-item">Payment type: {{order.paymentType}}</li>
+        <li class="list-group-item">Status: <span style="color:red;">{{order.status}}</span></li>
+        <li class="list-group-item" *ngIf="order.status === 'ordered'">
+          <button class="btn btn-sm btn-danger float-left" (click)="setPaid(order)">Set paid</button>
+          <button class="btn btn-sm btn-danger ml-3 float-center" (click)="setDelivered(order)">Set delivered</button>
+          <button class="btn btn-sm btn-danger float-right" (click)="setClosed(order)">Set closed</button>
+        </li>
+        <li class="list-group-item text-center" *ngIf="order.status === 'paid'">
+          <button class="btn btn-sm btn-danger float-left" (click)="setDelivered(order)">Set delivered</button>
+          <button class="btn btn-sm btn-danger float-right" (click)="setClosed(order)">Set closed</button>
+        </li>
+        <li class="list-group-item" *ngIf="order.status === 'delivered'">
+          <button class="btn btn-sm btn-danger float-left" (click)="setPaid(order)">Set paid</button>
+          <button class="btn btn-sm btn-danger float-right" (click)="setClosed(order)">Set closed</button>
+        </li>
+        <li class="list-group-item">
+          <button class="btn btn-dark float-left" (click)="updateOrder(order)">Update</button>
+          <button class="btn btn-danger float-right" (click)="deleteOrderFromAllOrders(order)">Delete</button>
+        </li>
+      </ul>
+        <ul *ngIf="order.status==='closed'" class="list-group list-group-flush">
+          <li class="list-group-item  list-group-item-secondary">Name: {{order.name}}</li>
+          <li class="list-group-item  list-group-item-secondary">Surname: {{order.surname}}</li>
+          <li class="list-group-item  list-group-item-secondary">Product: {{order.product}}</li>
+          <li class="list-group-item  list-group-item-secondary">Date of creation: {{order.date | date: 'medium'}}</li>
+          <li class="list-group-item  list-group-item-secondary">Phone number: {{order.phoneNumber}}</li>
+          <li class="list-group-item  list-group-item-secondary">Address of delivery: {{order.addressDelivery}}</li>
+          <li class="list-group-item  list-group-item-secondary">Details: {{order.details}}</li>
+          <li class="list-group-item  list-group-item-secondary">Price: {{order.totalPrice}}</li>
+          <li class="list-group-item  list-group-item-secondary">Payment type: {{order.paymentType}}</li>
+          <li class="list-group-item  list-group-item-secondary">
+            <p class="text-center">Closed order</p>
+          </li>
+          <li class="list-group-item list-group-item-secondary">
             <button class="btn btn-danger float-right" (click)="deleteOrderFromAllOrders(order)">Delete</button>
           </li>
         </ul>
-      </div>
-    </div>
+  </div>
+</div>
     <div *ngIf="orders.length === 0">
       <h2 class="text-center">There are no orders</h2>
     </div>
@@ -68,7 +130,7 @@
       <div class="ml-4 mx-auto mb-3 d-inline-flex"
            *ngFor="let order of ordersByUser"
            style="width: 21.5rem; border:2px solid #8e8e8e; border-radius: 5px; padding: 8px;">
-        <ul class="list-group list-group-flush">
+        <ul *ngIf="order.status!=='closed'" class="list-group list-group-flush">
           <li class="list-group-item">Name: {{order.name}}</li>
           <li class="list-group-item">Surname: {{order.surname}}</li>
           <li class="list-group-item">Product: {{order.product}}</li>
@@ -78,8 +140,26 @@
           <li class="list-group-item">Details: {{order.details}}</li>
           <li class="list-group-item">Price: {{order.totalPrice}}</li>
           <li class="list-group-item">Payment type: {{order.paymentType}}</li>
+          <li class="list-group-item">Status: <span style="color:red;">{{order.status}}</span></li>
           <li class="list-group-item">
             <button class="btn btn-dark float-left" (click)="updateOrder(order)">Update</button>
+            <button class="btn btn-danger float-right" (click)="deleteOrder(order)">Delete</button>
+          </li>
+        </ul>
+        <ul *ngIf="order.status==='closed'" class="list-group list-group-flush">
+          <li class="list-group-item list-group-item-secondary">Name: {{order.name}}</li>
+          <li class="list-group-item list-group-item-secondary">Surname: {{order.surname}}</li>
+          <li class="list-group-item list-group-item-secondary">Product: {{order.product}}</li>
+          <li class="list-group-item list-group-item-secondary">Date of creation: {{order.date | date: 'medium'}}</li>
+          <li class="list-group-item list-group-item-secondary">Phone number: {{order.phoneNumber}}</li>
+          <li class="list-group-item list-group-item-secondary">Address of delivery: {{order.addressDelivery}}</li>
+          <li class="list-group-item list-group-item-secondary">Details: {{order.details}}</li>
+          <li class="list-group-item list-group-item-secondary">Price: {{order.totalPrice}}</li>
+          <li class="list-group-item list-group-item-secondary">Payment type: {{order.paymentType}}</li>
+          <li class="list-group-item list-group-item-secondary">
+            <p class="text-center">Closed order</p>
+          </li>
+          <li class="list-group-item list-group-item-secondary">
             <button class="btn btn-danger float-right" (click)="deleteOrder(order)">Delete</button>
           </li>
         </ul>

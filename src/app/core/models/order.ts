@@ -10,7 +10,8 @@ export class Order {
     public phoneNumber?: string,
     public details?: string,
     public paymentType?: string,
-    public totalPrice?: number
+    public totalPrice?: number,
+    public status?: string
   )
   {
 

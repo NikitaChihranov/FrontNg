@@ -40,6 +40,37 @@ export class AllOrdersComponent implements OnInit {
   ngOnInit() {
     console.log(111);
   }
+  setDelivered(order){
+    this.orderService.setDelivered(order._id).subscribe((res) => {
+      this.orderService.getAllOrders().subscribe((res) => {
+        this.orders = res;
+      })
+      this.orderService.getOrdersByUser(this.authorizedUser._id).subscribe((res) => {
+        this.ordersByUser = res;
+      })
+    });
+  }
+  setPaid(order){
+    this.orderService.setPaid(order._id).subscribe((res) => {
+      this.orderService.getAllOrders().subscribe((res) => {
+        this.orders = res;
+      })
+      this.orderService.getOrdersByUser(this.authorizedUser._id).subscribe((res) => {
+        this.ordersByUser = res;
+      })
+    })
+  }
+  setClosed(order){
+    this.orderService.setClosed(order._id).subscribe((res) => {
+      this.orderService.getAllOrders().subscribe((res) => {
+        this.orders = res;
+      })
+      this.orderService.getOrdersByUser(this.authorizedUser._id).subscribe((res) => {
+        this.ordersByUser = res;
+      })
+    })
+  }
+
 
   updateOrder(order) {
     this.router.navigate(['/orders/updateOrder'], {queryParams: {order: JSON.stringify(order)}}).then();
