@@ -4,20 +4,35 @@
       <button class="btn btn-lg btn-dark" routerLink="/stats">Back</button>
     </div>
   </div>
-  <div class="row">
-    <div class="col" style="float: left;">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let product of products">
-          <h4>{{product.title}}</h4>
-        </li>
-      </ul>
-    </div>
-    <div class="col text-center" style="float: left;">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let amount of amounts">
-          <h4>{{amount}}</h4>
-        </li>
-      </ul>
-    </div>
-  </div>
+</div>
+<!--<div class="row">-->
+<!--<div class="col" style="float: left;">-->
+<!--<ul class="list-group list-group-flush">-->
+<!--<li class="list-group-item" *ngFor="let product of products">-->
+<!--<h4>{{product.title}}</h4>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--<div class="col text-center" style="float: left;">-->
+<!--<ul class="list-group list-group-flush">-->
+<!--<li class="list-group-item" *ngFor="let amount of amounts">-->
+<!--<h4>{{amount}}</h4>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div class="container">
+  <canvas *ngIf="barChartData!==[]" height="100" baseChart
+          [datasets]="[
+            {data: barChartData, label: barLabel
+           }]"
+          [colors]="[{
+              backgroundColor:'#dd0322',
+              hoverBackgroundColor:'#ff7912'
+          }]"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"></canvas>
 </div>

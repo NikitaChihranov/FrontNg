@@ -16,15 +16,11 @@ export class OrderService {
   getAllOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.host}orders`);
   }
-  getOrderById(id: string): Observable<Order> {
-    return this.http.get<Order>(`${this.host}orders/${id}`);
-  }
   getOrdersByUser(id: string): Observable<Order[]> {
-    console.log(id);
     return this.http.get<Order[]>(`${this.host}orders/user/${id}`);
   }
-  getAmountOfOrdersByProduct(id: string): Observable<any> {
-    return this.http.get<any>(`${this.host}orders/product/${id}`);
+  getAmountsOfOrdersByAllProducts(): Observable<any> {
+    return this.http.get<any>(`${this.host}orders/get/forAllProducts`);
   }
   createOrder(order: Order, productTitle: Product, user: User ): Observable<Order> {
     order.product = productTitle.title;

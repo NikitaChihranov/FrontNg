@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProductService} from '../../../services/product.service';
 import {OrderService} from '../../../services/order.service';
 import {Product} from '../../models/product';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-stats-orders',
@@ -9,24 +10,39 @@ import {Product} from '../../models/product';
   styleUrls: ['./stats-orders.component.css']
 })
 export class StatsOrdersComponent implements OnInit {
-  products: Product[] = [];
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+  };
+  public barChartData = [];
+  public barLabel = 'Orders';
+  public barChartLabels;
+  public barChartType = 'horizontalBar';
+  public barChartLegend = true;
+  public barChartBackground = '#ff0c2c';
+
   amounts = [];
+  labelData = [];
+  products: Product[] = [];
 
   constructor(
     private productService: ProductService,
-    private orderService: OrderService
+    private orderService: OrderService,
   ) {
   }
 
   ngOnInit() {
+
     this.productService.getAllProducts().subscribe((res) => {
+      console.log(res);
       this.products = res;
       for (let product of this.products) {
-        this.orderService.getAmountOfOrdersByProduct(product._id).subscribe((res) => {
-          console.log(res);
-          this.amounts.push(res);
-        });
+        this.labelData.push(product.title);
       }
-    })
+      this.barChartLabels = this.labelData;
+    });
+    this.orderService.getAmountsOfOrdersByAllProducts().subscribe((response) => {
+        this.barChartData = response;
+    });
   }
 }

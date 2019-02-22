@@ -10,6 +10,7 @@ import {StatsComponent} from './stats.component';
 import {StatsOrdersComponent} from './stats-orders/stats-orders.component';
 import {StatsUsersComponent} from './stats-users/stats-users.component';
 import {UserGetStatsComponent} from './user-get-stats/user-get-stats.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import {UserGetStatsComponent} from './user-get-stats/user-get-stats.component';
     UserGetStatsComponent
   ],
   imports: [
+    ChartsModule,
     CommonModule,
-    StatsRoutingModule
+    StatsRoutingModule,
   ]
 })
 export class StatsModule {
