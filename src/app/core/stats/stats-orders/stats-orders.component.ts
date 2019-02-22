@@ -19,7 +19,6 @@ export class StatsOrdersComponent implements OnInit {
   public barChartLabels;
   public barChartType = 'horizontalBar';
   public barChartLegend = true;
-  public barChartBackground = '#ff0c2c';
 
   amounts = [];
   labelData = [];

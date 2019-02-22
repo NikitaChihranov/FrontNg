@@ -48,9 +48,9 @@ export class CreateProductComponent implements OnInit {
           this.router.navigate(['/products/createdProduct'], {queryParams: {product: JSON.stringify(response)}}).then();
         });
       } else {
-        this.router.navigate(['/products/createdProduct'], {queryParams: {product: JSON.stringify(res)}}).then();
-
+        this.router.navigate(['/products/createdProduct'], {queryParams: {product: JSON.stringify(res)}}).then()
       }
+      console.log(res);
     });
 
   }

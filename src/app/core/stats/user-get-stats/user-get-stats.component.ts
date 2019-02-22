@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {OrderService} from '../../../services/order.service';
 import {ProductService} from '../../../services/product.service';
 import {CategoriesService} from '../../../services/categories.service';
@@ -14,31 +14,43 @@ import {Producer} from '../../models/producer';
   styleUrls: ['./user-get-stats.component.css']
 })
 export class UserGetStatsComponent implements OnInit {
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+  };
+  public barChartData1;
+  public barLabel = 'amount';
+  public barChartLabels = ['Categories', 'Products', 'Producers', ''];
+  public barChartType = 'horizontalBar';
+  public barChartLegend = true;
   id = '';
-  categories: Category[];
-  products: Product[];
-  producers: Producer[];
+  barChartData = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private categoriesService: CategoriesService,
     private producerService: ProducerService
-
+    private router: Router
   ){ }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((res) => {
       this.id = JSON.parse(res.id);
-      this.productService.getProductsByAuthor(this.id).subscribe((res) => {
-        this.products = res;
-      });
       this.categoriesService.getCategoriesByAuthor(this.id).subscribe((res) => {
-        this.categories = res;
+        this.barChartData.push(res.length);
+      this.productService.getProductsByAuthor(this.id).subscribe((res) => {
+        this.barChartData.push(res.length);
+
+          this.producerService.getProducersByAuthor(this.id).subscribe((res) => {
+            this.barChartData.push(res.length);
+            this.barChartData1 = this.barChartData;
+        })
+        });
       });
-      this.producerService.getProducersByAuthor(this.id).subscribe((res) => {
-        this.producers = res;
-      })
     })
+  }
+  getFurther(){
+    this.router.navigate(['/orders/getFurther'],{queryParams: {id: JSON.stringify(this.id)}});
   }
 
 }

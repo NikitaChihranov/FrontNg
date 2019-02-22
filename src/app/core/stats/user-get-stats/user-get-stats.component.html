@@ -4,61 +4,22 @@
       <button class="btn btn-lg btn-dark" routerLink="/stats/users">Back</button>
     </div>
   </div>
-  <h3 class="text-center mb-4">Categories created:</h3>
-  <div class="row" *ngIf="categories&&categories.length!==0">
-    <div class="mx-auto ml-4 mb-4 d-inline-flex" style="width: 20rem; margin-left:2em; "
-         *ngFor="let category of categories">
-      <ul class="list-group">
-        <li class="list-group-item list-group-item-secondary">Name: {{category.title}}</li>
-        <li class="list-group-item list-group-item-secondary">Date of creation: {{category.date | date: 'medium'}}</li>
-        <hr>
-      </ul>
-    </div>
-  </div>
-  <div class="row" *ngIf="categories&&categories.length === 0">
+  <canvas *ngIf="barChartData!==[]" height="60"  baseChart
+          [datasets]="[
+            {data: barChartData1, label: barLabel
+           }]"
+          [colors]="[{
+              backgroundColor:'#f8fa01',
+              hoverBackgroundColor:'#817c00'
+          }]"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"></canvas>
+  <div class="row">
     <div class="col">
-      <h4 class="text-center lead">No statistic yet!</h4>
+      <h1 (click)="getFurther()">Further information</h1>
     </div>
   </div>
-  <hr>
-  <h3 class="text-center mb-4">Products added:</h3>
-  <div class="row" *ngIf="products&&products.length!==0">
-    <div class="mx-auto ml-4 mb-4 d-inline-flex" style="width: 20rem; margin-left:2em;"
-         *ngFor="let product of products">
-      <ul class="list-group">
-        <li class="list-group-item list-group-item-secondary">Name: {{product.title}}</li>
-        <li class="list-group-item list-group-item-secondary">Date of creation: {{product.date | date: 'medium'}}</li>
-        <li class="list-group-item list-group-item-secondary">Product title: {{product.title}}</li>
-        <li class="list-group-item list-group-item-secondary">Date of creation: {{product.date | date: 'medium'}}</li>
-        <li class="list-group-item list-group-item-secondary">Price: {{product.price}}</li>
-        <li class="list-group-item list-group-item-secondary">Quantity: {{product.quantity}}</li>
-        <li class="list-group-item list-group-item-secondary">Producer: {{product.producer}}</li>
-        <li class="list-group-item list-group-item-secondary">Category: {{product.category}}</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="row" *ngIf="categories&&categories.length === 0">
-    <div class="col">
-      <h4 class="text-center lead">No statistic yet!</h4>
-    </div>
-  </div>
-  <hr>
-  <h3 class="text-center mb-4">Producers created:</h3>
-  <div class="row" *ngIf="producers&&producers.length!==0">
-    <div class="mx-auto ml-4 mb-4 d-inline-flex" style="width: 20rem; margin-left:2em;"
-         *ngFor="let producer of producers">
-      <ul class="list-group">
-        <li class="list-group-item list-group-item-secondary">Title: {{producer.title}}</li>
-        <li class="list-group-item list-group-item-secondary">Date of creation: {{producer.date | date: 'medium'}}</li>
-        <li class="list-group-item list-group-item-secondary">Country: {{producer.country}}</li>
-      </ul>
-    </div>
-  </div>
-  <div class="row" *ngIf="categories&&categories.length === 0">
-    <div class="col">
-      <h4 class="text-center lead">No statistic yet!</h4>
-    </div>
-  </div>
-</div>
+ </div>
 
