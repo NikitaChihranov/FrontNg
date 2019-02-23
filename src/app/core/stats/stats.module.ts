@@ -11,13 +11,15 @@ import {StatsOrdersComponent} from './stats-orders/stats-orders.component';
 import {StatsUsersComponent} from './stats-users/stats-users.component';
 import {UserGetStatsComponent} from './user-get-stats/user-get-stats.component';
 import {ChartsModule} from 'ng2-charts';
+import {FurtherInfoComponent} from './further-info/further-info.component';
 
 @NgModule({
   declarations: [
     StatsComponent,
     StatsOrdersComponent,
     StatsUsersComponent,
-    UserGetStatsComponent
+    UserGetStatsComponent,
+    FurtherInfoComponent
   ],
   imports: [
     ChartsModule,

@@ -4,7 +4,12 @@
       <button class="btn btn-lg btn-dark" routerLink="/stats/users">Back</button>
     </div>
   </div>
-  <canvas *ngIf="barChartData!==[]" height="60"  baseChart
+  <div class="row"  *ngIf="categories.length==0&&products.length==0&&producers.length==0">
+    <div class="col text-center lead">
+      <p style="font-size: 25px;">No statistic yet.</p>
+    </div>
+  </div>
+  <canvas *ngIf="categories.length!==0&&products.length!==0&&producers.length!==0" height="120" baseChart
           [datasets]="[
             {data: barChartData1, label: barLabel
            }]"
@@ -16,10 +21,10 @@
           [options]="barChartOptions"
           [legend]="barChartLegend"
           [chartType]="barChartType"></canvas>
-  <div class="row">
-    <div class="col">
-      <h1 (click)="getFurther()">Further information</h1>
-    </div>
+  <div class="row" *ngIf="categories.length!==0&&products.length!==0&&producers.length!==0">
+    <div class="col mt-3">
+      <h1 class="link" (click)="getFurther()">Further information</h1>
+  </div>
   </div>
  </div>
 

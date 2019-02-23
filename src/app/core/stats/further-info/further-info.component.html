@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col mt-3 mb-2">
+      <button class="btn btn-lg btn-dark" routerLink="/stats/users">Back</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mt-4">
+      <h2 class="text-center">Categories added:</h2>
+      <ul class="list-group list-group-flush mb-3">
+        <li *ngFor="let category of categories" class="list-group-item mx-auto w-50">{{category.title}}   <span style="font-size: 15px;" class="text-muted float-right">{{category.date|date:'medium'}}</span></li>
+      </ul>
+
+      <h2 class="text-center">Products added:</h2>
+      <ul class="list-group list-group-flush mb-3">
+        <li *ngFor="let product of products" class="list-group-item mx-auto w-50">{{product.title}}   <span style="font-size: 15px;" class="text-muted float-right">{{product.date|date:'medium'}}</span></li>
+      </ul>
+
+      <h2 class="text-center">Producers added:</h2>
+      <ul class="list-group list-group-flush mb-3">
+        <li *ngFor="let producer of producers" class="list-group-item mx-auto w-50">{{producer.title}}   <span style="font-size: 15px;" class="text-muted float-right">{{producer.date|date:'medium'}}</span></li>
+      </ul>
+    </div>
+  </div>
+</div>

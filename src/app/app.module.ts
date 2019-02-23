@@ -18,6 +18,7 @@ import { AboutItselfComponent } from './core/about/about-itself/about-itself.com
 import { EachCommentComponent } from './core/products/view-product/each-comment/each-comment.component';
 import { AddCommentsComponent } from './core/products/view-product/add-comments/add-comments.component';
 import { EachProductInViewComponent } from './core/products/view-product/each-product-in-view/each-product-in-view.component';
+import { FurtherInfoComponent } from './core/stats/further-info/further-info.component';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { EachProductInViewComponent } from './core/products/view-product/each-pr
     AllOrdersComponent,
     MenuComponent,
     ProfileComponent,
-    GlobalSearchComponent,
+    GlobalSearchComponent
   ],
   imports: [
     BrowserModule,

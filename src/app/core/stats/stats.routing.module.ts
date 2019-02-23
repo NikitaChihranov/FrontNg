@@ -8,12 +8,14 @@ import {StatsComponent} from './stats.component';
 import {StatsOrdersComponent} from './stats-orders/stats-orders.component';
 import {StatsUsersComponent} from './stats-users/stats-users.component';
 import {UserGetStatsComponent} from './user-get-stats/user-get-stats.component';
+import {FurtherInfoComponent} from './further-info/further-info.component';
 
 const routes: Routes = [
   {path: '', component: StatsComponent},
   {path: 'orders', component: StatsOrdersComponent},
   {path: 'users', component: StatsUsersComponent},
-  {path: 'usersStats', component: UserGetStatsComponent}
+  {path: 'usersStats', component: UserGetStatsComponent},
+  {path: 'getFurther', component: FurtherInfoComponent}
 ];
 
 @NgModule({
