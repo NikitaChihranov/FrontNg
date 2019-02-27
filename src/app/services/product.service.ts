@@ -12,8 +12,8 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  getAllProducts(): Observable<Product[]> {
-    return this.http.get <Product[]>(`${this.host}products`);
+  getAllProducts(limit: number, skip: number): Observable<Product[]> {
+    return this.http.get <Product[]>(`${this.host}products/limit/${limit}/skip/${skip}`);
   }
 
   getProductByName(name: string): Observable<Product> {

@@ -36,7 +36,7 @@ export class StatsOrdersComponent implements OnInit {
   }
   getStats() {
         if (this.fromDate!=undefined && this.toDate!=undefined){
-          this.productService.getAllProducts().subscribe((res) => {
+          this.productService.getAllProducts(1000000, 0).subscribe((res) => {
             this.labelData = [];
             this.products = res;
             for (let product of this.products) {

@@ -22,6 +22,8 @@ export class ProductsComponent implements OnInit {
   product: Product;
   producers: Producer[] = [];
   authorizedUser: User;
+  limit = 6;
+  skip = 0;
 
   constructor(private productService: ProductService, private categoriesService: CategoriesService, private producerService: ProducerService,
               private userService: UserService, private router: Router) {
@@ -29,15 +31,20 @@ export class ProductsComponent implements OnInit {
       this.authorizedUser = value ? value : null;
     });
   }
-
   ngOnInit() {
-    this.productService.getAllProducts().subscribe((res) => {
+    this.productService.getAllProducts(6, 0).subscribe((res) => {
       this.products = res;
     });
   }
+  setDisplay(form){
+    this.limit = Number(form.value.displayMode);
+    this.productService.getAllProducts(form.value.displayMode, 0).subscribe((res) => {
+      this.products = res;
+    })
+  }
   deleteProduct(id) {
     this.productService.deleteProduct(id).subscribe(() =>{
-      this.productService.getAllProducts().subscribe((res) => {
+      this.productService.getAllProducts(this.limit, this.skip).subscribe((res) => {
         this.products = res;
       });
     });
@@ -48,7 +55,18 @@ export class ProductsComponent implements OnInit {
       }
     );
   }
-
+  toNext(){
+    this.skip+=this.limit;
+    this.productService.getAllProducts(this.limit, this.skip).subscribe((res) => {
+        this.products = res;
+      });
+  }
+  toPrevious(){
+    this.skip -= this.limit;
+    this.productService.getAllProducts(this.limit, this.skip).subscribe((res) => {
+        this.products = res;
+      });
+  }
 
 }
 
