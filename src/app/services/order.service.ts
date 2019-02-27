@@ -19,8 +19,8 @@ export class OrderService {
   getOrdersByUser(id: string): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.host}orders/user/${id}`);
   }
-  getAmountsOfOrdersByAllProducts(): Observable<any> {
-    return this.http.get<any>(`${this.host}orders/get/forAllProducts`);
+  getAmountsOfOrdersByAllProducts(fromDate: Date, toDate: Date): Observable<any> {
+    return this.http.get<any>(`${this.host}orders/get/forAllProducts/from/${fromDate}/to/${toDate}`);
   }
   createOrder(order: Order, productTitle: Product, user: User ): Observable<Order> {
     order.product = productTitle.title;
@@ -42,6 +42,10 @@ export class OrderService {
   setClosed(id: string): Observable<Order> {
     //@ts-ignore
     return this.http.put<Order>(`${this.host}orders/order/setClosed/${id}`);
+  }
+  setOrdered(id: string): Observable<Order> {
+    //@ts-ignore
+    return this.http.put<Order>(`${this.host}orders/order/setOrdered/${id}`);
   }
   updateOrder(order: Order): Observable<Order> {
     console.log(order);

@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {Producer} from '../core/models/producer';
 import {Product} from '../core/models/product';
 import {About} from '../core/models/about';
+import {Category} from '../core/models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,11 @@ export class ProducerService {
   getProducerByName(name: string): Observable<Producer> {
     return this.http.get<Producer>(`${this.host}producers/${name}`);
   }
-  getProducersByAuthor(id: string): Observable<Producer[]> {
-    return this.http.get<Producer[]>(`${this.host}producers/author/${id}`);
+  getProducersByAuthor(id: string, dateFrom: Date, dateTo: Date): Observable<Producer[]> {
+    return this.http.get<Producer[]>(`${this.host}producers/author/${id}/from/${dateFrom}/to/${dateTo}/`);
+  }
+  getProducersByAuthor1(id: string): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.host}producers/author1/${id}`);
   }
   createProducer(producer: Producer, id: string): Observable<Producer> {
     producer.userIdAuthor = id;

@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ProductService} from '../../../services/product.service';
 import {OrderService} from '../../../services/order.service';
 import {Product} from '../../models/product';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-stats-orders',
@@ -20,6 +19,8 @@ export class StatsOrdersComponent implements OnInit {
   public barChartType = 'horizontalBar';
   public barChartLegend = true;
 
+  fromDate: Date;
+  toDate: Date;
   amounts = [];
   labelData = [];
   products: Product[] = [];
@@ -32,16 +33,42 @@ export class StatsOrdersComponent implements OnInit {
 
   ngOnInit() {
 
-    this.productService.getAllProducts().subscribe((res) => {
-      console.log(res);
-      this.products = res;
-      for (let product of this.products) {
-        this.labelData.push(product.title);
-      }
-      this.barChartLabels = this.labelData;
-    });
-    this.orderService.getAmountsOfOrdersByAllProducts().subscribe((response) => {
-        this.barChartData = response;
-    });
   }
+  getStats() {
+        if (this.fromDate!=undefined && this.toDate!=undefined){
+          this.productService.getAllProducts().subscribe((res) => {
+            this.labelData = [];
+            this.products = res;
+            for (let product of this.products) {
+            this.labelData.push(product.title);
+          }
+          this.barChartLabels = this.labelData;
+        });
+          this.orderService.getAmountsOfOrdersByAllProducts(this.fromDate, this.toDate).subscribe((res) => {
+              this.barChartData = res;
+          });
+        }
+      }
+  cl(input1) {
+    this.fromDate = input1.value;
+    console.log(this.fromDate);
+  }
+  cl2(input){
+    this.toDate = input.value;
+    console.log(this.toDate);
+  }
+
 }
+// this.productService.getAllProducts().subscribe((res) => {
+//   console.log(res);
+//   this.products = res;
+//   for (let product of this.products) {
+//     this.labelData.push(product.title);
+//   }
+//   this.barChartLabels = this.labelData;
+// });
+// this.orderService.getAmountsOfOrdersByAllProducts().subscribe((response) => {
+//   this.barChartData = response;
+// });
+// }
+// }

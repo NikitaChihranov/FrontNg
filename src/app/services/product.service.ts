@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Product} from '../core/models/product';
+import {Category} from '../core/models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,11 @@ export class ProductService {
   getProductById(id: string): Observable<Product> {
     return this.http.get<Product>(`${this.host}products/id/${id}`);
   }
-  getProductsByAuthor(id: string): Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.host}products/author/${id}`);
+  getProductsByAuthor(id: string, dateFrom: Date, dateTo: Date): Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.host}products/author/${id}/from/${dateFrom}/to/${dateTo}`);
+  }
+  getProductsByAuthor1(id: string): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.host}products/author1/${id}`);
   }
   createProduct(product: Product, id: string): Observable<Product> {
     product.userIdAuthor = id;

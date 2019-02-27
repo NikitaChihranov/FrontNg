@@ -29,11 +29,11 @@ export class FurtherInfoComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((res) => {
       this.id = JSON.parse(res.id);
-      this.categoriesService.getCategoriesByAuthor(this.id).subscribe((res) => {
+      this.categoriesService.getCategoriesByAuthor1(this.id).subscribe((res) => {
         this.categories = res;
-        this.productService.getProductsByAuthor(this.id).subscribe((res) => {
+        this.productService.getProductsByAuthor1(this.id).subscribe((res) => {
           this.products = res;
-          this.producerService.getProducersByAuthor(this.id).subscribe((res) => {
+          this.producerService.getProducersByAuthor1(this.id).subscribe((res) => {
             this.producers = res;
           })
         });

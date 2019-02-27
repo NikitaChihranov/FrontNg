@@ -29,6 +29,8 @@ export class UserGetStatsComponent implements OnInit {
   categories: Category[] = [];
   products: Product[] = [];
   producers: Producer[] = [];
+  dateFrom: Date;
+  dateTo: Date;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,22 +41,36 @@ export class UserGetStatsComponent implements OnInit {
   ){ }
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((res) => {
-      this.id = JSON.parse(res.id);
-      this.categoriesService.getCategoriesByAuthor(this.id).subscribe((res1) => {
-        this.barChartData.push(res1.length);
-        this.categories = res1;
-      this.productService.getProductsByAuthor(this.id).subscribe((res2) => {
-        this.barChartData.push(res2.length);
-        this.products = res2;
-          this.producerService.getProducersByAuthor(this.id).subscribe((res3) => {
-            this.barChartData.push(res3.length);
-            this.producers = res3;
-            this.barChartData1 = this.barChartData;
-        })
+  }
+  getStats(){
+    if(this.dateFrom!=undefined&&this.dateTo!=undefined) {
+      console.log('data exist');
+      this.activatedRoute.queryParams.subscribe((res) => {
+        this.id = JSON.parse(res.id);
+        this.categoriesService.getCategoriesByAuthor(this.id, this.dateFrom, this.dateTo).subscribe((res1) => {
+          this.barChartData.push(res1.length);
+          console.log(res1);
+          this.categories = res1;
+          this.productService.getProductsByAuthor(this.id, this.dateFrom, this.dateTo).subscribe((res2) => {
+            this.barChartData.push(res2.length);
+            this.products = res2;
+            this.producerService.getProducersByAuthor(this.id, this.dateFrom, this.dateTo).subscribe((res3) => {
+              this.barChartData.push(res3.length);
+              this.producers = res3;
+              this.barChartData1 = this.barChartData;
+            })
+          });
         });
-      });
-    })
+      })
+    }
+  }
+  cl(input1) {
+    this.dateFrom = input1.value;
+    console.log(this.dateFrom);
+  }
+  cl2(input){
+    this.dateTo = input.value;
+    console.log(this.dateTo);
   }
   getFurther(){
     this.router.navigate(['/stats/getFurther'],{queryParams: {id: JSON.stringify(this.id)}}).then();

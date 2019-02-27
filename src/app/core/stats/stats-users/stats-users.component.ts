@@ -17,6 +17,7 @@ export class StatsUsersComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getAllAdmins().subscribe((res) => {
+      console.log(res);
       this.users = res;
     })
   }

@@ -55,6 +55,7 @@
             <li class="list-group-item  list-group-item-secondary">Payment type: {{order.paymentType}}</li>
             <li class="list-group-item  list-group-item-secondary">
               <p class="text-center">Closed order</p>
+              <button class="btn btn-danger btn-sm float-right" (click)="setOrdered(order)">Set back ordered</button>
             </li>
             <li class="list-group-item list-group-item-secondary">
               <button class="btn btn-danger float-right" (click)="deleteOrderFromAllOrders(order)">Delete</button>
@@ -115,6 +116,7 @@
           <li class="list-group-item  list-group-item-secondary">Payment type: {{order.paymentType}}</li>
           <li class="list-group-item  list-group-item-secondary">
             <p class="text-center">Closed order</p>
+            <button class="btn btn-danger btn-sm float-right" (click)="setOrdered(order)">Set back ordered</button>
           </li>
           <li class="list-group-item list-group-item-secondary">
             <button class="btn btn-danger float-right" (click)="deleteOrderFromAllOrders(order)">Delete</button>

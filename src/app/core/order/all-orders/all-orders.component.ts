@@ -70,6 +70,16 @@ export class AllOrdersComponent implements OnInit {
       })
     })
   }
+  setOrdered(order){
+    this.orderService.setOrdered(order._id).subscribe((res) => {
+      this.orderService.getAllOrders().subscribe((res) => {
+        this.orders = res;
+      })
+      this.orderService.getOrdersByUser(this.authorizedUser._id).subscribe((res) => {
+        this.ordersByUser = res;
+      })
+    })
+  }
 
 
   updateOrder(order) {

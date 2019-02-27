@@ -18,8 +18,11 @@ export class CategoriesService {
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.host}categories`);
   }
-  getCategoriesByAuthor(id: string): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.host}categories/author/${id}`);
+  getCategoriesByAuthor(id: string, dateFrom: Date, dateTo: Date): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.host}categories/author/${id}/from/${dateFrom}/to/${dateTo}`);
+  }
+  getCategoriesByAuthor1(id: string): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.host}categories/author1/${id}`);
   }
   createCategory(category: Category, id: string): Observable<Category> {
     category.userIdAuthor = id;
