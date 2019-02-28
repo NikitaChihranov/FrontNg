@@ -1,35 +1,54 @@
 <div class="container">
+
   <div class="row">
-    <div class="col text-right">
+    <div class="col mt-3 text-left">
       <form #sortForm="ngForm" (change)="setDisplay(sortForm)">
-      Display by:
-      <label for="id1">By 3</label><input type="radio" name="displayMode" ngModel id="id1"  value="3">
-      <label for="id2">By 6</label><input type="radio" name="displayMode" ngModel  id="id2" value="6">
-      <label for="id3">By 9</label><input type="radio" name="displayMode"  ngModel id="id3" value="9">
-      <label for="id4">By 15</label><input type="radio" name="displayMode"  ngModel id="id4" value="15">
-      <label for="id5">By 30</label><input type="radio" name="displayMode"  ngModel id="id5" value="30">
+        <div class="form-check">
+          <label class="toggle" style="font-size: 15pt;">
+            <input type="radio" name="displayMode" ngModel value="3"> <span class="label-text">Show by 3</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="toggle" style="font-size: 15pt;">
+            <input type="radio" name="displayMode" ngModel value="6"> <span class="label-text">Show by 6</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="toggle" style="font-size: 15pt;">
+            <input type="radio" name="displayMode" ngModel value="9"> <span class="label-text">Show by 9</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="toggle" style="font-size: 15pt;">
+            <input type="radio" name="displayMode" ngModel value="15"> <span class="label-text">Show by 15</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="toggle" style="font-size: 15pt;">
+            <input type="radio" name="displayMode" ngModel value="30"> <span class="label-text">Show by 30</span>
+          </label>
+        </div>
       </form>
     </div>
-  </div>
-  <div class="row">
-    <product
-      [products]="products"
-      [authorizedUser]="authorizedUser"
-      (productToDelete)="deleteProduct($event)">
-    </product>
-  </div>
-  <div class="row">
-    <div class="col text-right">
-      <button *ngIf="products.length>=3" (click)="toNext()">Next</button>
-      <button (click)="toPrevious()" *ngIf="skip!=0">Back</button>
+    <div class="col text-right mt-3">
+      <button class="btn btn-dark ml-3" (click)="toPrevious()" *ngIf="skip!=0">Back</button>
+      <button class="btn btn-dark ml-3" *ngIf="products.length>=3" (click)="toNext()">Next</button>
+    </div>
+
+    <div class="row">
+      <product
+        [products]="products"
+        [authorizedUser]="authorizedUser"
+        (productToDelete)="deleteProduct($event)">
+      </product>
+    </div>
+
+    <div *ngIf="authorizedUser&&authorizedUser.admin === true" class="row text-center mt-3 mb-3">
+      <div class="col">
+        <createProduct></createProduct>
+      </div>
+      <div class="col">
+        <deleteAllProducts (deleteProducts)="deleteAllProducts()"></deleteAllProducts>
+      </div>
     </div>
   </div>
-  <div *ngIf="authorizedUser&&authorizedUser.admin === true" class="row text-center mt-3 mb-3">
-    <div class="col">
-      <createProduct></createProduct>
-    </div>
-    <div class="col">
-      <deleteAllProducts (deleteProducts)="deleteAllProducts()"></deleteAllProducts>
-    </div>
-  </div>
-</div>
