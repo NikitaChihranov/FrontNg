@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../core/models/user';
+import {TranslateService} from 'ng2-translate';
 
 @Component({
   selector: 'app-menu',
@@ -8,9 +9,13 @@ import {User} from '../../core/models/user';
 })
 export class MenuComponent implements OnInit {
   @Input() authorizedUser: User;
-  constructor() { }
+  constructor( private translateService: TranslateService) { }
 
   ngOnInit() {
+  }
+
+  setLanguage(lang: string){
+    this.translateService.use(lang);
   }
 
 }

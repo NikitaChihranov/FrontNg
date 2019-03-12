@@ -1,3 +1,11 @@
 {
-  "mainTitle": "123"
+  "mainMenu": {
+    "categories": "Categories",
+    "products": "Products",
+    "producers": "Producers",
+    "signIn": "Sign In",
+    "orders": "Orders",
+    "about": "About",
+    "statistic": "Statistic"
+  }
 }

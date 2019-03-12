@@ -1,3 +1,11 @@
 {
-  "mainTitle": "eawf"
+  "mainMenu": {
+    "categories": "Категории",
+    "products": "Продукты",
+    "producers": "Производители",
+    "signIn": "Войти",
+    "orders": "Корзина",
+    "about": "О нас",
+    "statistic": "Статистика"
+  }
 }

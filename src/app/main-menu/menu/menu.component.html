@@ -1,33 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark pl-5">
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item active mr-3">
+    <li class="nav-item active mr-1">
       <a class="nav-link apple" routerLink="/categories">Apple shop</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" routerLink="/categories">Categories</a>
+      <a class="nav-link" routerLink="/categories">{{'mainMenu.categories' | translate}}</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" routerLink="/products">Products</a>
+      <a class="nav-link" routerLink="/products">{{'mainMenu.products' | translate}}</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" routerLink="/producers">Producers</a>
+      <a class="nav-link" routerLink="/producers">{{'mainMenu.producers' | translate}}</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" routerLink="/users">Sign in</a>
+      <a class="nav-link" routerLink="/users">{{'mainMenu.signIn' | translate}}</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" routerLink="/allOrders">Orders</a>
+      <a class="nav-link" routerLink="/allOrders">{{'mainMenu.orders' | translate}}</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" routerLink="/about">About us</a>
+      <a class="nav-link" routerLink="/about">{{'mainMenu.about' | translate}}</a>
     </li>
-    <li class="nav-item mr-5" *ngIf="authorizedUser && authorizedUser.superAdmin === true">
-      <a class="nav-link" routerLink="/stats">Statistic</a>
+    <li class="nav-item mr-1" *ngIf="authorizedUser && authorizedUser.superAdmin === true">
+      <a class="nav-link" routerLink="/stats">{{'mainMenu.statistic' | translate}}</a>
     </li>
     <li class="nav-item active">
       <a class="nav-link"><app-profile [authorizedUser]="authorizedUser"></app-profile></a>
     </li>
+    <li class="nav-item mr-2">
+    <div class="languages mt-1 ml-3">
+    <div (click)="setLanguage('en')" class="en"></div>
+    <div (click)="setLanguage('ru')" class="ru"></div>
+    <div (click)="setLanguage('uk')" class="uk"></div>
+  </div>
+    </li>
   </ul>
+
   <app-global-search></app-global-search>
 </nav>
 

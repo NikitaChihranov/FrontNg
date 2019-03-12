@@ -13,10 +13,10 @@ export class AppComponent implements OnInit {
       private translateService: TranslateService
     ){
       translateService.addLangs(['ru', 'en', 'uk']);
-      translateService.setDefaultLang('uk');
+      translateService.setDefaultLang('en');
       let browserLang = translateService.getBrowserLang();
       // translateService.use(browserLang.match(/ru|en|uk/) ? browserLang : 'en');
-      translateService.use('ru');
+      translateService.use('en');
     }
 
 

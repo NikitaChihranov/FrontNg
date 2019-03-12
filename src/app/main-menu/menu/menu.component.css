@@ -2,3 +2,43 @@
   font-size: 17px;
   font-weight: bold;
 }
+
+.ru{
+  width: 34px;
+  height: 34px;
+  margin-left: 2px;
+  background: url(../../../assets/ruFL.png);
+  background-size: contain;
+  overflow:hidden;
+  display: inline-block;
+  opacity: 0.5;
+}
+.uk{
+  width: 34px;
+  height: 34px;
+  background: url(../../../assets/ukFL.png);
+  background-size: contain;
+  overflow:hidden;
+  display: inline-block;
+  opacity: 0.5;
+  margin-bottom: 0.5px;
+}
+.en{
+  width: 34px;
+  height: 34px;
+  background: url(../../../assets/enFL.png);
+  background-size: contain;
+  overflow:hidden;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.uk, .en{
+  margin-left: 1px;
+  border-radius: 10px;
+
+}
+.ru:hover, .uk:hover, .en:hover{
+  cursor: pointer;
+  opacity: 0.99;
+}

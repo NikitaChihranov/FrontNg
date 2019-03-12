@@ -12,6 +12,7 @@ import {AppModule} from '../app.module';
 import {ProductsRoutingModule} from '../core/products/products-routing.module';
 import {ProductsComponent} from '../core/products/products.component';
 import {StatsRoutingModule} from '../core/stats/stats.routing.module';
+import {TranslateModule} from 'ng2-translate';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {StatsRoutingModule} from '../core/stats/stats.routing.module';
     ProducerRoutingModule,
     RouterModule,
     ProductsRoutingModule,
-    StatsRoutingModule
+    StatsRoutingModule,
+    TranslateModule
   ],
   exports: [
     MainMenuRoutingModule
