@@ -10,6 +10,7 @@ import {ViComponent} from './vi/vi.component';
 import {CreateCategoryComponent} from './create-category/create-category.component';
 import {CreatedComponent} from './created/created.component';
 import {AllCategoriesComponent} from './all-categories/all-categories.component';
+import {TranslateModule} from 'ng2-translate';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {AllCategoriesComponent} from './all-categories/all-categories.component'
     CategoriesRoutingModule,
     FormsModule,
     RouterModule,
+    TranslateModule
   ]
 })
 export class CategoriesModule {

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AboutComponent } from './core/about/about.component';
 import {FormsModule} from '@angular/forms';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import {MainMenuRoutingModule} from './main-menu/main-menu-routing.module';
@@ -12,13 +11,12 @@ import { AllOrdersComponent } from './core/order/all-orders/all-orders.component
 import {MenuComponent} from './main-menu/menu/menu.component';
 import {ProfileComponent} from './main-menu/profile/profile.component';
 import {GlobalSearchComponent} from './main-menu/global-search/global-search.component';
-import { CreateAComponent } from './core/about/create-a/create-a.component';
-import { UpdateComponent } from './core/about/update/update.component';
-import { AboutItselfComponent } from './core/about/about-itself/about-itself.component';
-import { EachCommentComponent } from './core/products/view-product/each-comment/each-comment.component';
-import { AddCommentsComponent } from './core/products/view-product/add-comments/add-comments.component';
-import { EachProductInViewComponent } from './core/products/view-product/each-product-in-view/each-product-in-view.component';
-import { FurtherInfoComponent } from './core/stats/further-info/further-info.component';
+import {TranslateLoader, TranslateModule, TranslateStaticLoader} from 'ng2-translate';
+import {Http} from '@angular/http';
+
+export function createTranslateLoader(http: Http) {
+  return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
 
 
 @NgModule({
@@ -35,7 +33,13 @@ import { FurtherInfoComponent } from './core/stats/further-info/further-info.com
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MainMenuRoutingModule
+    MainMenuRoutingModule,
+    TranslateModule.forRoot
+      ({
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [Http]
+      })
   ],
   providers: [
     {
